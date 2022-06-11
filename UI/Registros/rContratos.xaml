@@ -1,0 +1,41 @@
+﻿<Window x:Class="UI.rContratos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="550" Width="650">
+    <Grid Height="529" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Id Contrato" HorizontalAlignment="Left" Margin="88,85,0,0" VerticalAlignment="Top" Width="90" Height="26" FontSize="14"/>
+        <Label Content="Apellido Cliente" HorizontalAlignment="Left" Margin="70,158,0,0" VerticalAlignment="Top" Height="26" Width="108" FontSize="14"/>
+        <Label Content="Nombre Cliente" HorizontalAlignment="Left" Margin="70,120,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.219,3.141" Height="26" Width="108" FontSize="14"/>
+        <Label Content="Celular" HorizontalAlignment="Left" Margin="118,264,0,0" VerticalAlignment="Top" Height="26" Width="60" RenderTransformOrigin="1.575,0.666" FontSize="14"/>
+        <Label Content="Cedula Cliente" HorizontalAlignment="Left" Margin="74,191,0,0" VerticalAlignment="Top" Height="26" Width="104" FontSize="14"/>
+        <Label Content="Direccion" HorizontalAlignment="Left" Margin="104,230,0,0" VerticalAlignment="Top" Height="26" Width="74" FontSize="14"/>
+        <Label Content="Telefono" HorizontalAlignment="Left" Margin="377,263,0,0" VerticalAlignment="Top" Height="27" Width="62" RenderTransformOrigin="0.417,-0.228" FontSize="14"/>
+        <Label Content="Registro de Contratos" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30" Height="50" Width="298"/>
+        <TextBox x:Name="ContratoTextBox" Text="{Binding ContratoId}" HorizontalAlignment="Left" Margin="183,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="327" Height="26"/>
+        <TextBox x:Name="NombreTextBox" Text="{Binding NombreCliente}" HorizontalAlignment="Left" Margin="183,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="416" Height="26"/>
+        <TextBox x:Name="ApellidoTB" Text="{Binding ApellidoCliente}" HorizontalAlignment="Left" Margin="183,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="416" Height="26"/>
+        <TextBox x:Name="CedulaTB" HorizontalAlignment="Left" Text="{Binding Cedula}" Margin="183,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="416" Height="26"/>
+        <TextBox x:Name="DireccionTB" HorizontalAlignment="Left" Text="{Binding Direccion}" Margin="183,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="416" Height="26"/>
+        <TextBox x:Name="CelularTB" HorizontalAlignment="Left" Text="{Binding Celular}" Margin="183,264,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Height="26"/>
+        <TextBox x:Name="TelefonoTB" HorizontalAlignment="Left" Text="{Binding Telefono}" Margin="439,263,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Height="26"/>
+        <Button Content="Buscar" HorizontalAlignment="Left"   Margin="523,85,0,0" VerticalAlignment="Top" Width="78" Height="26" Click="BuscarBTN_Click" BorderBrush="#FF142472" Background="#FF5E76EE"/>
+        <Label Content="Telefono Referencia" FontFamily="oblica" HorizontalAlignment="Left" Margin="37,295,0,0" VerticalAlignment="Top" Width="141" FontSize="14"/>
+        <TextBox x:Name="TelReferencialTB" Text="{Binding TelefonoReferencial}" HorizontalAlignment="Left" Margin="183,296,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="416" Height="26"/>
+        <Label Content="Tipo de Plan" HorizontalAlignment="Left" Margin="81,329,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.735,-2.402" FontSize="14"/>
+        <ComboBox x:Name="TipoPlanCombo"  HorizontalAlignment="Left" Margin="183,336,0,0" VerticalAlignment="Top" Width="416"/>
+        <Button Content="Eliminar" Click="EliminarBTN_Click" HorizontalAlignment="Left" Margin="449,467,0,0" BorderThickness="2" VerticalAlignment="Top" Height="37" Width="104" Background="#FFE8250D"/>
+        <Button Content="Guardar" Click="GuardarBTN_Click" HorizontalAlignment="Left" Margin="280,467,0,0" BorderThickness="2" VerticalAlignment="Top" Height="37" Width="104" Background="#FF429724"/>
+        <Button Content="Nuevo" Click="NuevoBTN_Click" HorizontalAlignment="Left" Margin="124,467,0,0" BorderThickness="2" VerticalAlignment="Top" Height="37" Width="104"  Background="#FF334BAB"/>
+        <TextBlock HorizontalAlignment="Left" Margin="183,378,0,0" TextWrapping="Wrap" Text="{Binding Comentario}" VerticalAlignment="Top" Width="416" Height="70" Background="Gainsboro" Foreground="Black"/>
+
+    </Grid>
+</Window>
