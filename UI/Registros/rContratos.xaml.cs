@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Models;
 using BLL;
+using PF_THEBEAVERS;
 
 namespace UI
 {

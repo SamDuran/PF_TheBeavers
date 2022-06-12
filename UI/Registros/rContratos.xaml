@@ -14,19 +14,25 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResizeWithGrip"
         Icon="/UI/Registros/Icono.png" Background="#FFDADADA">
+
+
     <Grid Height="546" VerticalAlignment="Center" HorizontalAlignment="Center" Width="830" ShowGridLines="True" Margin="40,13,0,0">
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
+
                 <!--Titulo-->
                 <StackPanel Orientation="Horizontal"> 
                     <Label Content="Registro de contratos" FontWeight="Normal" FontFamily="Impact" FontSize="36"/>
                 </StackPanel>
+
                 <!--NoContrato-->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="243,0,0,0">
                     <Label x:Name="ContratoLabel1" Content="No.Contrato:" Width="94" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right"/>
                     <Label x:Name="NoContratoLabel" Content="{Binding NoContrato}" Width="100"  Foreground="Red" FontSize="11" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26"/>
                 </StackPanel>
             </StackPanel>
+
+
             <!--Fechas-->
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Horizontal" Margin="10,0,0,0" HorizontalAlignment="Right">
@@ -38,6 +44,8 @@
                     <Label x:Name="fModifLabel" Content="{Binding FechaModificacion, StringFormat=\{0:d\}}" Width="100" Height="26" Foreground="#FF131313"/>
                 </StackPanel>
             </StackPanel>
+
+
             <!--ID-->
             <StackPanel Orientation="Horizontal" Margin="20,20,20,10">
                 <Label Content="Id Contrato" Width="140" FontSize="14" Padding="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
@@ -49,26 +57,36 @@
                     </StackPanel>
                 </Button>
             </StackPanel>
+
+
             <!--Nombre Contrato-->
             <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
                 <Label Content="Nombre Cliente" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
                 <TextBox x:Name="NombreTB" Text="{Binding NombreCliente}"  KeyDown="NombreTextBox_KeyDown" HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" Grid.Column="1" VerticalContentAlignment="Center"/>
             </StackPanel>
+
+
             <!--Apellido-->
             <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
                 <Label Content="Apellido Cliente" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
                 <TextBox x:Name="ApellidoTB" Text="{Binding ApellidoCliente}" KeyDown="ApellidoTextBox_KeyDown" HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" VerticalContentAlignment="Center"/>
             </StackPanel>
+
+
             <!--Cedula-->
             <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
                 <Label Content="Cedula" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
                 <TextBox x:Name="CedulaTB" Text="{Binding Cedula}" KeyDown="CedulaTextBox_KeyDown" HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" VerticalContentAlignment="Center"/>
             </StackPanel>
+
+
             <!--Direccion-->
             <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
                 <Label Content="Direccion" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
                 <TextBox x:Name="DireccionTB" Text="{Binding Direccion}" KeyDown="DirTextBox_KeyDown" HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" VerticalContentAlignment="Center"/>
             </StackPanel>
+
+
             <!--Cel y Tel-->
             <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
                 <Label Content="Celular" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
@@ -76,11 +94,15 @@
                 <Label Content="Telefono" Padding="5,5,5,5" Height="26" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
                 <TextBox x:Name="TelTB" Text="{Binding Telefono}" KeyDown="TelTextBox_KeyDown" HorizontalAlignment="Center" Margin="20,0,15,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="230" Height="26" VerticalContentAlignment="Center"/>
             </StackPanel>
+
+
             <!--Tel Referencial-->
             <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
                 <Label Content="Telefono Referencial" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
                 <TextBox x:Name="TelRefTB" Text="{Binding TelefonoReferencial}" KeyDown="TelRBox_KeyDown" HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" VerticalContentAlignment="Center"/>
             </StackPanel>
+
+
             <!--TipoPlan-->
             <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
                 <Label Content="Tipo Plan" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
@@ -93,9 +115,15 @@
                     </ComboBox.Background>
                 </ComboBox>
             </StackPanel>
+
+            
             <!-- Commentario -->
             <TextBox x:Name="ComentTB" HorizontalAlignment="Stretch" Margin="45,0,0,0" TextWrapping="Wrap" Text="{Binding Comentario}" Width="660" Height="70" Foreground="#FF1B1B1B" Background="#FFF1F1F1" />
+
+
             <!-- Botones -->
+
+                    <!-- Boton Nuevo -->
             <StackPanel Orientation="Horizontal" Margin="0,10" Width="700" HorizontalAlignment="Center" >
                 <Button Click="NuevoBTN_Click" BorderThickness="2" Height="70" Width="115"  Background="#437FA6" BorderBrush="#FF2B419C" Foreground="White" FontWeight="Bold" Margin="60,0,75,0">
                     <StackPanel Orientation="Vertical">
@@ -103,12 +131,16 @@
                         <Label HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Normal" Foreground="#FF232323" Content="Nuevo"/>
                     </StackPanel>
                 </Button>
+
+                    <!-- Boton Guardar -->
                 <Button Click="GuardarBTN_Click" BorderThickness="2" Height="70" Width="104" Background="#FF499230" BorderBrush="#FF347D1B" Foreground="White" FontWeight="Bold" Margin="60,0,60,0">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/Resources/Guardar.png" Height="35" Width="57"/>
                         <Label HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Normal" Foreground="#FF2F2F2F" Content="Guardar"/>
                     </StackPanel>
                 </Button>
+
+                <!-- Boton Eliminar -->
                 <Button Click="EliminarBTN_Click" BorderThickness="2" Height="70" Width="104" Background="#FFC73F2E" BorderBrush="#FFAF3526" Foreground="White" FontWeight="Bold" Margin="60,0,60,0">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/Resources/Eliminar.png" Height="35" Width="57"/>
@@ -117,5 +149,7 @@
                 </Button>
             </StackPanel>
         </StackPanel>
+
+
     </Grid>
 </Window>
