@@ -25,7 +25,7 @@ namespace WpfApp1.Migrations
                     Celular = table.Column<string>(type: "TEXT", nullable: false),
                     Telefono = table.Column<string>(type: "TEXT", nullable: false),
                     TelefonoReferencial = table.Column<string>(type: "TEXT", nullable: false),
-                    TipoPlan = table.Column<int>(type: "INTEGER", nullable: true),
+                    TipoPlan = table.Column<int>(type: "INTEGER", nullable: false),
                     Comentario = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>

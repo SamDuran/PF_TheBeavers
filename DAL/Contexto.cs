@@ -9,7 +9,7 @@ namespace DAL
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlite(@"Data Source=DATA/TelecableBeavers.db");
+			optionsBuilder.UseSqlite(@"Data Source= DATA/TelecableBeavers.db");
 		}
 	}
 }

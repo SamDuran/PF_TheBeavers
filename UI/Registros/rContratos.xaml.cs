@@ -19,28 +19,40 @@ namespace UI
 {
     public partial class rContratos : Window
     {
-        Contratos? contrato = new Contratos();
+        Contratos contrato = new Contratos();
         public rContratos()
         {
             InitializeComponent();
-            this.DataContext = contrato;
+            Limpiar();
         }
         private void Limpiar()
 		{
             contrato = new Contratos();
             this.DataContext = contrato;
+            ContratoLabel1.Visibility = Visibility.Hidden;
+            NoContratoLabel.Visibility = Visibility.Hidden;
+            FechaMLabel.Visibility = Visibility.Hidden;
+            fModifLabel.Visibility = Visibility.Hidden;
+            FechaCLabel.Visibility = Visibility.Hidden;
+            fCreacionLabel.Visibility = Visibility.Hidden;
         }
         private void Cargar()
 		{
             this.DataContext = contrato;
+            ContratoLabel1.Visibility = Visibility.Visible;
+            NoContratoLabel.Visibility = Visibility.Visible;
+            FechaMLabel.Visibility = Visibility.Visible;
+            fModifLabel.Visibility = Visibility.Visible;
+            FechaCLabel.Visibility = Visibility.Visible;
+            fCreacionLabel.Visibility = Visibility.Visible;
         }
         private void BuscarBTN_Click(object sender, RoutedEventArgs e)
         {
             var contratoAux = ContratosBLL.Buscar(contrato.ContratoId);
             if (contratoAux != null)
             {
-                contrato = contratoAux;
-                this.DataContext = contrato;
+                contrato=contratoAux;
+                Cargar();
             }
             else
             {
@@ -53,6 +65,7 @@ namespace UI
         }
         private void GuardarBTN_Click(object sender, RoutedEventArgs e)
         {
+            CorregirCredenciales();
             if (ContratosBLL.Guardar(this.contrato))
 			{
                 Limpiar();
@@ -71,5 +84,50 @@ namespace UI
             else
                 MessageBox.Show("No se pudo completar la operación");
         }
-    }
+        private void CorregirCredenciales()
+		{
+            contrato.FechaModificacion = DateTime.Now;
+            contrato.NoContrato = NombreTB.Text[0].ToString() + ApellidoTB.Text[0].ToString() + contrato.FechaCreacion.Day + contrato.FechaCreacion.Month + contrato.FechaCreacion.Year;
+        }
+        private void IdTextBox_KeyDown(object sender, KeyEventArgs e)
+		{
+            if (e.Key == Key.Enter)
+                ApellidoTB.Focus();
+		}
+		private void NombreTextBox_KeyDown(object sender, KeyEventArgs e)
+		{
+            if (e.Key == Key.Enter)
+                ApellidoTB.Focus();
+		}
+        private void ApellidoTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                CedulaTB.Focus();
+        }
+        private void CedulaTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                DireccionTB.Focus();
+        }
+        private void DirTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                CelTB.Focus();
+        }
+        private void CelTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                TelTB.Focus();
+        }
+        private void TelTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                TelRefTB.Focus();
+        }
+        private void TelRBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                TipoPlanCombo.Focus();
+        }
+	}
 }

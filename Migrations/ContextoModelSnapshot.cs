@@ -64,7 +64,7 @@ namespace WpfApp1.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("TipoPlan")
+                    b.Property<int>("TipoPlan")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ContratoId");

@@ -8,6 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icono.png" />
+    <None Remove="UI\Registros\Icono.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="PosibleIcono.ico" />
+  </ItemGroup> 
+
+  <ItemGroup>
     <PackageReference Include="microsoft.entityframeworkcore.sqlite" Version="6.0.5" />
     <PackageReference Include="microsoft.entityframeworkcore.tools" Version="6.0.5">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -18,6 +27,16 @@
   <ItemGroup>
     <Folder Include="DATA\" />
     <Folder Include="DB\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icono.png" />
+    <Resource Include="UI\Registros\Icono.png" />
+    <Resource Include=".\Resources\Lupa.png" />
+    <Resource Include=".\Resources\Nuevo.png" />
+    <Resource Include=".\Resources\Guardar.png" />
+    <Resource Include=".\Resources\Eliminar.png" />
+    <Resource Include=".\Resources\Contratos.png" />
   </ItemGroup>
 
 </Project>

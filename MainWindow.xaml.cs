@@ -28,5 +28,10 @@ namespace WpfApp1
             rContratos ContratosView = new rContratos();
             ContratosView.Show();
 		}
-	}
+        private void Consultas_Click(object sender, RoutedEventArgs e)
+        {
+            cContratos ContratosView = new cContratos();
+            ContratosView.Show();
+        }
+    }
 }

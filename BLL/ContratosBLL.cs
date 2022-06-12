@@ -52,8 +52,7 @@ namespace BLL
 
 			try
 			{
-
-				existe = contexto.Contratos.Any(c => c.ContratoId == Id);
+				existe = contexto.Contratos.Any(contrato => contrato.ContratoId == Id);
 			}
 			catch
 			{
@@ -98,7 +97,7 @@ namespace BLL
 			try
 			{
 				var contrato = contexto.Contratos.Find(ContratoId);
-				if(contrato!=null)
+				if(contrato!=null) //Si encontro un contrato con ese ID
 				{
 					contexto.Contratos.Remove(contrato);
 					paso = contexto.SaveChanges()>0;
