@@ -10,22 +10,16 @@
         <StackPanel Orientation="Vertical" Margin="10">
             <StackPanel Orientation="Vertical">
                 <Label Content="Nombre Usuario" />
-             
-
                 <Label Content="Contraseña" />
                 <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
                     <Button x:Name="IngresarButton" Click="IngresarButton_Click" Margin="10">
                         <StackPanel Orientation="Horizontal">
-
                             <Label Content="Ingresar" />
-
                         </StackPanel>
                     </Button>
                     <Button x:Name="CancelarButton" Click="CancelarButton_Click" Margin="10">
                         <StackPanel Orientation="Horizontal">
-
                             <Label Content="Cancelar" />
-
                         </StackPanel>
                     </Button>
                 </StackPanel>
