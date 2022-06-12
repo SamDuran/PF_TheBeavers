@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace WpfApp1.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220612000941_inicial")]
+    [Migration("20220612221120_inicial")]
     partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace WpfApp1.Migrations
 
             modelBuilder.Entity("Models.Contratos", b =>
                 {
-                    b.Property<int>("ContratoId")
+                    b.Property<int?>("ContratoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 

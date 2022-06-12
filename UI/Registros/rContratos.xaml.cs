@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Drawing;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -46,6 +47,7 @@ namespace UI
             FechaCLabel.Visibility = Visibility.Visible;
             fCreacionLabel.Visibility = Visibility.Visible;
         }
+        //------------------------------------------------------BOTONES------------------------------------------------------------
         private void BuscarBTN_Click(object sender, RoutedEventArgs e)
         {
             var contratoAux = ContratosBLL.Buscar(contrato.ContratoId);
@@ -89,10 +91,11 @@ namespace UI
             contrato.FechaModificacion = DateTime.Now;
             contrato.NoContrato = NombreTB.Text[0].ToString() + ApellidoTB.Text[0].ToString() + contrato.FechaCreacion.Day + contrato.FechaCreacion.Month + contrato.FechaCreacion.Year;
         }
+        //------------------------------------------------------Keydowns------------------------------------------------------------
         private void IdTextBox_KeyDown(object sender, KeyEventArgs e)
 		{
             if (e.Key == Key.Enter)
-                ApellidoTB.Focus();
+                NombreTB.Focus();
 		}
 		private void NombreTextBox_KeyDown(object sender, KeyEventArgs e)
 		{
@@ -128,6 +131,71 @@ namespace UI
         {
             if (e.Key == Key.Enter)
                 TipoPlanCombo.Focus();
+        }
+        //------------------------------------------------------onFocus------------------------------------------------------------
+        private void IdTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            IdContratoTB.Background = new SolidColorBrush(Colors.LightBlue);
+        }
+        private void IdTextBox_GotUnfocused(object sender, RoutedEventArgs e)
+        {
+            IdContratoTB.Background = new SolidColorBrush(Colors.White);
+        }
+        private void NombreTB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            NombreTB.Background = new SolidColorBrush(Colors.LightBlue);
+        }
+        private void NombreTB_GotUnfocused(object sender, RoutedEventArgs e)
+        {
+            NombreTB.Background = new SolidColorBrush(Colors.White);
+        }
+        private void ApellidoTB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ApellidoTB.Background = new SolidColorBrush(Colors.LightBlue);
+        }
+        private void ApellidoTB_GotUnfocused(object sender, RoutedEventArgs e)
+        {
+            ApellidoTB.Background = new SolidColorBrush(Colors.White);
+        }
+        private void CedulaTB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            CedulaTB.Background = new SolidColorBrush(Colors.LightBlue);
+        }
+        private void CedulaTB_GotUnfocused(object sender, RoutedEventArgs e)
+        {
+            CedulaTB.Background = new SolidColorBrush(Colors.White);
+        }
+        private void DirTB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            DireccionTB.Background = new SolidColorBrush(Colors.LightBlue);
+        }
+        private void DirTB_GotUnfocused(object sender, RoutedEventArgs e)
+        {
+            DireccionTB.Background = new SolidColorBrush(Colors.White);
+        }
+        private void TelTB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TelTB.Background = new SolidColorBrush(Colors.LightBlue);
+        }
+        private void TelTB_GotUnfocused(object sender, RoutedEventArgs e)
+        {
+            TelTB.Background = new SolidColorBrush(Colors.White);
+        }
+        private void CelTB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            CelTB.Background = new SolidColorBrush(Colors.LightBlue);
+        }
+        private void CelTB_GotUnfocused(object sender, RoutedEventArgs e)
+        {
+            CelTB.Background = new SolidColorBrush(Colors.White);
+        }
+        private void TelRTB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TelRefTB.Background = new SolidColorBrush(Colors.LightBlue);
+        }
+        private void TelRTB_GotUnfocused(object sender, RoutedEventArgs e)
+        {
+            TelRefTB.Background = new SolidColorBrush(Colors.White);
         }
 	}
 }
