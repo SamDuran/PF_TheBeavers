@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+//Hice un cambio de ejemplo
 namespace PF_THEBEAVERS
 {
     public partial class MainWindow : Window
