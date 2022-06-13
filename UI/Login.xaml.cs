@@ -34,5 +34,10 @@ namespace UI
         {
             Application.Current.Shutdown();
         }
+
+        private void loginBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

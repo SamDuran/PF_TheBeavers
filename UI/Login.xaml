@@ -3,33 +3,44 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="Login" Height="230" Width="500">
-    <Grid>
-        <StackPanel Orientation="Vertical" Margin="10">
-            <StackPanel Orientation="Vertical">
-                <Label Content="Nombre Usuario" />
-             
+        Title="Login" Height="602" Width="861"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}" Background="{x:Null}"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen">
 
-                <Label Content="Contraseña" />
-                <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
-                    <Button x:Name="IngresarButton" Click="IngresarButton_Click" Margin="10">
-                        <StackPanel Orientation="Horizontal">
+    <materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" Margin="25">
+        <materialDesign:DialogHost CloseOnClickAway="True" x:Name="DialogHost" Margin="0,0,0,-48">
+            <StackPanel Margin="0,0,0,51">
 
-                            <Label Content="Ingresar" />
+                <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 20 20 0" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Height="25">
 
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="CancelarButton" Click="CancelarButton_Click" Margin="10">
-                        <StackPanel Orientation="Horizontal">
+                    <StackPanel Margin="16 10 0 6" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock VerticalAlignment="Center" Text="Dark Mode" />
+                        <!-- Cursor="Hand" ToolTip="Enable Dark Mode" Margin="12 0 8 0" x:Name="themeToggle" IsChecked="{Binding IsDarkTheme}" /> -->
 
-                            <Label Content="Cancelar" />
+                        <Button ToolTip="Problemas al registrarte?" Margin="0 8 0 0" Content="Ayuda"/>
 
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
+                        <Button x:Name="btn_Salir" ToolTip="Close Application" Content="Exit Application" Click="CancelarButton_Click" />
+
+                    </StackPanel>
+
+                </materialDesign:PopupBox>
+                <Image Source="/Resources/Icono.png" Height="100" />
+
+                <TextBlock Margin="0 25 0 5" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" Text="Bienvenido" />
+
+                <TextBlock FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Center" Text="Telecable The Beavers" Height="32" Width="173"/>
+                <TextBox x:Name="txtUsername" Width="300" FontSize="18" materialDesign:HintAssist.Hint="Ingrese Usuario" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="64"/>
+
+                <PasswordBox Margin=" 0 20 0 0" x:Name="txtPassword" Width="300" FontSize="18" materialDesign:HintAssist.Hint="Ingrese Contraseña" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesingDivider}" Style="{StaticResource MaterialDesignOutlinedPasswordBox}"/>
+
+                <Button Margin="0 20 0 0" x:Name="IngresarBtn" Style="{StaticResource MaterialDesignFlatMidBgButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="53" Width="300" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="Ingresar" Click="IngresarButton_Click" Cursor="Hand"/>
+                <Button x:Name="signupBtn" Style="{StaticResource ResourceKey=MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="53" Width="300" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="Cancelar"/>
             </StackPanel>
-        </StackPanel>
-    </Grid>
+        </materialDesign:DialogHost>
+    </materialDesign:Card>
 </Window>

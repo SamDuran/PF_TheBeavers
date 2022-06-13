@@ -17,6 +17,7 @@
   </ItemGroup> 
 
   <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
     <PackageReference Include="microsoft.entityframeworkcore.sqlite" Version="6.0.5" />
     <PackageReference Include="microsoft.entityframeworkcore.tools" Version="6.0.5">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
