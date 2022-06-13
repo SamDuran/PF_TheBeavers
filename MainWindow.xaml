@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PF_THEBEAVERS"
         mc:Ignorable="d"
-        Title="Telecable TheBeavers" Height="550" Width="650" Icon="./Resources/Icono.png">
+        Title="Telecable TheBeavers"  WindowState="Maximized"  WindowStartupLocation="CenterScreen" Height="600" Width="1000" Icon="./Resources/Icono.png">
     <Grid Height="529" VerticalAlignment="Top">
         <Menu x:Name="MainMenu" VerticalAlignment= "Top" Background="#FF7F7F7F">
             <MenuItem x:Name="Registros" Background="#FF7B7B7B" Header="Registros" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF636363" >
@@ -21,6 +21,20 @@
             </MenuItem>
             <MenuItem x:Name="CerrarSeccionMenuItem" Header="Cerrar Sesión" HorizontalAlignment="Right" Click="CerrarSeccionMenuItem_Click" />
         </Menu>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="249*"/>
+                <RowDefinition Height="280*"/>
+            </Grid.RowDefinitions>
+            <Image Grid.RowSpan="2">
+
+            </Image>
+            <Image  Source="/Resources/beavers.jpg"  HorizontalAlignment="Center"
+             Height="408" Margin="217,122,0,0" 
+            VerticalAlignment="Center" Width="474"
+             Grid.RowSpan="2"/>
+
+        </Grid>
 
     </Grid>
 </Window>
