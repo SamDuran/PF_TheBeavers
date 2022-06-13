@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace WpfApp1.Migrations
+namespace PF_THEBEAVERS.Migrations
 {
     [DbContext(typeof(Contexto))]
     partial class ContextoModelSnapshot : ModelSnapshot
@@ -56,20 +56,75 @@ namespace WpfApp1.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("PlanId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Telefono")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TelefonoReferencial")
-                        .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("TipoPlan")
-                        .HasColumnType("INTEGER");
 
                     b.HasKey("ContratoId");
 
                     b.ToTable("Contratos");
+                });
+
+            modelBuilder.Entity("Models.TipoPlanes", b =>
+                {
+                    b.Property<int>("PlanId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("FechaModificacion")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NombrePlan")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("PrecioPlan")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("PlanId");
+
+                    b.ToTable("TipoPlanes");
+
+                    b.HasData(
+                        new
+                        {
+                            PlanId = 1,
+                            Descripcion = "Plan básico de telecable beavers",
+                            Estado = false,
+                            NombrePlan = "Plan Básico",
+                            PrecioPlan = 550m
+                        },
+                        new
+                        {
+                            PlanId = 2,
+                            Descripcion = "Plan Medio de telecable beavers",
+                            Estado = false,
+                            NombrePlan = "Plan Medio",
+                            PrecioPlan = 750m
+                        },
+                        new
+                        {
+                            PlanId = 3,
+                            Descripcion = "Plan premium de telecable beavers",
+                            Estado = false,
+                            NombrePlan = "Plan Premium",
+                            PrecioPlan = 950m
+                        });
                 });
 #pragma warning restore 612, 618
         }

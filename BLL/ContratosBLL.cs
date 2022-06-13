@@ -26,6 +26,25 @@ namespace BLL
 			}
 			return paso;
 		}//Create
+		public static string? ExisteNoContrato(string NoContrato)
+		{
+			Contexto contexto = new Contexto();
+			string? ContratoEncontrado = null;
+			try
+			{
+				var contrato = contexto.Contratos.Where(c => c.NoContrato == NoContrato).FirstOrDefault();
+				ContratoEncontrado =(contrato!=null)? contrato.NoContrato: null;
+			}
+			catch
+			{
+				throw;
+			}
+			finally
+			{
+				contexto.Dispose();
+			}
+			return ContratoEncontrado;
+		}//ExisteNoContrato
 		private static bool Modificar(Contratos contrato)
 		{
 			bool paso = false;

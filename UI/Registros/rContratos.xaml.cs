@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Models;
+using Models.Validations;
 using BLL;
 using PF_THEBEAVERS;
 
@@ -22,15 +23,19 @@ namespace UI
     public partial class rContratos : Window
     {
         Contratos contrato = new Contratos();
-        public rContratos()
+        public rContratos() 
         {
             InitializeComponent();
             Limpiar();
+            TipoPlanCombo.ItemsSource = PlanesBLL.GetList();
+            TipoPlanCombo.SelectedValuePath = "TipoPlanId";
+            TipoPlanCombo.DisplayMemberPath = "NombrePlan";
         }
         private void Limpiar()
 		{
             contrato = new Contratos();
             this.DataContext = contrato;
+            IdContratoTB.IsEnabled=false;
             ContratoLabel1.Visibility = Visibility.Hidden;
             NoContratoLabel.Visibility = Visibility.Hidden;
             FechaMLabel.Visibility = Visibility.Hidden;
@@ -51,15 +56,21 @@ namespace UI
         //------------------------------------------------------BOTONES------------------------------------------------------------
         private void BuscarBTN_Click(object sender, RoutedEventArgs e)
         {
-            var contratoAux = ContratosBLL.Buscar(contrato.ContratoId);
-            if (contratoAux != null)
+            if(this.contrato.ContratoId==null)
             {
-                contrato=contratoAux;
-                Cargar();
-            }
-            else
+                IdContratoTB.IsEnabled = true;
+            }else
             {
-                MessageBox.Show("No se encontro!", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                var contratoAux = ContratosBLL.Buscar(contrato.ContratoId);
+                if (contratoAux != null)
+                {
+                    contrato=contratoAux;
+                    Cargar();
+                }
+                else
+                {
+                    MessageBox.Show("No se encontro!", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
         private void NuevoBTN_Click(object sender, RoutedEventArgs e)
@@ -68,14 +79,19 @@ namespace UI
         }
         private void GuardarBTN_Click(object sender, RoutedEventArgs e)
         {
-            CorregirCredenciales();
-            if (ContratosBLL.Guardar(this.contrato))
-			{
-                Limpiar();
-                MessageBox.Show("Operación exitosa");
-			}
-            else
-                MessageBox.Show("No se pudo completar la operación");
+            if(Validations.ValidarContrato(contrato))
+            {
+                CorregirCredenciales();
+                if (ContratosBLL.Guardar(this.contrato))
+                {
+                    Limpiar();
+                    MessageBox.Show("Guardado!", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo guardar!", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
         private void EliminarBTN_Click(object sender, RoutedEventArgs e)
         {
@@ -89,8 +105,12 @@ namespace UI
         }
         private void CorregirCredenciales()
 		{
+            string dia = (contrato.FechaCreacion.Day>9)?(contrato.FechaCreacion.Day).ToString():"0"+contrato.FechaCreacion.Day;
+            string mes = (contrato.FechaCreacion.Month>9)?(contrato.FechaCreacion.Month).ToString():"0"+contrato.FechaCreacion.Month;
+            int anio = contrato.FechaCreacion.Year-2000;
+
+            contrato.NoContrato = NombreTB.Text[0].ToString() + ApellidoTB.Text[0].ToString() + dia + mes + anio + contrato.FechaCreacion.Hour + contrato.FechaCreacion.Minute;
             contrato.FechaModificacion = DateTime.Now;
-            contrato.NoContrato = NombreTB.Text[0].ToString() + ApellidoTB.Text[0].ToString() + contrato.FechaCreacion.Day + contrato.FechaCreacion.Month + contrato.FechaCreacion.Year;
         }
         //------------------------------------------------------Keydowns------------------------------------------------------------
         private void IdTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -133,7 +153,7 @@ namespace UI
             if (e.Key == Key.Enter)
                 TipoPlanCombo.Focus();
         }
-        //------------------------------------------------------onFocus------------------------------------------------------------
+        //------------------------------------------------------OnFocus------------------------------------------------------------
         private void IdTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             IdContratoTB.Background = new SolidColorBrush(Colors.LightBlue);
