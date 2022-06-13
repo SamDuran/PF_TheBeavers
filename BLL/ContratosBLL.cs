@@ -45,7 +45,7 @@ namespace BLL
 			}
 			return paso;
 		} //Update
-		private static bool Existe(int Id)
+		private static bool Existe(int? Id)
 		{
 			Contexto contexto = new Contexto();
 			bool existe = false;
@@ -71,7 +71,7 @@ namespace BLL
 			else
 				return Insertar(contrato);
 		}
-		public static Contratos? Buscar(int ContratoId)
+		public static Contratos? Buscar(int? ContratoId)
 		{
 			Contexto contexto = new Contexto();
 			Contratos? contrato;
@@ -89,7 +89,7 @@ namespace BLL
 			}
 			return contrato;
 		}//Read
-		public static bool Eliminar(int ContratoId)
+		public static bool Eliminar(int? ContratoId)
 		{
 			Contexto contexto = new Contexto();
 			bool paso = false;

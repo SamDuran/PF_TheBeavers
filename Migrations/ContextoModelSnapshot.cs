@@ -19,7 +19,7 @@ namespace WpfApp1.Migrations
 
             modelBuilder.Entity("Models.Contratos", b =>
                 {
-                    b.Property<int>("ContratoId")
+                    b.Property<int?>("ContratoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 

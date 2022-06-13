@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PF_THEBEAVERS"
         mc:Ignorable="d"
-        Title="Telecable TheBeavers" Height="550" Width="650" Icon="/Icono.png">
-
+        Title="Telecable TheBeavers" Height="550" Width="650" Icon="./Resources/Icono.png">
     <Grid Height="529" VerticalAlignment="Top">
         <Menu x:Name="MainMenu" Margin="0,0,0,508" Background="#FF7F7F7F">
             <MenuItem x:Name="Registros" Background="#FF7B7B7B" Header="Registros" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="79" Margin="4,0,0,0" BorderBrush="#FF636363" >

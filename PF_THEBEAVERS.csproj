@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <None Remove="Icono.png" />
     <None Remove="UI\Registros\Icono.png" />
   </ItemGroup>
@@ -18,6 +19,8 @@
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
+=======
+>>>>>>> 780bb6141b4996c7fcaf4c9bae1bb1fa99b9654c
     <PackageReference Include="microsoft.entityframeworkcore.sqlite" Version="6.0.5" />
     <PackageReference Include="microsoft.entityframeworkcore.tools" Version="6.0.5">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -29,10 +32,9 @@
     <Folder Include="DATA\" />
     <Folder Include="DB\" />
   </ItemGroup>
-
+<!-- Recursos -->
   <ItemGroup>
-    <Resource Include="Icono.png" />
-    <Resource Include="UI\Registros\Icono.png" />
+    <Resource Include=".\Resources\Icono.png" />
     <Resource Include=".\Resources\Lupa.png" />
     <Resource Include=".\Resources\Nuevo.png" />
     <Resource Include=".\Resources\Guardar.png" />
