@@ -26,14 +26,15 @@ namespace BLL
 			}
 			return paso;
 		}//Create
-		public static string? ExisteNoContrato(string NoContrato)
+		public static Contratos? ExisteCedula(string Cedula)
 		{
 			Contexto contexto = new Contexto();
-			string? ContratoEncontrado = null;
+			Contratos? contrato;
 			try
 			{
-				var contrato = contexto.Contratos.Where(c => c.NoContrato == NoContrato).FirstOrDefault();
-				ContratoEncontrado =(contrato!=null)? contrato.NoContrato: null;
+				contrato = contexto.Contratos.Where(c => c.Cedula == Cedula)
+				.AsNoTracking()
+				.FirstOrDefault();
 			}
 			catch
 			{
@@ -43,7 +44,7 @@ namespace BLL
 			{
 				contexto.Dispose();
 			}
-			return ContratoEncontrado;
+			return contrato;
 		}//ExisteNoContrato
 		private static bool Modificar(Contratos contrato)
 		{
@@ -96,7 +97,9 @@ namespace BLL
 			Contratos? contrato;
 			try
 			{
-				contrato = contexto.Contratos.Find(ContratoId);
+				contrato = contexto.Contratos.Where(c =>c.ContratoId == ContratoId)
+				.AsNoTracking()
+				.FirstOrDefault();
 			}
 			catch
 			{

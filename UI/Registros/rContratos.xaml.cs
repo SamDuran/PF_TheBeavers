@@ -17,6 +17,7 @@ using Models;
 using Models.Validations;
 using BLL;
 using PF_THEBEAVERS;
+using System.Data;
 
 namespace UI
 {
@@ -27,13 +28,18 @@ namespace UI
         {
             InitializeComponent();
             Limpiar();
-            TipoPlanCombo.ItemsSource = PlanesBLL.GetList();
-            TipoPlanCombo.SelectedValuePath = "TipoPlanId";
+            List<TipoPlanes> lista = new List<TipoPlanes>();
+            lista.Add(new TipoPlanes(){PlanId=0,NombrePlan="Seleccione un tipo de plan"});
+            lista.AddRange(PlanesBLL.GetList());
+            TipoPlanCombo.ItemsSource = lista;
+            TipoPlanCombo.SelectedValuePath = "PlanId";
             TipoPlanCombo.DisplayMemberPath = "NombrePlan";
+            TipoPlanCombo.SelectedIndex = 01;
         }
         private void Limpiar()
 		{
             contrato = new Contratos();
+            TipoPlanCombo.SelectedIndex = 01;
             this.DataContext = contrato;
             IdContratoTB.IsEnabled=false;
             ContratoLabel1.Visibility = Visibility.Hidden;
@@ -46,6 +52,7 @@ namespace UI
         private void Cargar()
 		{
             this.DataContext = contrato;
+            TipoPlanCombo.SelectedValue = contrato.PlanId;
             ContratoLabel1.Visibility = Visibility.Visible;
             NoContratoLabel.Visibility = Visibility.Visible;
             FechaMLabel.Visibility = Visibility.Visible;
@@ -61,6 +68,11 @@ namespace UI
                 IdContratoTB.IsEnabled = true;
             }else
             {
+                if(String.IsNullOrEmpty(IdContratoTB.Text) || string.IsNullOrWhiteSpace(IdContratoTB.Text) || IdContratoTB.Text=="0")
+                {
+                    MessageBox.Show("Debe ingresar un numero de contrato valido");
+                    return;
+                }
                 var contratoAux = ContratosBLL.Buscar(contrato.ContratoId);
                 if (contratoAux != null)
                 {
@@ -81,7 +93,14 @@ namespace UI
         {
             if(Validations.ValidarContrato(contrato))
             {
+                /* var contratoAux = ContratosBLL.ExisteCedula(contrato.Cedula);
+                if(contratoAux!=null && contratoAux.ContratoId!=contrato.ContratoId)
+                {
+                    MessageBox.Show("Ya existe un contrato con esa cedula", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                } */
                 CorregirCredenciales();
+                contrato.PlanId=(int)TipoPlanCombo.SelectedValue;
                 if (ContratosBLL.Guardar(this.contrato))
                 {
                     Limpiar();
@@ -156,67 +175,75 @@ namespace UI
         //------------------------------------------------------OnFocus------------------------------------------------------------
         private void IdTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            IdContratoTB.Background = new SolidColorBrush(Colors.LightBlue);
+            IdContratoTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
         }
         private void IdTextBox_GotUnfocused(object sender, RoutedEventArgs e)
         {
             IdContratoTB.Background = new SolidColorBrush(Colors.White);
+            IdContratoTB.Background.Opacity = 0.5;
         }
         private void NombreTB_GotFocus(object sender, RoutedEventArgs e)
         {
-            NombreTB.Background = new SolidColorBrush(Colors.LightBlue);
+            NombreTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
         }
         private void NombreTB_GotUnfocused(object sender, RoutedEventArgs e)
         {
             NombreTB.Background = new SolidColorBrush(Colors.White);
+            NombreTB.Background.Opacity = 0.5;
         }
         private void ApellidoTB_GotFocus(object sender, RoutedEventArgs e)
         {
-            ApellidoTB.Background = new SolidColorBrush(Colors.LightBlue);
+            ApellidoTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
         }
         private void ApellidoTB_GotUnfocused(object sender, RoutedEventArgs e)
         {
             ApellidoTB.Background = new SolidColorBrush(Colors.White);
+            ApellidoTB.Background.Opacity = 0.5;
         }
         private void CedulaTB_GotFocus(object sender, RoutedEventArgs e)
         {
-            CedulaTB.Background = new SolidColorBrush(Colors.LightBlue);
+            CedulaTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
         }
         private void CedulaTB_GotUnfocused(object sender, RoutedEventArgs e)
         {
             CedulaTB.Background = new SolidColorBrush(Colors.White);
+            CedulaTB.Background.Opacity = 0.5;
         }
         private void DirTB_GotFocus(object sender, RoutedEventArgs e)
         {
-            DireccionTB.Background = new SolidColorBrush(Colors.LightBlue);
+            DireccionTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
         }
         private void DirTB_GotUnfocused(object sender, RoutedEventArgs e)
         {
             DireccionTB.Background = new SolidColorBrush(Colors.White);
+            DireccionTB.Background.Opacity = 0.5;
         }
         private void TelTB_GotFocus(object sender, RoutedEventArgs e)
         {
-            TelTB.Background = new SolidColorBrush(Colors.LightBlue);
+            TelTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
         }
         private void TelTB_GotUnfocused(object sender, RoutedEventArgs e)
         {
             TelTB.Background = new SolidColorBrush(Colors.White);
+            TelTB.Background.Opacity = 0.5;
         }
         private void CelTB_GotFocus(object sender, RoutedEventArgs e)
         {
-            CelTB.Background = new SolidColorBrush(Colors.LightBlue);
+            CelTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
         }
         private void CelTB_GotUnfocused(object sender, RoutedEventArgs e)
         {
             CelTB.Background = new SolidColorBrush(Colors.White);
+            CelTB.Background.Opacity = 0.5;
         }
         private void TelRTB_GotFocus(object sender, RoutedEventArgs e)
         {
-            TelRefTB.Background = new SolidColorBrush(Colors.LightBlue);
+            TelRefTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
         }
         private void TelRTB_GotUnfocused(object sender, RoutedEventArgs e)
         {
             TelRefTB.Background = new SolidColorBrush(Colors.White);
+            TelRefTB.Background.Opacity = 0.5;
         }
 	}
 }
