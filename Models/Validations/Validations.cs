@@ -20,65 +20,70 @@ namespace Models.Validations
 
 			if (string.IsNullOrEmpty(contrato.NombreCliente)||string.IsNullOrWhiteSpace(contrato.NombreCliente))
 			{
-				MessageBox.Show("El campo Nombre Cliente no puede estar vacio");
+				MessageBox.Show("El campo Nombre Cliente no puede estar vacio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				paso = false;
 			}
 			else if (!NombreValidation.IsMatch(contrato.NombreCliente))
 			{
-				MessageBox.Show("El campo Nombre Cliente no puede contener numeros");
+				MessageBox.Show("El campo Nombre Cliente no puede contener numeros", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				paso = false;
 			}
 
-			if (string.IsNullOrEmpty(contrato.ApellidoCliente))
+			if (string.IsNullOrEmpty(contrato.ApellidoCliente)||string.IsNullOrWhiteSpace(contrato.ApellidoCliente))
 			{
-				MessageBox.Show("El campo Apellido Cliente no puede estar vacio");
+				MessageBox.Show("El campo Apellido Cliente no puede estar vacio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				paso = false;
 			}
 			else if (!NombreValidation.IsMatch(contrato.ApellidoCliente))
 			{
-				MessageBox.Show("El campo Apellido Cliente no puede contener numeros");
+				MessageBox.Show("El campo Apellido Cliente no puede contener numeros", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				paso = false;
 			}
 
-			if(string.IsNullOrEmpty(contrato.Cedula))
+			if(string.IsNullOrEmpty(contrato.Cedula)||string.IsNullOrWhiteSpace(contrato.Cedula))
 			{
-				MessageBox.Show("El campo Cedula no puede estar vacio");
+				MessageBox.Show("El campo Cedula no puede estar vacio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				paso = false;
 			}
 			else if(!CedulaValidation.IsMatch(contrato.Cedula))
 			{
-				MessageBox.Show("El campo Cedula no es valido");
+				MessageBox.Show("El campo Cedula no es valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				paso = false;
 			}
 
 			if (string.IsNullOrEmpty(contrato.Direccion))
 			{
-				MessageBox.Show("El campo Direccion no puede estar vacio");
+				MessageBox.Show("El campo Direccion no puede estar vacio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				paso = false;
 			}
 
 			if (string.IsNullOrEmpty(contrato.Telefono))
 			{
-				MessageBox.Show("El campo Telefono no puede estar vacio");
+				MessageBox.Show("El campo Telefono no puede estar vacio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				paso = false;
 			}
 			else if (!TelefonoValidation.IsMatch(contrato.Telefono))
 			{
-				MessageBox.Show("El campo Telefono no es valido");
+				MessageBox.Show("El campo Telefono no es valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				paso = false;
 			}
 
 			if(string.IsNullOrEmpty(contrato.Celular))
 			{
-				MessageBox.Show("El celular no puede estar vacio");
+				MessageBox.Show("El celular no puede estar vacio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				paso = false;
 			}
 			else if(!TelefonoValidation.IsMatch(contrato.Celular))
 			{
-				MessageBox.Show("El campo Celular no es valido");
+				MessageBox.Show("El campo Celular no es valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				paso = false;
 			}
 
+			if(contrato.PlanId == 0)
+			{
+				MessageBox.Show("Se debe seleccionar un plan", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				paso = false;
+			}
 			return paso;
 		}
 	}

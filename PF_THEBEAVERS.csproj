@@ -28,6 +28,7 @@
     <Resource Include=".\Resources\Guardar.png" />
     <Resource Include=".\Resources\Eliminar.png" />
     <Resource Include=".\Resources\Contratos.png" />
+    <Resource Include=".\Resources\beavers.png" />
   </ItemGroup>
 
 </Project>

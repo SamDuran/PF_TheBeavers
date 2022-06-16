@@ -16,8 +16,6 @@ using System.Windows.Shapes;
 using Models;
 using Models.Validations;
 using BLL;
-using PF_THEBEAVERS;
-using System.Data;
 
 namespace UI
 {
@@ -27,20 +25,27 @@ namespace UI
         public rContratos() 
         {
             InitializeComponent();
-            Limpiar();
-            List<TipoPlanes> lista = new List<TipoPlanes>();
-            lista.Add(new TipoPlanes(){PlanId=0,NombrePlan="Seleccione un tipo de plan"});
-            lista.AddRange(PlanesBLL.GetList());
-            TipoPlanCombo.ItemsSource = lista;
+            TipoPlanCombo.ItemsSource = PlanesBLL.GetList();
             TipoPlanCombo.SelectedValuePath = "PlanId";
             TipoPlanCombo.DisplayMemberPath = "NombrePlan";
-            TipoPlanCombo.SelectedIndex = 01;
+            Limpiar();
         }
+        //------------------------------------------------------UTILIDADES--------------------------------------------------------- 
         private void Limpiar()
 		{
             contrato = new Contratos();
-            TipoPlanCombo.SelectedIndex = 01;
             this.DataContext = contrato;
+            TipoPlanCombo.SelectedIndex = 0;
+            OcultarLabels();
+        }
+        private void Cargar()
+		{
+            this.DataContext = contrato;
+            TipoPlanCombo.SelectedValue = contrato.PlanId;
+            MostrarLabels();
+        }
+        private void OcultarLabels()
+        {
             IdContratoTB.IsEnabled=false;
             ContratoLabel1.Visibility = Visibility.Hidden;
             NoContratoLabel.Visibility = Visibility.Hidden;
@@ -49,10 +54,9 @@ namespace UI
             FechaCLabel.Visibility = Visibility.Hidden;
             fCreacionLabel.Visibility = Visibility.Hidden;
         }
-        private void Cargar()
-		{
-            this.DataContext = contrato;
-            TipoPlanCombo.SelectedValue = contrato.PlanId;
+        private void MostrarLabels()
+        {
+            IdContratoTB.IsEnabled = true;
             ContratoLabel1.Visibility = Visibility.Visible;
             NoContratoLabel.Visibility = Visibility.Visible;
             FechaMLabel.Visibility = Visibility.Visible;
@@ -91,14 +95,9 @@ namespace UI
         }
         private void GuardarBTN_Click(object sender, RoutedEventArgs e)
         {
+            contrato.PlanId = (int)TipoPlanCombo.SelectedValue;
             if(Validations.ValidarContrato(contrato))
             {
-                /* var contratoAux = ContratosBLL.ExisteCedula(contrato.Cedula);
-                if(contratoAux!=null && contratoAux.ContratoId!=contrato.ContratoId)
-                {
-                    MessageBox.Show("Ya existe un contrato con esa cedula", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                } */
                 CorregirCredenciales();
                 contrato.PlanId=(int)TipoPlanCombo.SelectedValue;
                 if (ContratosBLL.Guardar(this.contrato))
@@ -131,7 +130,7 @@ namespace UI
             contrato.NoContrato = NombreTB.Text[0].ToString() + ApellidoTB.Text[0].ToString() + dia + mes + anio + contrato.FechaCreacion.Hour + contrato.FechaCreacion.Minute;
             contrato.FechaModificacion = DateTime.Now;
         }
-        //------------------------------------------------------Keydowns------------------------------------------------------------
+        //------------------------------------------------------Keydowns-----------------------------------------------------------
         private void IdTextBox_KeyDown(object sender, KeyEventArgs e)
 		{
             if (e.Key == Key.Enter)
@@ -176,6 +175,7 @@ namespace UI
         private void IdTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             IdContratoTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
+            IdContratoTB.Background.Opacity = 0.5;
         }
         private void IdTextBox_GotUnfocused(object sender, RoutedEventArgs e)
         {
@@ -185,6 +185,7 @@ namespace UI
         private void NombreTB_GotFocus(object sender, RoutedEventArgs e)
         {
             NombreTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
+            NombreTB.Background.Opacity = 0.5;
         }
         private void NombreTB_GotUnfocused(object sender, RoutedEventArgs e)
         {
@@ -194,6 +195,7 @@ namespace UI
         private void ApellidoTB_GotFocus(object sender, RoutedEventArgs e)
         {
             ApellidoTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
+            ApellidoTB.Background.Opacity = 0.5;
         }
         private void ApellidoTB_GotUnfocused(object sender, RoutedEventArgs e)
         {
@@ -203,6 +205,7 @@ namespace UI
         private void CedulaTB_GotFocus(object sender, RoutedEventArgs e)
         {
             CedulaTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
+            CedulaTB.Background.Opacity = 0.5;
         }
         private void CedulaTB_GotUnfocused(object sender, RoutedEventArgs e)
         {
@@ -212,6 +215,7 @@ namespace UI
         private void DirTB_GotFocus(object sender, RoutedEventArgs e)
         {
             DireccionTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
+            DireccionTB.Background.Opacity = 0.5;
         }
         private void DirTB_GotUnfocused(object sender, RoutedEventArgs e)
         {
@@ -221,6 +225,7 @@ namespace UI
         private void TelTB_GotFocus(object sender, RoutedEventArgs e)
         {
             TelTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
+            TelTB.Background.Opacity = 0.5;
         }
         private void TelTB_GotUnfocused(object sender, RoutedEventArgs e)
         {
@@ -230,6 +235,7 @@ namespace UI
         private void CelTB_GotFocus(object sender, RoutedEventArgs e)
         {
             CelTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
+            CelTB.Background.Opacity = 0.5;
         }
         private void CelTB_GotUnfocused(object sender, RoutedEventArgs e)
         {
@@ -239,6 +245,7 @@ namespace UI
         private void TelRTB_GotFocus(object sender, RoutedEventArgs e)
         {
             TelRefTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
+            TelRefTB.Background.Opacity = 0.5;
         }
         private void TelRTB_GotUnfocused(object sender, RoutedEventArgs e)
         {

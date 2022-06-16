@@ -89,7 +89,7 @@
             <!--TipoPlan-->
             <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
                 <Label Content="Tipo Plan" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <ComboBox x:Name="TipoPlanCombo"  HorizontalAlignment="Center" SelectedValue="{Binding TipoPlan.PlanId}" Margin="50,0,0,0" Width="558" BorderBrush="#FFA0A0A0" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="#7FFFFFFF">
+                <ComboBox x:Name="TipoPlanCombo"  HorizontalAlignment="Center" SelectedValue="{Binding contrato.PlanId}" SelectedIndex="0" Margin="50,0,0,0" Width="558" BorderBrush="#FFA0A0A0" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="#7FFFFFFF">
                 </ComboBox>
             </StackPanel>
             <!-- Commentario -->
