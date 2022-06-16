@@ -9,6 +9,7 @@ namespace DAL
 		public DbSet<TipoPlanes> TipoPlanes { get; set; }
 		public DbSet<Pagos> Pagos {get; set;}
 		public DbSet<TipoPagos> TipoPagos {get; set;}
+		public DbSet<Planes> Planes {get; set;}
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
