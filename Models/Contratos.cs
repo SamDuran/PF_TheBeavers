@@ -12,27 +12,31 @@ namespace Models
 		public DateTime FechaModificacion { get; set; } = DateTime.Now;
 
 		[Required]
+		[RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Caracteres invalidos para el Nombre.")]
 		public string NombreCliente { get; set; } = string.Empty;
 
 		[Required]
+		[RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Caracteres invalidos para el Apellido.")]
 		public string ApellidoCliente { get; set; } = string.Empty;
-
 		[Required]
+		[RegularExpression(@"^\d{3}[- ]?\d{7}[- ]?\d{1}$", ErrorMessage = "Cedula invalida - el formato debe ser: 000-0000000-0")]
 		public string Cedula { get; set; } = string.Empty;
 
 		[Required]
 		public string Direccion { get; set; } = string.Empty;
 
 		[Required]
+		[RegularExpression(@"^\d{3}[- ]?\d{3}[- ]?\d{4}$", ErrorMessage = "Celular Invalido")]
 		public string Celular { get; set; } = string.Empty;
 
 		[Required]
+		[RegularExpression(@"^\d{3}[- ]?\d{3}[- ]?\d{4}$", ErrorMessage = "Telefono Invalido")]
 		public string Telefono { get; set; } = string.Empty;
 
-		[Required]
+		[RegularExpression(@"^\d{3}[- ]?\d{3}[- ]?\d{4}$", ErrorMessage = "Telefono Invalido")]
 		public string? TelefonoReferencial { get; set; }
 
-		public int TipoPlan { get; set; }
+		public int PlanId { get; set; }
 
 		public string? Comentario { get; set; }
 

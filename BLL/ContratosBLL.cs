@@ -26,6 +26,26 @@ namespace BLL
 			}
 			return paso;
 		}//Create
+		public static Contratos? ExisteCedula(string Cedula)
+		{
+			Contexto contexto = new Contexto();
+			Contratos? contrato;
+			try
+			{
+				contrato = contexto.Contratos.Where(c => c.Cedula == Cedula)
+				.AsNoTracking()
+				.FirstOrDefault();
+			}
+			catch
+			{
+				throw;
+			}
+			finally
+			{
+				contexto.Dispose();
+			}
+			return contrato;
+		}//ExisteNoContrato
 		private static bool Modificar(Contratos contrato)
 		{
 			bool paso = false;
@@ -77,7 +97,9 @@ namespace BLL
 			Contratos? contrato;
 			try
 			{
-				contrato = contexto.Contratos.Find(ContratoId);
+				contrato = contexto.Contratos.Where(c =>c.ContratoId == ContratoId)
+				.AsNoTracking()
+				.FirstOrDefault();
 			}
 			catch
 			{
