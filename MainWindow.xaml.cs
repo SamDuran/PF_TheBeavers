@@ -28,6 +28,13 @@ namespace PF_THEBEAVERS
             rContratos ContratosView = new rContratos();
             ContratosView.Show();
         }
+
+      
+        private void rPlanes_Click(object sender, RoutedEventArgs e)
+        {
+            rPlanes PlanesView = new rPlanes();
+            PlanesView.Show();
+        }
         private void Consultas_Click(object sender, RoutedEventArgs e)
         {
             cContratos ContratosView = new cContratos();
