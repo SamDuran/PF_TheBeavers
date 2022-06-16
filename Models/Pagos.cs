@@ -15,10 +15,11 @@ namespace Models
         [Required]
 		[RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Caracteres invalidos para el Apellido.")]
         public string ApellidoCliente { get; set; } = string.Empty;
+        
         [Required]
-        [Display(Name = "Monto a Pagar")]
+        [Display(Name = "Monto a pagar")]
         public double MontoPago { get; set; }
-
+        
         [Required(ErrorMessage ="Es obligatorio introducir la fecha de pago")]
         public DateTime FechaPago { get; set; }
         public string? Comentario { get; set; }

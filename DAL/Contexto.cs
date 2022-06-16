@@ -7,6 +7,8 @@ namespace DAL
 	{
 		public DbSet<Contratos> Contratos { get; set; }
 		public DbSet<TipoPlanes> TipoPlanes { get; set; }
+		public DbSet<Pagos> Pagos {get; set;}
+		public DbSet<TipoPagos> TipoPagos {get; set;}
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
@@ -35,6 +37,8 @@ namespace DAL
 				PrecioPlan = 950,
 				Descripcion = "Plan premium de telecable beavers"
 			});
+
 		}
+		
 	}
 }

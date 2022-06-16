@@ -12,6 +12,7 @@ namespace Models
         [MaxLength(50, ErrorMessage = "El campo no puede tener mas de 50 caracteres")]
         public string NombrePago { get; set; } = string.Empty;
 
+            
          [Required]
         [Display(Name = "Descripcion")]
         [MaxLength(50, ErrorMessage = "El campo no puede tener mas de 50 caracteres")]
