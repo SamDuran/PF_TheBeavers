@@ -1,4 +1,12 @@
-<Window x:Class="UI.rPlanes" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:UI" mc:Ignorable="d" x:Name="rPlane" Title="Registro de Planes" Width="870" Height="630" WindowStartupLocation="CenterScreen" Icon="/Resources/Icono.png" Background="#FFDADADA">
+<Window x:Class="UI.rPlanes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Registro de Pagos" Height="630" Width="870">
     <Grid Height="546" VerticalAlignment="Center" HorizontalAlignment="Center" Width="830" ShowGridLines="True" Margin="40,13,0,0">
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
@@ -12,13 +20,9 @@
                 </StackPanel.Background>
                 <!--Titulo-->
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Registro de contratos" FontWeight="Normal" FontFamily="Impact" FontSize="36"/>
+                    <Label Content="Registro de Plan" FontWeight="Normal" FontFamily="Impact" FontSize="36"/>
                 </StackPanel>
-                <!--NoContrato-->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="243,0,0,0">
-                    <Label x:Name="ContratoLabel1" Content="No.Contrato:" Width="94" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right"/>
-                    <Label x:Name="NoContratoLabel" Content="{Binding NoContrato}" Width="100"  Foreground="Red" FontSize="11" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26"/>
-                </StackPanel>
+               
             </StackPanel>
             <!--Fechas-->
             <StackPanel Orientation="Horizontal">
@@ -33,8 +37,9 @@
             </StackPanel>
             <!--ID-->
             <StackPanel Orientation="Horizontal" Margin="20,20,20,10">
-                <Label Content="Id Contrato" Width="140" FontSize="14" Padding="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="IdContratoTB" Text="{Binding ContratoId}"  KeyDown="IdTextBox_KeyDown" Margin="50,0,0,0" GotFocus="IdTextBox_GotFocus" LostFocus="IdTextBox_GotUnfocused" TextWrapping="Wrap" Width="450" Height="26" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" AutomationProperties.HelpText="ID del Contrato" Background="#7FFFFFFF" />
+                <Label Content="Id Plan" Width="140" FontSize="14" Padding="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="IdPlanTB" Text="{Binding PlanId}"  KeyDown="IdTextBox_KeyDown" Margin="50,0,0,0" GotFocus="IdTextBox_GotFocus" LostFocus="IdTextBox_GotUnfocused" TextWrapping="Wrap" Width="450" Height="26" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" AutomationProperties.HelpText="ID del Plan" Background="#7FFFFFFF" />
+
                 <Button HorizontalAlignment="Left"  Margin="20,0,0,0" VerticalAlignment="Top"  Width="88" Height="26" Click="BuscarBTN_Click" BorderBrush="#FF4C5FBD" Grid.Column="5" Background="#437FA6" Foreground="White" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Resources/Lupa.png"/>
@@ -42,44 +47,18 @@
                     </StackPanel>
                 </Button>
             </StackPanel>
-            <!--Nombre Contrato-->
+
+            <!--Nombre Plan-->
             <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
-                <Label Content="Nombre Cliente" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="NombreTB" Text="{Binding NombreCliente}"  GotFocus="NombreTB_GotFocus" LostFocus="NombreTB_GotUnfocused" KeyDown="NombreTextBox_KeyDown" HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" Grid.Column="1" VerticalContentAlignment="Center" Background="#7FFFFFFF"/>
+                <Label Content="Nombre Plan" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="NombreTB" Text="{Binding NombrePlan}"  GotFocus="NombreTB_GotFocus" LostFocus="NombreTB_GotUnfocused" KeyDown="NombreTextBox_KeyDown" HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" Grid.Column="1" VerticalContentAlignment="Center" Background="#7FFFFFFF"/>
             </StackPanel>
-            <!--Apellido-->
+            <!--PLAN-->
             <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
-                <Label Content="Apellido Cliente" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="ApellidoTB" Text="{Binding ApellidoCliente}" GotFocus="ApellidoTB_GotFocus" LostFocus="ApellidoTB_GotUnfocused" KeyDown="ApellidoTextBox_KeyDown" HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" VerticalContentAlignment="Center" Background="#7FFFFFFF"/>
+                <Label Content="Precio Plan" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="PrecioTB" Text="{Binding PrecioPlan}"  HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" VerticalContentAlignment="Center" Background="#7FFFFFFF"/>
             </StackPanel>
-            <!--Cedula-->
-            <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
-                <Label Content="Cedula" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="CedulaTB" Text="{Binding Cedula}" GotFocus="CedulaTB_GotFocus" LostFocus="CedulaTB_GotUnfocused" KeyDown="CedulaTextBox_KeyDown" HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" VerticalContentAlignment="Center" Background="#7FFFFFFF"/>
-            </StackPanel>
-            <!--Direccion-->
-            <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
-                <Label Content="Direccion" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="DireccionTB" Text="{Binding Direccion}" GotFocus="DirTB_GotFocus" LostFocus="DirTB_GotUnfocused" KeyDown="DirTextBox_KeyDown" HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" VerticalContentAlignment="Center" Background="#7FFFFFFF"/>
-            </StackPanel>
-            <!--Cel y Tel-->
-            <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
-                <Label Content="Celular" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="CelTB" Text="{Binding Celular}" GotFocus="CelTB_GotFocus" LostFocus="CelTB_GotUnfocused" KeyDown="CelTextBox_KeyDown" HorizontalAlignment="Center" Margin="50,0,15,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="230" Height="26" VerticalContentAlignment="Center" Background="#87FFFFFF"/>
-                <Label Content="Telefono" Padding="5,5,5,5" Height="26" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="TelTB" Text="{Binding Telefono}" GotFocus="TelTB_GotFocus" LostFocus="TelTB_GotUnfocused" KeyDown="TelTextBox_KeyDown" HorizontalAlignment="Center" Margin="20,0,15,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="230" Height="26" VerticalContentAlignment="Center" Background="#7FFFFFFF"/>
-            </StackPanel>
-            <!--Tel Referencial-->
-            <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
-                <Label Content="Telefono Referencial" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="TelRefTB" Text="{Binding TelefonoReferencial}" GotFocus="TelRTB_GotFocus" LostFocus="TelRTB_GotUnfocused" KeyDown="TelRBox_KeyDown" HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" VerticalContentAlignment="Center" Background="#7FFFFFFF"/>
-            </StackPanel>
-            <!--TipoPlan-->
-            <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
-                <Label Content="Tipo Plan" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <ComboBox x:Name="TipoPlanCombo"  HorizontalAlignment="Center" SelectedValue="{Binding contrato.PlanId}" SelectedIndex="0" Margin="50,0,0,0" Width="558" BorderBrush="#FFA0A0A0" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="#7FFFFFFF">
-                </ComboBox>
-            </StackPanel>
+           
             <!-- Commentario -->
             <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
                 <Label Content="comentario" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
