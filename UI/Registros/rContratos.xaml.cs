@@ -25,7 +25,7 @@ namespace UI
         public rContratos() 
         {
             InitializeComponent();
-            TipoPlanCombo.ItemsSource = PlanesBLL.GetList();
+            TipoPlanCombo.ItemsSource = TipoPlanesBLL.GetList();
             TipoPlanCombo.SelectedValuePath = "PlanId";
             TipoPlanCombo.DisplayMemberPath = "NombrePlan";
             Limpiar();

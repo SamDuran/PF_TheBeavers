@@ -25,7 +25,6 @@ namespace UI
         public rPlanes()
         {
             InitializeComponent();
-            
         }
         //------------------------------------------------------UTILIDADES--------------------------------------------------------- 
         private void Limpiar()
@@ -34,7 +33,7 @@ namespace UI
         }
         private void Cargar()
         {
-          
+            
         }
         private void OcultarLabels()
         {
@@ -59,7 +58,7 @@ namespace UI
         //------------------------------------------------------BOTONES------------------------------------------------------------
         private void BuscarBTN_Click(object sender, RoutedEventArgs e)
         {
-           
+            
         }
         private void NuevoBTN_Click(object sender, RoutedEventArgs e)
         {
@@ -67,7 +66,7 @@ namespace UI
         }
         private void GuardarBTN_Click(object sender, RoutedEventArgs e)
         {
-           
+            
         }
         private void EliminarBTN_Click(object sender, RoutedEventArgs e)
         {
@@ -75,7 +74,7 @@ namespace UI
         }
         private void CorregirCredenciales()
         {
-           
+            
         }
         //------------------------------------------------------Keydowns-----------------------------------------------------------
         private void IdTextBox_KeyDown(object sender, KeyEventArgs e)

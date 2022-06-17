@@ -38,7 +38,7 @@ namespace PF_THEBEAVERS
         }
         private void Pagos_Click(object sender, RoutedEventArgs e)
         {
-            Pagos PagosView = new Pagos();
+            rPagos PagosView = new rPagos();
             PagosView.Show();
         }
         private void Consultas_Click(object sender, RoutedEventArgs e)

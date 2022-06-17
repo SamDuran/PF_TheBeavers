@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace BLL
 {
-    public class TIpoPagosBLL
+    public class TipoPagosBLL
     {
         public static TipoPagos? Buscar(int? TipoPagoId) 
 		{

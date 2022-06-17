@@ -8,12 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Icono.png" />
-    <None Remove="UI\Registros\Icono.png" />
+    <Compile Remove="DB\**" />
+    <EmbeddedResource Remove="DB\**" />
+    <None Remove="DB\**" />
+    <Page Remove="DB\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="PosibleIcono.ico" />
+    <None Remove="Icono.png" />
+    <None Remove="UI\Registros\Icono.png" />
   </ItemGroup> 
 
   <ItemGroup>
@@ -27,7 +30,6 @@
 
   <ItemGroup>
     <Folder Include="DATA\" />
-    <Folder Include="DB\" />
   </ItemGroup>
 <!-- Recursos -->
   <ItemGroup>
@@ -38,6 +40,8 @@
     <Resource Include=".\Resources\Eliminar.png" />
     <Resource Include=".\Resources\Contratos.png" />
     <Resource Include=".\Resources\beavers.png" />
+    <Resource Include=".\Resources\Combo.png" />
+    <Resource Include=".\Resources\Pagos.png" />
   </ItemGroup>
 
 </Project>

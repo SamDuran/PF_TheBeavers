@@ -13,12 +13,13 @@
     <Grid Height="529" VerticalAlignment="Top">
         <Menu x:Name="MainMenu" VerticalAlignment="Top" Background="#FF7F7F7F">
             <MenuItem x:Name="Registros" Background="#FF7B7B7B" Header="Registros" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF636363">
-               
+
                 <MenuItem x:Name="mPlanes" Header="Planes" Click="rPlanes_Click">
-                    
-                
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Combo.png"></Image>
+                    </MenuItem.Icon>
                 </MenuItem>
-                
+
                 <MenuItem x:Name="mContratos" Header="Contratos" Click="Registros_Click">
                     <MenuItem.Icon>
                         <Image Source="/Resources/Contratos.png"></Image>
@@ -26,13 +27,13 @@
                 </MenuItem>
                 <MenuItem x:Name="mPagos" Header="Pagos" Click="Pagos_Click">
                     <MenuItem.Icon>
-                        <Image Source="/Resources/Contratos.png"></Image>
+                        <Image Source="/Resources/Pagos.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-                <MenuItem x:Name="mConsultas" Background="#FF7B7B7B" Click="Consultas_Click" Header="Consultas" Margin="4,0,4,0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="#FF676767"></MenuItem>
-                <MenuItem x:Name="mReporte" Background="#FF7B7B7B" Header="Reportes" Margin="4,0,4,0" HorizontalContentAlignment="Center" BorderBrush="#FF676767"></MenuItem>
-                <MenuItem x:Name="CerrarSeccionMenuItem" Header="Cerrar Sesión" HorizontalAlignment="Right" Click="CerrarSeccionMenuItem_Click" />
+            <MenuItem x:Name="mConsultas" Background="#FF7B7B7B" Click="Consultas_Click" Header="Consultas" Margin="4,0,4,0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="#FF676767"></MenuItem>
+            <MenuItem x:Name="mReporte" Background="#FF7B7B7B" Header="Reportes" Margin="4,0,4,0" HorizontalContentAlignment="Center" BorderBrush="#FF676767"></MenuItem>
+            <MenuItem x:Name="CerrarSeccionMenuItem" Header="Cerrar Sesión" HorizontalAlignment="Right" Click="CerrarSeccionMenuItem_Click" />
         </Menu>
         <Grid>
             <Grid.RowDefinitions>
@@ -40,7 +41,7 @@
                 <RowDefinition Height="280*" />
             </Grid.RowDefinitions>
             <Image Grid.RowSpan="2"></Image>
-            <Image Source="/Resources/beavers.png" HorizontalAlignment="Left" Height="468" VerticalAlignment="Top" Width="793" Grid.RowSpan="2" Margin="214,61,0,0" />
+            <Image Source="/Resources/beavers.png" HorizontalAlignment="Right" Height="431" VerticalAlignment="Top" Width="779" Grid.RowSpan="2" Margin="0,125,0,0" />
         </Grid>
     </Grid>
 </Window>

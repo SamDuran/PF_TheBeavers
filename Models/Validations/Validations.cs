@@ -16,7 +16,7 @@ namespace Models.Validations
 			Regex NombreValidation = new Regex(@"^[a-zA-Z]*$");
 			Regex TelefonoValidation = new Regex(@"^[0-9]*$");
 			Regex DireccionValidation = new Regex(@"^[a-zA-Z0-9]*$");
-			Regex CedulaValidation = new Regex(@"^\d{3}[- ]?\d{7}[- ]?\d{1}$");
+			Regex CedulaValidation = new Regex(@"^\d{3}[- ]?\d{7}[- ]?\d{1}$");//el formato debe ser: 000-0000000-0"
 
 			if (string.IsNullOrEmpty(contrato.NombreCliente)||string.IsNullOrWhiteSpace(contrato.NombreCliente))
 			{
@@ -84,6 +84,34 @@ namespace Models.Validations
 				MessageBox.Show("Se debe seleccionar un plan", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				paso = false;
 			}
+			return paso;
+		}
+		public static bool ValidarPlan(Planes plan)
+		{
+			bool paso = true;
+			Regex NombreValidation = new Regex(@"^[a-zA-Z]*$");
+			
+			if(string.IsNullOrEmpty(plan.Nombre)||string.IsNullOrWhiteSpace(plan.Nombre))
+			{
+				MessageBox.Show("El campo Nombre no puede estar vacio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				paso = false;
+			}
+			else if(!NombreValidation.IsMatch(plan.Nombre))
+			{
+				MessageBox.Show("El campo Nombre no puede contener numeros", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				paso = false;
+			}
+			if(string.IsNullOrEmpty(plan.Descripcion)||string.IsNullOrWhiteSpace(plan.Descripcion))
+			{
+				MessageBox.Show("El campo Descripcion no puede estar vacio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				paso = false;
+			}
+			if(plan.Precio <= 0)
+			{
+				MessageBox.Show("El campo Costo no puede estar vacio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				paso = false;
+			}
+
 			return paso;
 		}
 	}

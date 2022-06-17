@@ -6,25 +6,12 @@ namespace Models
     public class Pagos
     {
         [Key]
-        public int PagoId { get; set; }
-
-        [Required]
-		[RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Caracteres invalidos para el Nombre.")]
+        public int? PagoId { get; set; }
         public string NombreCliente { get; set; } = string.Empty;
-
-        [Required]
-		[RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Caracteres invalidos para el Apellido.")]
         public string ApellidoCliente { get; set; } = string.Empty;
-        
-        [Required]
-        [Display(Name = "Monto a pagar")]
         public double MontoPago { get; set; }
-        
-        [Required(ErrorMessage ="Es obligatorio introducir la fecha de pago")]
-        public DateTime FechaPago { get; set; }
-        public string? Comentario { get; set; }
-
-        
+        public DateTime FechaPago { get; set; } = DateTime.Now;
+        public string Comentario { get; set; } = string.Empty;
+        public int TipoPagoId { get; set; }
     }
-    
 }

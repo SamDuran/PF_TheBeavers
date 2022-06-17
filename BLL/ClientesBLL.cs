@@ -8,25 +8,66 @@ using DAL;
 
 namespace BLL
 {
-    public class PlanesBLL
+    public class ClientesBLL
     {
-        public static bool Guardar(Planes plan)
+        public static void Guardar(Clientes cliente)
         {
-            if(Existe(plan.PlanId))
-                return Modificar(plan);
+            if (!Existe(cliente.Id))
+            {
+                Insertar(cliente);
+            }
             else
-                return Insertar(plan);
+            {
+                Modificar(cliente);
+            }
         }
-        private static bool Existe(int? id)
+        private static bool Insertar(Clientes cliente)
+        {
+            Contexto contexto = new Contexto();
+            bool paso = false;
+            try
+            {
+                contexto.Clientes.Add(cliente);
+                paso = contexto.SaveChanges() > 0;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+            return paso;
+        }
+        private static bool Modificar(Clientes cliente)
+        {
+            Contexto contexto = new Contexto();
+            bool paso = false;
+            try
+            {
+                contexto.Entry(cliente).State = EntityState.Modified;
+                paso = contexto.SaveChanges() > 0;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+            return paso;
+        }
+        private static bool Existe(int id)
         {
             Contexto contexto = new Contexto();
             bool encontrado = false;
-
             try
-            {
-                encontrado = contexto.Planes.Find(id) != null;
+            {//encontrato es true si es diferente de null
+                encontrado = contexto.Clientes.Any(c => c.Id == id)!=null;
             }
-            catch (Exception)
+            catch
             {
                 throw;
             }
@@ -36,17 +77,17 @@ namespace BLL
             }
             return encontrado;
         }
-        private static bool Insertar(Planes plan)
+        public static Clientes? Buscar(int id)
         {
             Contexto contexto = new Contexto();
-            bool guardado = false;
-
+            Clientes? cliente;
             try
             {
-                contexto.Planes.Add(plan);
-                guardado = contexto.SaveChanges() > 0;
+                cliente = contexto.Clientes.Where(c => c.Id == id)
+                .AsNoTracking()
+                .FirstOrDefault();
             }
-            catch (Exception)
+            catch
             {
                 throw;
             }
@@ -54,61 +95,22 @@ namespace BLL
             {
                 contexto.Dispose();
             }
-            return guardado;
-        }
-        private static bool Modificar(Planes plan)
-        {
-            Contexto contexto = new Contexto();
-            bool modificado = false;
-
-            try
-            {
-                contexto.Entry(plan).State = EntityState.Modified;
-                modificado = contexto.SaveChanges() > 0;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                contexto.Dispose();
-            }
-            return modificado;
-        }
-        public static Planes? Buscar(int? id)
-        {
-            Contexto contexto = new Contexto();
-            Planes? plan;
-
-            try
-            {
-                plan = contexto.Planes.Find(id);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                contexto.Dispose();
-            }
-            return plan;
+            return cliente;
         }
         public static bool Eliminar(int id)
         {
             Contexto contexto = new Contexto();
-            bool eliminado = false;
-
+            bool paso = false;
             try
             {
-                var plan = contexto.Planes.Find(id);
-                if(plan!=null)
-                    contexto.Planes.Remove(plan);
-
-                eliminado = contexto.SaveChanges() > 0;
+                var cliente = contexto.Clientes.Find(id);
+                if (cliente != null)
+                {
+                    contexto.Entry(cliente).State = EntityState.Deleted;
+                    paso = contexto.SaveChanges() > 0;
+                }
             }
-            catch (Exception)
+            catch
             {
                 throw;
             }
@@ -116,20 +118,19 @@ namespace BLL
             {
                 contexto.Dispose();
             }
-            return eliminado;
+            return paso;
         }
-        public static List<Planes> GetList(Expression<Func<Planes, bool>> criterio)
+        public static List<Clientes> GetList(Expression<Func<Clientes , bool>> criterio)
         {
             Contexto contexto = new Contexto();
-            List<Planes> lista = new List<Planes>();
-
+            List<Clientes> lista;
             try
             {
-                lista = contexto.Planes.Where(criterio)
+                lista = contexto.Clientes.Where(criterio)
                 .AsNoTracking()
                 .ToList();
             }
-            catch (Exception)
+            catch
             {
                 throw;
             }
