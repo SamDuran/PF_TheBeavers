@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using PF_THEBEAVERS;
-
+using MaterialDesignThemes.Wpf;
 namespace UI
 {
     public partial class Login : Window
@@ -23,6 +23,8 @@ namespace UI
         {
             InitializeComponent();
         }
+        public bool IsDarkTheme { get; set; }
+        private readonly PaletteHelper paletteHelper = new PaletteHelper();
 
         private void IngresarButton_Click(object sender, RoutedEventArgs e)
         {
@@ -39,5 +41,24 @@ namespace UI
         {
 
         }
+
+        private void toggleTheme(object sender, RoutedEventArgs e)
+        {
+            ITheme theme = paletteHelper.GetTheme();
+
+            if(IsDarkTheme = theme.GetBaseTheme() == BaseTheme.Dark)
+            {
+                IsDarkTheme = false;
+                theme.SetBaseTheme(Theme.Light);
+            }
+            else
+            {
+                IsDarkTheme = true;
+                theme.SetBaseTheme(Theme.Dark);
+            }
+            paletteHelper.SetTheme(theme);
+         }
+
+
     }
 }

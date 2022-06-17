@@ -8,6 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icono.png" />
+    <None Remove="UI\Registros\Icono.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="PosibleIcono.ico" />
+  </ItemGroup> 
+
+  <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
     <PackageReference Include="microsoft.entityframeworkcore.sqlite" Version="6.0.5" />
     <PackageReference Include="microsoft.entityframeworkcore.tools" Version="6.0.5">
