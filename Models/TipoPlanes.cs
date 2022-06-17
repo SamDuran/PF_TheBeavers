@@ -6,7 +6,7 @@ namespace Models
     public class TipoPlanes
     {
         [Key]
-        public int PlanId { get; set; }
+        public int TipoPlanId { get; set; }
 
         [Required]
         [Display(Name = "Tipo de Plan")]

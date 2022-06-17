@@ -18,21 +18,21 @@ namespace DAL
 		{
 			builder.Entity<TipoPlanes>().HasData(new TipoPlanes
 			{
-				PlanId = 1,
+				TipoPlanId = 1,
 				NombrePlan = "Plan Básico",
 				PrecioPlan = 550,
 				Descripcion = "Plan básico de telecable beavers"
 			});
 			builder.Entity<TipoPlanes>().HasData(new TipoPlanes
 			{
-				PlanId = 2,
+				TipoPlanId = 2,
 				NombrePlan = "Plan Medio",
 				PrecioPlan = 750,
 				Descripcion = "Plan Medio de telecable beavers"
 			});
 			builder.Entity<TipoPlanes>().HasData(new TipoPlanes
 			{
-				PlanId = 3,
+				TipoPlanId = 3,
 				NombrePlan = "Plan Premium",
 				PrecioPlan = 950,
 				Descripcion = "Plan premium de telecable beavers"

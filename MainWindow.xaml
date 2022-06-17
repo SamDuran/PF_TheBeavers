@@ -29,7 +29,7 @@
                 <RowDefinition Height="280*" />
             </Grid.RowDefinitions>
             <Image Grid.RowSpan="2"></Image>
-            <Image Source="/Resources/beavers.png" HorizontalAlignment="Center" Height="408" Margin="217,122,0,0" VerticalAlignment="Center" Width="474" Grid.RowSpan="2" />
+            <Image Source="/Resources/beavers.png" HorizontalAlignment="Left" Height="468" VerticalAlignment="Top" Width="793" Grid.RowSpan="2" Margin="214,61,0,0" />
         </Grid>
     </Grid>
 </Window>
