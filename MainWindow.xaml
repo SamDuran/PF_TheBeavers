@@ -16,8 +16,14 @@
 
                 <MenuItem x:Name="mPlanes" Header="Planes" Click="rPlanes_Click">
                     <MenuItem.Icon>
+<<<<<<< HEAD
                         <Image Source="/Resources/Combo.png"></Image>
                     </MenuItem.Icon>
+=======
+                        <Image Source="/Resources/Contratos.png"></Image>
+                    </MenuItem.Icon>
+                
+>>>>>>> 4090ed5038c919804e48d42d61ddf8053d563c1c
                 </MenuItem>
 
                 <MenuItem x:Name="mContratos" Header="Contratos" Click="Registros_Click">
