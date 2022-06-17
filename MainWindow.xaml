@@ -15,7 +15,9 @@
             <MenuItem x:Name="Registros" Background="#FF7B7B7B" Header="Registros" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF636363">
                
                 <MenuItem x:Name="mPlanes" Header="Planes" Click="rPlanes_Click">
-                    
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Contratos.png"></Image>
+                    </MenuItem.Icon>
                 
                 </MenuItem>
                 
