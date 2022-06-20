@@ -23,7 +23,7 @@ namespace PF_THEBEAVERS
             InitializeComponent();
         }
 
-        private void Registros_Click(object sender, RoutedEventArgs e)
+        private void rContratos_Click(object sender, RoutedEventArgs e)
         {
             rContratos ContratosView = new rContratos();
             ContratosView.Show();
@@ -36,12 +36,12 @@ namespace PF_THEBEAVERS
             PlanesView.Show();
 
         }
-        private void Pagos_Click(object sender, RoutedEventArgs e)
+        private void rPagos_Click(object sender, RoutedEventArgs e)
         {
             rPagos PagosView = new rPagos();
             PagosView.Show();
         }
-        private void Consultas_Click(object sender, RoutedEventArgs e)
+        private void cContratos_Click(object sender, RoutedEventArgs e)
         {
             cContratos ContratosView = new cContratos();
             ContratosView.Show();

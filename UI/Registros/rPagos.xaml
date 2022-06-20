@@ -9,6 +9,7 @@
     Title="Registro de Pagos" 
     Height="630" 
     Width="870" 
+    ResizeMode="CanMinimize" 
     Icon="/Resources/Icono.png" 
     Background="#FFDADADA">
     <Grid Height="546" VerticalAlignment="Center" HorizontalAlignment="Center" Width="830" ShowGridLines="True" Margin="40,13,0,0">

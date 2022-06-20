@@ -79,6 +79,10 @@ namespace PF_THEBEAVERS.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Plan")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("PlanId")
                         .HasColumnType("INTEGER");
 
@@ -163,13 +167,6 @@ namespace PF_THEBEAVERS.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("Estado")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("NombrePago")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -182,22 +179,16 @@ namespace PF_THEBEAVERS.Migrations
                         new
                         {
                             TipoPagoId = 1,
-                            Descripcion = "",
-                            Estado = false,
                             NombrePago = "Efectivo"
                         },
                         new
                         {
                             TipoPagoId = 2,
-                            Descripcion = "",
-                            Estado = false,
                             NombrePago = "Tarjeta"
                         },
                         new
                         {
                             TipoPagoId = 3,
-                            Descripcion = "",
-                            Estado = false,
                             NombrePago = "Cheque"
                         });
                 });

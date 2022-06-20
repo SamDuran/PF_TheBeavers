@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace PF_THEBEAVERS.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220617114115_Inicial")]
-    partial class Inicial
+    [Migration("20220620021424_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -78,6 +78,10 @@ namespace PF_THEBEAVERS.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NombreCliente")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Plan")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -165,13 +169,6 @@ namespace PF_THEBEAVERS.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("Estado")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("NombrePago")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -184,22 +181,16 @@ namespace PF_THEBEAVERS.Migrations
                         new
                         {
                             TipoPagoId = 1,
-                            Descripcion = "",
-                            Estado = false,
                             NombrePago = "Efectivo"
                         },
                         new
                         {
                             TipoPagoId = 2,
-                            Descripcion = "",
-                            Estado = false,
                             NombrePago = "Tarjeta"
                         },
                         new
                         {
                             TipoPagoId = 3,
-                            Descripcion = "",
-                            Estado = false,
                             NombrePago = "Cheque"
                         });
                 });

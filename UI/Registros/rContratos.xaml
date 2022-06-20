@@ -9,6 +9,7 @@
         Title="Registro de Contratos" 
         Width="870" 
         Height="630"
+        ResizeMode="CanMinimize" 
         WindowStartupLocation="CenterScreen"
         Icon="/Resources/Icono.png" Background="#FFDADADA">
     <Grid Height="546" VerticalAlignment="Center" HorizontalAlignment="Center" Width="830" ShowGridLines="True" Margin="40,13,0,0">
@@ -45,8 +46,8 @@
             </StackPanel>
             <!--ID-->
             <StackPanel Orientation="Horizontal" Margin="20,20,20,10">
-                <Label Content="Id Contrato" Width="140" FontSize="14" Padding="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="IdContratoTB" Text="{Binding ContratoId}"  KeyDown="IdTextBox_KeyDown" Margin="50,0,0,0" GotFocus="IdTextBox_GotFocus" LostFocus="IdTextBox_GotUnfocused" TextWrapping="Wrap" Width="450" Height="26" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" AutomationProperties.HelpText="ID del Contrato" Background="#7FFFFFFF" />
+                <Label Content="Id Contrato" Width="140" FontSize="14" Padding="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right" />
+                <TextBox x:Name="IdContratoTB" Text="{Binding ContratoId}"  KeyDown="IdTextBox_KeyDown" Margin="50,0,0,0" GotFocus="IdTextBox_GotFocus" LostFocus="IdTextBox_GotUnfocused" IsEnabled="False" TextWrapping="Wrap" Width="450" Height="26" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" AutomationProperties.HelpText="ID del Contrato" Background="#7FFFFFFF" />
                 <Button HorizontalAlignment="Left"  Margin="20,0,0,0" VerticalAlignment="Top"  Width="88" Height="26" Click="BuscarBTN_Click" BorderBrush="#FF4C5FBD" Grid.Column="5" Background="#437FA6" Foreground="White">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Resources/Lupa.png"/>
@@ -89,7 +90,7 @@
             <!--TipoPlan-->
             <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
                 <Label Content="Tipo Plan" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <ComboBox x:Name="TipoPlanCombo"  HorizontalAlignment="Center" SelectedValue="{Binding contrato.PlanId}" SelectedIndex="0" Margin="50,0,0,0" Width="558" BorderBrush="#FFA0A0A0" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="#7FFFFFFF">
+                <ComboBox x:Name="TipoPlanCombo"  HorizontalAlignment="Center"  SelectedIndex="0" Margin="50,0,0,0" Width="558" BorderBrush="#FFA0A0A0" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="#7FFFFFFF">
                 </ComboBox>
             </StackPanel>
             <!-- Commentario -->

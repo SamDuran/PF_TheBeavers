@@ -9,37 +9,39 @@
         WindowStartupLocation="CenterScreen" 
         Height="600" 
         Width="1000" 
-        Icon="./Resources/Icono.png">
+        Icon="./Resources/Icono.png" Background="#FF8E7352">
     <Grid Height="529" VerticalAlignment="Top">
-        <Menu x:Name="MainMenu" VerticalAlignment="Top" Background="#FF7F7F7F">
-            <MenuItem x:Name="Registros" Background="#FF7B7B7B" Header="Registros" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF636363">
+        <Menu x:Name="MainMenu" VerticalAlignment="Top" Background="#FF715431">
+            <MenuItem x:Name="Registros" Background="#FF714E24" Header="Registros" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF714E24">
 
                 <MenuItem x:Name="mPlanes" Header="Planes" Click="rPlanes_Click">
                     <MenuItem.Icon>
-<<<<<<< HEAD
                         <Image Source="/Resources/Combo.png"></Image>
                     </MenuItem.Icon>
-=======
-                        <Image Source="/Resources/Contratos.png"></Image>
-                    </MenuItem.Icon>
-                
->>>>>>> 4090ed5038c919804e48d42d61ddf8053d563c1c
                 </MenuItem>
 
-                <MenuItem x:Name="mContratos" Header="Contratos" Click="Registros_Click">
+                <MenuItem x:Name="mContratos" Header="Contratos" Click="rContratos_Click">
                     <MenuItem.Icon>
                         <Image Source="/Resources/Contratos.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="mPagos" Header="Pagos" Click="Pagos_Click">
+                <MenuItem x:Name="mPagos" Header="Pagos" Click="rPagos_Click">
                     <MenuItem.Icon>
                         <Image Source="/Resources/Pagos.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-            <MenuItem x:Name="mConsultas" Background="#FF7B7B7B" Click="Consultas_Click" Header="Consultas" Margin="4,0,4,0" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="#FF676767"></MenuItem>
-            <MenuItem x:Name="mReporte" Background="#FF7B7B7B" Header="Reportes" Margin="4,0,4,0" HorizontalContentAlignment="Center" BorderBrush="#FF676767"></MenuItem>
-            <MenuItem x:Name="CerrarSeccionMenuItem" Header="Cerrar Sesión" HorizontalAlignment="Right" Click="CerrarSeccionMenuItem_Click" />
+            <MenuItem x:Name="Consultas" Background="#FF714E24" Header="Consultas" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF714E24">
+                <MenuItem x:Name="cContratos" Header="Contratos" Click="cContratos_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Contratos.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Background="#FF714E24" Header="Reportes" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF714E24">
+                
+            </MenuItem>
+            <MenuItem x:Name="CerrarSeccionMenuItem" Header="Cerrar Sesión" HorizontalAlignment="Right" Click="CerrarSeccionMenuItem_Click" VerticalAlignment="Stretch" Margin="575,0,0,0" Background="#FF714E24" />
         </Menu>
         <Grid>
             <Grid.RowDefinitions>

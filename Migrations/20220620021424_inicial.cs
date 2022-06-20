@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PF_THEBEAVERS.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -41,6 +41,7 @@ namespace PF_THEBEAVERS.Migrations
                     Telefono = table.Column<string>(type: "TEXT", nullable: false),
                     TelefonoReferencial = table.Column<string>(type: "TEXT", nullable: true),
                     PlanId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Plan = table.Column<string>(type: "TEXT", nullable: false),
                     Comentario = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -90,9 +91,7 @@ namespace PF_THEBEAVERS.Migrations
                 {
                     TipoPagoId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    NombrePago = table.Column<string>(type: "TEXT", nullable: false),
-                    Descripcion = table.Column<string>(type: "TEXT", nullable: false),
-                    Estado = table.Column<bool>(type: "INTEGER", nullable: false)
+                    NombrePago = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -114,18 +113,18 @@ namespace PF_THEBEAVERS.Migrations
 
             migrationBuilder.InsertData(
                 table: "TipoPagos",
-                columns: new[] { "TipoPagoId", "Descripcion", "Estado", "NombrePago" },
-                values: new object[] { 1, "", false, "Efectivo" });
+                columns: new[] { "TipoPagoId", "NombrePago" },
+                values: new object[] { 1, "Efectivo" });
 
             migrationBuilder.InsertData(
                 table: "TipoPagos",
-                columns: new[] { "TipoPagoId", "Descripcion", "Estado", "NombrePago" },
-                values: new object[] { 2, "", false, "Tarjeta" });
+                columns: new[] { "TipoPagoId", "NombrePago" },
+                values: new object[] { 2, "Tarjeta" });
 
             migrationBuilder.InsertData(
                 table: "TipoPagos",
-                columns: new[] { "TipoPagoId", "Descripcion", "Estado", "NombrePago" },
-                values: new object[] { 3, "", false, "Cheque" });
+                columns: new[] { "TipoPagoId", "NombrePago" },
+                values: new object[] { 3, "Cheque" });
 
             migrationBuilder.InsertData(
                 table: "TipoPlanes",

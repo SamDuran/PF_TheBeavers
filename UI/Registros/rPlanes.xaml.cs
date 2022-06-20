@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,36 +10,49 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Drawing;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Models;
-using Models.Validations;
+using Utilities;
 using BLL;
+using Models;
+using Models.Validations; 
 
 namespace UI
 {
     public partial class rPlanes : Window
     {
-        TipoPlanes planes = new TipoPlanes();
+        Planes plan = new Planes();
+        int IdPlan;
         public rPlanes()
         {
             InitializeComponent();
+            this.DataContext=plan;
+            PlanCombo .ItemsSource = TipoPlanesBLL.GetList();
+            PlanCombo .SelectedValuePath = "PlanId";
+            PlanCombo .DisplayMemberPath = "NombrePlan";
+            Limpiar();
         }
         //------------------------------------------------------UTILIDADES--------------------------------------------------------- 
         private void Limpiar()
         {
-            
+            plan = new Planes();
+            this.DataContext = plan;
+            PlanCombo.SelectedIndex = 0;
+            OcultarLabels();
+            NombreTB.Focus();
         }
         private void Cargar()
         {
-            
+            this.DataContext = null;
+            this.DataContext = plan;
+            PlanCombo.SelectedValue = plan.PlanId;
+            MostrarLabels();
         }
         private void OcultarLabels()
         {
             IdPlanTB.IsEnabled = false;
-        
+
             FechaMLabel.Visibility = Visibility.Hidden;
             fModifLabel.Visibility = Visibility.Hidden;
             FechaCLabel.Visibility = Visibility.Hidden;
@@ -55,7 +69,30 @@ namespace UI
         //------------------------------------------------------BOTONES------------------------------------------------------------
         private void BuscarBTN_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (this.plan.PlanId == null)
+            {
+                IdPlanTB.IsEnabled = true;
+            }
+            else
+            {
+                if(string.IsNullOrEmpty(IdPlanTB.Text) || string.IsNullOrWhiteSpace(IdPlanTB.Text) || IdPlanTB.Text == "0")
+                {
+                    MessageBox.Show("Debe de ingresar un ID");
+                }
+                else
+                {
+                    var planAux = PlanesBLL.Buscar(Utilities.Utilities.ToInt(IdPlanTB.Text));
+                    if (planAux != null)
+                    {
+                        plan = planAux;
+                        Cargar();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontro el plan");
+                    }
+                }
+            }
         }
         private void NuevoBTN_Click(object sender, RoutedEventArgs e)
         {
@@ -63,19 +100,28 @@ namespace UI
         }
         private void GuardarBTN_Click(object sender, RoutedEventArgs e)
         {
-            
-<<<<<<< HEAD
-=======
-           
->>>>>>> 4090ed5038c919804e48d42d61ddf8053d563c1c
+            plan.TipoPlanId = IdPlan;
+            if(PlanesBLL.Guardar(plan))
+            {
+                MessageBox.Show("Guardado", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                Limpiar();
+            }
+            else
+            {
+                MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         private void EliminarBTN_Click(object sender, RoutedEventArgs e)
         {
-            
-        }
-        private void CorregirCredenciales()
-        {
-            
+            if (PlanesBLL.Eliminar(Utilities.Utilities.ToInt(IdPlanTB.Text)))
+            {
+                MessageBox.Show("Eliminado", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                Limpiar();
+            }
+            else
+            {
+                MessageBox.Show("No se pudo eliminar", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         //------------------------------------------------------Keydowns-----------------------------------------------------------
         private void IdTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -89,8 +135,8 @@ namespace UI
                 PrecioTB.Focus();
         }
 
-        
-      
+
+
         //------------------------------------------------------OnFocus------------------------------------------------------------
         private void IdTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -125,8 +171,10 @@ namespace UI
             PrecioTB.Background.Opacity = 0.5;
         }
 
-
-       
-    }
+		private void RadioButton_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+            this.plan.Estado = !(bool)e.NewValue; 
+		}
+	}
 }
 

@@ -18,6 +18,7 @@ namespace Models
 		public string Telefono { get; set; } = string.Empty;
 		public string? TelefonoReferencial { get; set; }
 		public int PlanId { get; set; }
+		public string Plan { get; set; } = string.Empty;
 		public string? Comentario { get; set; }
 	}
 }

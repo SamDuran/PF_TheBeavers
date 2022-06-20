@@ -26,9 +26,18 @@ namespace UI
         {
             InitializeComponent();
             TipoPlanCombo.ItemsSource = TipoPlanesBLL.GetList();
-            TipoPlanCombo.SelectedValuePath = "PlanId";
+            TipoPlanCombo.SelectedValuePath = "TipoPlanId";
             TipoPlanCombo.DisplayMemberPath = "NombrePlan";
             Limpiar();
+        }
+        public rContratos(Contratos _contrato) 
+        {
+            this.contrato = _contrato;
+            InitializeComponent();
+            TipoPlanCombo.ItemsSource = TipoPlanesBLL.GetList();
+            TipoPlanCombo.SelectedValuePath = "TipoPlanId";
+            TipoPlanCombo.DisplayMemberPath = "NombrePlan";
+            Cargar();
         }
         //------------------------------------------------------UTILIDADES--------------------------------------------------------- 
         private void Limpiar()
@@ -37,6 +46,7 @@ namespace UI
             this.DataContext = contrato;
             TipoPlanCombo.SelectedIndex = 0;
             OcultarLabels();
+            NombreTB.Focus();
         }
         private void Cargar()
 		{
@@ -46,7 +56,6 @@ namespace UI
         }
         private void OcultarLabels()
         {
-            IdContratoTB.IsEnabled=false;
             ContratoLabel1.Visibility = Visibility.Hidden;
             NoContratoLabel.Visibility = Visibility.Hidden;
             FechaMLabel.Visibility = Visibility.Hidden;
@@ -56,7 +65,6 @@ namespace UI
         }
         private void MostrarLabels()
         {
-            IdContratoTB.IsEnabled = true;
             ContratoLabel1.Visibility = Visibility.Visible;
             NoContratoLabel.Visibility = Visibility.Visible;
             FechaMLabel.Visibility = Visibility.Visible;
@@ -67,27 +75,9 @@ namespace UI
         //------------------------------------------------------BOTONES------------------------------------------------------------
         private void BuscarBTN_Click(object sender, RoutedEventArgs e)
         {
-            if(this.contrato.ContratoId==null)
-            {
-                IdContratoTB.IsEnabled = true;
-            }else
-            {
-                if(String.IsNullOrEmpty(IdContratoTB.Text) || string.IsNullOrWhiteSpace(IdContratoTB.Text) || IdContratoTB.Text=="0")
-                {
-                    MessageBox.Show("Debe ingresar un numero de contrato valido");
-                    return;
-                }
-                var contratoAux = ContratosBLL.Buscar(contrato.ContratoId);
-                if (contratoAux != null)
-                {
-                    contrato=contratoAux;
-                    Cargar();
-                }
-                else
-                {
-                    MessageBox.Show("No se encontro!", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
+            cContratos consulta = new cContratos();
+            consulta.ShowDialog();
+            this.Close();
         }
         private void NuevoBTN_Click(object sender, RoutedEventArgs e)
         {
@@ -96,6 +86,7 @@ namespace UI
         private void GuardarBTN_Click(object sender, RoutedEventArgs e)
         {
             contrato.PlanId = (int)TipoPlanCombo.SelectedValue;
+            contrato.Plan = TipoPlanesBLL.Buscar(contrato.PlanId).NombrePlan;
             if(Validations.ValidarContrato(contrato))
             {
                 CorregirCredenciales();

@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore; //Para setear los estados de las entidades
+using System.Collections.Generic;    //Para usar listas
 using System.Linq.Expressions;       //Para filtrar en la consulta
 using System.Linq;					 //Para expresiones lambdas
+using System;						 //Para usar las "func"
 using Models;                        //Para utilizar nuestras entidades
 using DAL;                           //Para utilizar el contexto
 
@@ -135,5 +137,25 @@ namespace BLL
 			}
 			return paso;
 		}//Delete
+		public static List<Contratos> GetList(Expression<Func<Contratos, bool>> expression)
+		{
+			Contexto contexto = new Contexto();
+			List<Contratos> contratos;
+			try
+			{
+				contratos = contexto.Contratos.Where(expression)
+				.AsNoTracking()
+				.ToList();
+			}
+			catch
+			{
+				throw;
+			}
+			finally
+			{
+				contexto.Dispose();
+			}
+			return contratos;
+		}
 	}
 }

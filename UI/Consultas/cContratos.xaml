@@ -1,41 +1,86 @@
-﻿<Window x:Class="UI.cContratos"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:UI"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="650">
-    <Grid Height="529" VerticalAlignment="Top">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="0*"/>
-        </Grid.ColumnDefinitions>
-        <Label Content="Id Contrato" HorizontalAlignment="Left" Margin="88,85,0,0" VerticalAlignment="Top" Width="90" Height="26" FontSize="14"/>
-        <Label Content="Apellido Cliente" HorizontalAlignment="Left" Margin="70,158,0,0" VerticalAlignment="Top" Height="26" Width="108" FontSize="14"/>
-        <Label Content="Nombre Cliente" HorizontalAlignment="Left" Margin="70,120,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.219,3.141" Height="26" Width="108" FontSize="14"/>
-        <Label Content="Celular" HorizontalAlignment="Left" Margin="118,264,0,0" VerticalAlignment="Top" Height="26" Width="60" RenderTransformOrigin="1.575,0.666" FontSize="14"/>
-        <Label Content="Cedula Cliente" HorizontalAlignment="Left" Margin="74,191,0,0" VerticalAlignment="Top" Height="26" Width="104" FontSize="14"/>
-        <Label Content="Direccion" HorizontalAlignment="Left" Margin="104,230,0,0" VerticalAlignment="Top" Height="26" Width="74" FontSize="14"/>
-        <Label Content="Telefono" HorizontalAlignment="Left" Margin="377,263,0,0" VerticalAlignment="Top" Height="27" Width="62" RenderTransformOrigin="0.417,-0.228" FontSize="14"/>
-        <Label Content="Registro de Contratos" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30" Height="50" Width="298"/>
-        <TextBox HorizontalAlignment="Left" Margin="183,85,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="327" Height="26"/>
-        <TextBox HorizontalAlignment="Left" Margin="183,120,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="416" Height="26"/>
-        <TextBox HorizontalAlignment="Left" Margin="183,158,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="416" Height="26"/>
-        <TextBox HorizontalAlignment="Left" Margin="183,191,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="416" Height="26"/>
-        <TextBox HorizontalAlignment="Left" Margin="183,230,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="416" Height="26"/>
-        <TextBox HorizontalAlignment="Left" Margin="183,264,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" Height="26"/>
-        <TextBox HorizontalAlignment="Left" Margin="439,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" Height="26"/>
-        <Button Content="Buscar" HorizontalAlignment="Left"   Margin="523,85,0,0" VerticalAlignment="Top" Width="78" Height="26" BorderBrush="#FF142472" Background="#FF5E76EE"/>
-        <Label Content="Telefono Referencia" FontFamily="oblica" HorizontalAlignment="Left" Margin="37,295,0,0" VerticalAlignment="Top" Width="141" FontSize="14"/>
-        <TextBox HorizontalAlignment="Left" Margin="183,296,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="416" Height="26"/>
-        <Label Content="Tipo de Plan" HorizontalAlignment="Left" Margin="81,329,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.735,-2.402" FontSize="14"/>
-        <ComboBox HorizontalAlignment="Left" Margin="183,336,0,0" VerticalAlignment="Top" Width="416"/>
-        <Button Content="Eliminar" HorizontalAlignment="Left" Margin="449,467,0,0" BorderThickness="2" VerticalAlignment="Top" Height="37" Width="104" Background="#FFE8250D"/>
-        <Button Content="Guardar" HorizontalAlignment="Left" Margin="280,467,0,0" BorderThickness="2" VerticalAlignment="Top" Height="37" Width="104" Background="#FF429724"/>
-        <Button Content="Nuevo" HorizontalAlignment="Left" Margin="124,467,0,0" BorderThickness="2" VerticalAlignment="Top" Height="37" Width="104" Background="#FF334BAB"/>
-        <TextBox HorizontalAlignment="Left" Margin="88,376,0,0" TextWrapping="Wrap" BorderThickness="2"  Text="Comentario" VerticalAlignment="Top" Width="513" Height="78"/>
-
-    </Grid>
+﻿<Window x:Class="UI.cContratos" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:local="clr-namespace:UI" 
+        mc:Ignorable="d" 
+        Title="Consulta de contratos" 
+        Height="700" Width="1200" 
+        ResizeMode="CanMinimize" 
+        WindowStartupLocation="CenterScreen" 
+        WindowState="Maximized" 
+        Icon="/Resources/Contratos.png" 
+        Background="#FFC1C1C1" 
+        WindowStyle="ThreeDBorderWindow">
+    <DockPanel>
+        <StackPanel Margin="20,20,20,5" VerticalAlignment="Top" Height="45" DockPanel.Dock="Top">
+            <Label Content="Consulta de Contratos" FontSize="24" FontFamily="Impact" />
+        </StackPanel>
+        <StackPanel>
+            <!-- Filtros y botones -->
+            <DockPanel Margin="20,0" VerticalAlignment="Top">
+                <!--Filtro-->
+                <StackPanel Margin="20,0,20,0">
+                    <Label Content="Filtro" />
+                    <ComboBox x:Name="FiltroBox" Width="200">
+                        <ComboBoxItem Content="ID" />
+                        <ComboBoxItem Content="No Contrato" />
+                        <ComboBoxItem Content="Nombre Cliente" />
+                        <ComboBoxItem Content="Apellido Cliente" />
+                        <ComboBoxItem Content="Cedula" />
+                        <ComboBoxItem Content="Direccion" />
+                        <ComboBoxItem Content="Celular" />
+                        <ComboBoxItem Content="Telefono" />
+                        <ComboBoxItem Content="Tel Referencial" />
+                        <ComboBoxItem Content="Plan" />
+                    </ComboBox>
+                </StackPanel>
+                <!--Fecha desde-->
+                <StackPanel Margin="20,0,20,0">
+                    <Label Content="Fecha desde" />
+                    <DatePicker x:Name="DesdePicker" Width="100" />
+                </StackPanel>
+                <!--Fecha hasta-->
+                <StackPanel Margin="20,0,20,0">
+                    <Label Content="Fecha hasta" />
+                    <DatePicker x:Name="HastaPicker" Width="100" />
+                </StackPanel>
+                <!--Fecha busqueda-->
+                <StackPanel Margin="20,0,20,0">
+                    <Label Content="Búsqueda" />
+                    <TextBox x:Name="BusquedaTB" KeyDown="BusquedaTB_KeyDown" Width="490" />
+                </StackPanel>
+                <!--Boton Buscar-->
+                <Button HorizontalAlignment="Left" Click="BuscarBTN_Click" VerticalAlignment="Top" Margin="0,20,0,0" Width="88" Height="26" BorderBrush="#FF4C5FBD" Background="#437FA6" Foreground="White">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Resources/Lupa.png" />
+                        <Label HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontStyle="Normal" Foreground="#FF383838" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="11" FontFamily="Bahnschrift SemiBold" Content="Buscar" />
+                    </StackPanel>
+                </Button>
+            </DockPanel>
+            <StackPanel Margin="20">
+                <DataGrid x:Name="TablaDatos" CanUserReorderColumns="False" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" IsReadOnly="True" CanUserSortColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ContratoId" Binding="{Binding ContratoId}" />
+                        <DataGridTextColumn Header="NoContrato" Binding="{Binding NoContrato}" />
+                        <DataGridTextColumn Header="NombreCliente" Binding="{Binding NombreCliente}" />
+                        <DataGridTextColumn Header="ApellidoCliente" Binding="{Binding ApellidoCliente}" />
+                        <DataGridTextColumn Header="Cedula" Binding="{Binding Cedula}" />
+                        <DataGridTextColumn Header="Plan" Binding="{Binding Plan}" />
+                        <DataGridTextColumn Header="Dirección" Binding="{Binding Direccion}" />
+                        <DataGridTextColumn Header="Celular" Binding="{Binding Celular}" />
+                        <DataGridTextColumn Header="Teléfono" Binding="{Binding Telefono}" />
+                        <DataGridTextColumn Header="Tel Referencial" Binding="{Binding TelefonoReferencial}" />
+                        <DataGridTextColumn Header="FechaCreacion" Binding="{Binding FechaCreacion}" />
+                        <DataGridTextColumn Header="FechaModificacion" Binding="{Binding FechaModificacion}" />
+                    </DataGrid.Columns>
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridRow">
+                            <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" />
+                        </Style>
+                    </DataGrid.Resources>
+                </DataGrid>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
 </Window>
