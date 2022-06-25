@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace PF_THEBEAVERS.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220620021424_inicial")]
-    partial class inicial
+    [Migration("20220625014649_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -224,6 +224,66 @@ namespace PF_THEBEAVERS.Migrations
                         {
                             TipoPlanId = 3,
                             NombrePlan = "Plan Premium"
+                        });
+                });
+
+            modelBuilder.Entity("Models.Usuarios", b =>
+                {
+                    b.Property<int>("UsuarioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombres")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("UsuarioId");
+
+                    b.ToTable("Usuarios");
+
+                    b.HasData(
+                        new
+                        {
+                            UsuarioId = 1,
+                            Nombres = "Luis Rafael Baltodano",
+                            Password = "20200070",
+                            UserName = "RafaelB"
+                        },
+                        new
+                        {
+                            UsuarioId = 2,
+                            Nombres = "Jeison Reyes",
+                            Password = "20190564",
+                            UserName = "JeisonR"
+                        },
+                        new
+                        {
+                            UsuarioId = 3,
+                            Nombres = "Samuel Duran",
+                            Password = "20190793",
+                            UserName = "SamuelD"
+                        },
+                        new
+                        {
+                            UsuarioId = 4,
+                            Nombres = "Elianny Rosario",
+                            Password = "20190255",
+                            UserName = "EliannyR"
+                        },
+                        new
+                        {
+                            UsuarioId = 5,
+                            Nombres = "Yunilda Justo",
+                            Password = "20190274",
+                            UserName = "YunildaJ"
                         });
                 });
 #pragma warning restore 612, 618

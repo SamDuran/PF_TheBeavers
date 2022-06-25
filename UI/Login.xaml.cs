@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using PF_THEBEAVERS;
 using MaterialDesignThemes.Wpf;
+using BLL;
+using Models;
 namespace UI
 {
     public partial class Login : Window
@@ -28,8 +30,20 @@ namespace UI
 
         private void IngresarButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-            MenuPrincipal.Show();
+            bool paso = LoginBLL.Validar(txtUsername.Text, txtPassword.Password);
+
+            if (paso)
+            {
+                this.Close();
+                MenuPrincipal.Show();
+            }
+            else
+            {
+                MessageBox.Show("Nombre Usuario o Contraseña incorrecta!", "Error!");
+                txtUsername.Focus();
+                txtPassword.Clear();
+
+            }
 
         }
         private void CancelarButton_Click(object sender, RoutedEventArgs e)
@@ -37,16 +51,12 @@ namespace UI
             Application.Current.Shutdown();
         }
 
-        private void loginBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void toggleTheme(object sender, RoutedEventArgs e)
         {
             ITheme theme = paletteHelper.GetTheme();
 
-            if(IsDarkTheme = theme.GetBaseTheme() == BaseTheme.Dark)
+            if (IsDarkTheme = theme.GetBaseTheme() == BaseTheme.Dark)
             {
                 IsDarkTheme = false;
                 theme.SetBaseTheme(Theme.Light);
@@ -57,7 +67,7 @@ namespace UI
                 theme.SetBaseTheme(Theme.Dark);
             }
             paletteHelper.SetTheme(theme);
-         }
+        }
 
 
     }
