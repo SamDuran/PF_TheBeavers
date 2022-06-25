@@ -65,7 +65,7 @@ namespace BLL
             bool encontrado = false;
             try
             {//encontrato es true si es diferente de null
-                encontrado = contexto.Clientes.Any(c => c.Id == id)!=null;
+                encontrado = contexto.Clientes.Any(c => c.Id == id);
             }
             catch
             {

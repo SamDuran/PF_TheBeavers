@@ -223,22 +223,22 @@ namespace UI
                     {
                         if (DesdePicker.SelectedDate != null && HastaPicker.SelectedDate != null)
                         {
-                            lista = ContratosBLL.GetList(x => x.TelefonoReferencial.Contains(BusquedaTB.Text)
+                            lista = ContratosBLL.GetList(x => x.TelefonoReferencial!=null && x.TelefonoReferencial.Contains(BusquedaTB.Text)
                             && x.FechaCreacion <= HastaPicker.SelectedDate && x.FechaCreacion >= DesdePicker.SelectedDate);
                         }
                         else if(HastaPicker.SelectedDate != null)
                         {
-                            lista = ContratosBLL.GetList(x => x.TelefonoReferencial.Contains(BusquedaTB.Text)
+                            lista = ContratosBLL.GetList(x => x.TelefonoReferencial!=null && x.TelefonoReferencial.Contains(BusquedaTB.Text)
                             && x.FechaCreacion <= HastaPicker.SelectedDate);
                         }
                         else if(DesdePicker.SelectedDate != null)
                         {
-                            lista = ContratosBLL.GetList(x => x.TelefonoReferencial.Contains(BusquedaTB.Text)
+                            lista = ContratosBLL.GetList(x => x.TelefonoReferencial!=null && x.TelefonoReferencial.Contains(BusquedaTB.Text)
                             && x.FechaCreacion >= DesdePicker.SelectedDate);
                         }
                         else
                         {
-                            lista = ContratosBLL.GetList(e => e.TelefonoReferencial.Contains(BusquedaTB.Text));
+                            lista = ContratosBLL.GetList(x => x.TelefonoReferencial!=null && x.TelefonoReferencial.Contains(BusquedaTB.Text));
                         }
                         break;
                     }

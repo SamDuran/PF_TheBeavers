@@ -87,6 +87,7 @@ namespace UI
         {
             contrato.PlanId = (int)TipoPlanCombo.SelectedValue;
             contrato.Plan = TipoPlanesBLL.Buscar(contrato.PlanId).NombrePlan;
+
             if(Validations.ValidarContrato(contrato))
             {
                 CorregirCredenciales();
