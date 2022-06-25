@@ -6,9 +6,7 @@
         mc:Ignorable="d" 
         Title="Consulta de contratos" 
         Height="700" Width="1200" 
-        ResizeMode="CanMinimize" 
         WindowStartupLocation="CenterScreen" 
-        WindowState="Maximized" 
         Icon="/Resources/Contratos.png" 
         Background="#FFC1C1C1" 
         WindowStyle="ThreeDBorderWindow">
