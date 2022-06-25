@@ -75,9 +75,7 @@ namespace UI
         //------------------------------------------------------BOTONES------------------------------------------------------------
         private void BuscarBTN_Click(object sender, RoutedEventArgs e)
         {
-            cContratos consulta = new cContratos();
-            consulta.ShowDialog();
-            this.Close();
+            new cContratos().Show();
         }
         private void NuevoBTN_Click(object sender, RoutedEventArgs e)
         {
