@@ -18,6 +18,8 @@ namespace PF_THEBEAVERS
 {
     public partial class MainWindow : Window
     {
+       
+
         public MainWindow()
         {
             InitializeComponent();
@@ -47,12 +49,12 @@ namespace PF_THEBEAVERS
             ContratosView.Show();
         }
 
-        private void CerrarSeccionMenuItem_Click(object sender, RoutedEventArgs e)
+        private void CerrarSesionMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Estás seguro que desea cerrar sesión?", "Ventana principal", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Está seguro que desea cerrar sesión?", "Volver al Login", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 new Login().Show();
-                Application.Current.Shutdown();
+                this.Close();
             }
         }
     }

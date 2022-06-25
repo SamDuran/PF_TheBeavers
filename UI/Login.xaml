@@ -6,6 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
+         Icon="/Resources/Icono.png"
         Title="Login" Height="602" Width="861"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}" Background="{x:Null}"
         AllowsTransparency="True"
@@ -19,12 +20,12 @@
                 <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 20 20 0" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Height="25">
 
                     <StackPanel Margin="16 10 0 6" Orientation="Horizontal" HorizontalAlignment="Center">
-                        <TextBlock VerticalAlignment="Center" Text="Dark Mode" />
-						<ToggleButton Cursor="Hand" ToolTip="Enable Dark Mode" Margin="12 0 8 0" x:Name="themeToggle" IsChecked="{Binding IsDarkTheme}" Click="toggleTheme"/>
+                        <TextBlock VerticalAlignment="Center" Text="Modo Oscuro" />
+						<ToggleButton Cursor="Hand" ToolTip="Activar Modo Oscuro" Margin="12 0 8 0" x:Name="themeToggle" IsChecked="{Binding IsDarkTheme}" Click="toggleTheme"/>
 
-                        <Button ToolTip="Problemas al registrarte?" Margin="0 8 0 0" Content="Ayuda"/>
+                        <Button ToolTip="Mas Informacion sobre la app?" Margin="0 8 0 0" Content="ReadMe"/>
 
-                        <Button x:Name="btn_Salir" ToolTip="Close Application" Content="Exit Application" Click="CancelarButton_Click" />
+                        <Button x:Name="btn_Salir" ToolTip="Close Application" Content="Salir de la Aplicacion" Click="CancelarButton_Click" />
 
                     </StackPanel>
 
@@ -39,7 +40,8 @@
                 <PasswordBox Margin=" 0 20 0 0" x:Name="txtPassword" Width="300" FontSize="18" materialDesign:HintAssist.Hint="Ingrese Contraseña" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesingDivider}" Style="{StaticResource MaterialDesignOutlinedPasswordBox}"/>
 
                 <Button Margin="0 20 0 0" x:Name="IngresarBtn" Style="{StaticResource MaterialDesignFlatMidBgButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="53" Width="300" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="Ingresar" Click="IngresarButton_Click" Cursor="Hand"/>
-                <Button x:Name="signupBtn" Style="{StaticResource ResourceKey=MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="53" Width="300" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="Cancelar"/>
+
+                <Button x:Name="SalirBtn" Style="{StaticResource ResourceKey=MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="53" Width="300" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="Cancelar" Click="CancelarButton_Click" Cursor="Hand" />
           
 			</StackPanel>
         </materialDesign:DialogHost>

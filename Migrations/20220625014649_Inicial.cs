@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PF_THEBEAVERS.Migrations
 {
-    public partial class inicial : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -111,6 +111,21 @@ namespace PF_THEBEAVERS.Migrations
                     table.PrimaryKey("PK_TipoPlanes", x => x.TipoPlanId);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Usuarios",
+                columns: table => new
+                {
+                    UsuarioId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nombres = table.Column<string>(type: "TEXT", nullable: false),
+                    UserName = table.Column<string>(type: "TEXT", nullable: false),
+                    Password = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuarios", x => x.UsuarioId);
+                });
+
             migrationBuilder.InsertData(
                 table: "TipoPagos",
                 columns: new[] { "TipoPagoId", "NombrePago" },
@@ -140,6 +155,31 @@ namespace PF_THEBEAVERS.Migrations
                 table: "TipoPlanes",
                 columns: new[] { "TipoPlanId", "NombrePlan" },
                 values: new object[] { 3, "Plan Premium" });
+
+            migrationBuilder.InsertData(
+                table: "Usuarios",
+                columns: new[] { "UsuarioId", "Nombres", "Password", "UserName" },
+                values: new object[] { 1, "Luis Rafael Baltodano", "20200070", "RafaelB" });
+
+            migrationBuilder.InsertData(
+                table: "Usuarios",
+                columns: new[] { "UsuarioId", "Nombres", "Password", "UserName" },
+                values: new object[] { 2, "Jeison Reyes", "20190564", "JeisonR" });
+
+            migrationBuilder.InsertData(
+                table: "Usuarios",
+                columns: new[] { "UsuarioId", "Nombres", "Password", "UserName" },
+                values: new object[] { 3, "Samuel Duran", "20190793", "SamuelD" });
+
+            migrationBuilder.InsertData(
+                table: "Usuarios",
+                columns: new[] { "UsuarioId", "Nombres", "Password", "UserName" },
+                values: new object[] { 4, "Elianny Rosario", "20190255", "EliannyR" });
+
+            migrationBuilder.InsertData(
+                table: "Usuarios",
+                columns: new[] { "UsuarioId", "Nombres", "Password", "UserName" },
+                values: new object[] { 5, "Yunilda Justo", "20190274", "YunildaJ" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -161,6 +201,9 @@ namespace PF_THEBEAVERS.Migrations
 
             migrationBuilder.DropTable(
                 name: "TipoPlanes");
+
+            migrationBuilder.DropTable(
+                name: "Usuarios");
         }
     }
 }
