@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace PF_THEBEAVERS.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220625014649_Inicial")]
-    partial class Inicial
+    [Migration("20220627024955_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,9 @@ namespace PF_THEBEAVERS.Migrations
                     b.Property<string>("Cedula")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Estado")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("NombreCliente")
                         .IsRequired()
@@ -102,11 +105,11 @@ namespace PF_THEBEAVERS.Migrations
 
             modelBuilder.Entity("Models.Pagos", b =>
                 {
-                    b.Property<int?>("PagoId")
+                    b.Property<int>("PagoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("ApellidoCliente")
+                    b.Property<string>("Asunto")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -119,10 +122,6 @@ namespace PF_THEBEAVERS.Migrations
 
                     b.Property<double>("MontoPago")
                         .HasColumnType("REAL");
-
-                    b.Property<string>("NombreCliente")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.Property<int>("TipoPagoId")
                         .HasColumnType("INTEGER");

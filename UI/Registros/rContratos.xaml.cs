@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Drawing;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Models;
 using Models.Validations;
 using BLL;
@@ -21,22 +10,29 @@ namespace UI
 {
     public partial class rContratos : Window
     {
-        Contratos contrato = new Contratos();
+        private Contratos contrato = new Contratos();
         public rContratos() 
         {
+            if(PlanesBLL.GetList(e => true).Count==0)
+            {
+                MessageBox.Show("No hay planes registrados.\nPor favor intente registrar al menos un plan antes de registrar contratos","Error",MessageBoxButton.OK);
+                return;
+            }
             InitializeComponent();
-            TipoPlanCombo.ItemsSource = TipoPlanesBLL.GetList();
-            TipoPlanCombo.SelectedValuePath = "TipoPlanId";
-            TipoPlanCombo.DisplayMemberPath = "NombrePlan";
+            TipoPlanCombo.ItemsSource = PlanesBLL.GetList(e => true);
+            TipoPlanCombo.SelectedValuePath = "PlanId";
+            TipoPlanCombo.DisplayMemberPath = "Nombre";
             Limpiar();
         }
-        public rContratos(Contratos _contrato) 
+        public rContratos(Contratos _contrato, cContratos ConsultaAnterior) 
         {
             this.contrato = _contrato;
             InitializeComponent();
-            TipoPlanCombo.ItemsSource = TipoPlanesBLL.GetList();
-            TipoPlanCombo.SelectedValuePath = "TipoPlanId";
-            TipoPlanCombo.DisplayMemberPath = "NombrePlan";
+            TipoPlanCombo.ItemsSource = PlanesBLL.GetList(e => true);
+            TipoPlanCombo.SelectedValuePath = "PlanId";
+            TipoPlanCombo.DisplayMemberPath = "Nombre";
+            if (MessageBox.Show("¿Desea cerrar la ventana de consultas de contratos?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                ConsultaAnterior.Close();
             Cargar();
         }
         //------------------------------------------------------UTILIDADES--------------------------------------------------------- 
@@ -72,10 +68,35 @@ namespace UI
             FechaCLabel.Visibility = Visibility.Visible;
             fCreacionLabel.Visibility = Visibility.Visible;
         }
+        public void CargarContrato(Contratos c)
+		{
+            this.contrato = c;
+            Cargar();
+		}
+        public void CerrarConsulta(cContratos c)
+		{
+            c.Close();
+		}
+        private void CorregirCredenciales()
+        {
+            NombreTB.Text = Utilities.Utilities.CorregirNombre_O_Apellido(NombreTB.Text);
+            contrato.NombreCliente = Utilities.Utilities.CorregirNombre_O_Apellido(contrato.NombreCliente);
+            ApellidoTB.Text = Utilities.Utilities.CorregirNombre_O_Apellido(ApellidoTB.Text);
+            contrato.ApellidoCliente = Utilities.Utilities.CorregirNombre_O_Apellido(contrato.ApellidoCliente);
+            if (ContratosBLL.Buscar(contrato.ContratoId) == null) //si no existe el contrato 
+                contrato.FechaCreacion = DateTime.Now; //se coloca la fecha de creación
+
+            string dia = (contrato.FechaCreacion.Day > 9) ? (contrato.FechaCreacion.Day).ToString() : "0" + contrato.FechaCreacion.Day;
+            string mes = (contrato.FechaCreacion.Month > 9) ? (contrato.FechaCreacion.Month).ToString() : "0" + contrato.FechaCreacion.Month;
+            int anio = contrato.FechaCreacion.Year - 2000;
+
+            contrato.NoContrato = NombreTB.Text[0].ToString() + ApellidoTB.Text[0].ToString() + dia + mes + anio + contrato.FechaCreacion.Hour + contrato.FechaCreacion.Minute;
+            contrato.FechaModificacion = DateTime.Now;
+        }
         //------------------------------------------------------BOTONES------------------------------------------------------------
         private void BuscarBTN_Click(object sender, RoutedEventArgs e)
         {
-            new cContratos().Show();
+            new cContratos(this).Show();
         }
         private void NuevoBTN_Click(object sender, RoutedEventArgs e)
         {
@@ -84,20 +105,29 @@ namespace UI
         private void GuardarBTN_Click(object sender, RoutedEventArgs e)
         {
             contrato.PlanId = (int)TipoPlanCombo.SelectedValue;
-            contrato.Plan = TipoPlanesBLL.Buscar(contrato.PlanId).NombrePlan;
+            var planSeleccionado = PlanesBLL.Buscar(contrato.PlanId);
+            if(planSeleccionado!=null)
+                contrato.Plan = planSeleccionado.Nombre;
 
             if(Validations.ValidarContrato(contrato))
             {
                 CorregirCredenciales();
                 contrato.PlanId=(int)TipoPlanCombo.SelectedValue;
-                if (ContratosBLL.Guardar(this.contrato))
+                string resultado = "";
+                if (ContratosBLL.Existe(this.contrato.ContratoId))
+                    resultado = "Guardado!";
+				else
+                    resultado = $"Guardado!\nNo. Contrato generado: {contrato.NoContrato}";
+
+                if(ContratosBLL.Guardar(this.contrato))
                 {
+                    MessageBox.Show(resultado, "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
                     Limpiar();
-                    MessageBox.Show("Guardado!", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo guardar!", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    resultado = "No se pudo guardar!";
+                    MessageBox.Show(resultado, "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -111,15 +141,7 @@ namespace UI
             else
                 MessageBox.Show("No se pudo completar la operación");
         }
-        private void CorregirCredenciales()
-		{
-            string dia = (contrato.FechaCreacion.Day>9)?(contrato.FechaCreacion.Day).ToString():"0"+contrato.FechaCreacion.Day;
-            string mes = (contrato.FechaCreacion.Month>9)?(contrato.FechaCreacion.Month).ToString():"0"+contrato.FechaCreacion.Month;
-            int anio = contrato.FechaCreacion.Year-2000;
-
-            contrato.NoContrato = NombreTB.Text[0].ToString() + ApellidoTB.Text[0].ToString() + dia + mes + anio + contrato.FechaCreacion.Hour + contrato.FechaCreacion.Minute;
-            contrato.FechaModificacion = DateTime.Now;
-        }
+        
         //------------------------------------------------------Keydowns-----------------------------------------------------------
         private void IdTextBox_KeyDown(object sender, KeyEventArgs e)
 		{

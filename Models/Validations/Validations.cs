@@ -86,7 +86,7 @@ namespace Models.Validations
 				paso = false;
 			}
 			if(!paso)
-				MessageBox.Show(ErrorMessage, "Er\nror", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
 			return paso;
 		}
@@ -94,28 +94,37 @@ namespace Models.Validations
 		{
 			bool paso = true;
 			Regex NombreValidation = new Regex(@"^[a-zA-Z]*$");
+			string ErrorMessage ="";
 			
 			if(string.IsNullOrEmpty(plan.Nombre)||string.IsNullOrWhiteSpace(plan.Nombre))
 			{
-				MessageBox.Show("El campo Nombre no puede estar vacio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				ErrorMessage +=("\nEl campo Nombre no puede estar vacio");
 				paso = false;
 			}
 			else if(!NombreValidation.IsMatch(plan.Nombre))
 			{
-				MessageBox.Show("El campo Nombre no puede contener numeros", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				ErrorMessage +=("\nEl campo Nombre no puede contener numeros");
 				paso = false;
 			}
 			if(string.IsNullOrEmpty(plan.Descripcion)||string.IsNullOrWhiteSpace(plan.Descripcion))
 			{
-				MessageBox.Show("El campo Descripcion no puede estar vacio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				ErrorMessage +=("\nEl campo Descripcion no puede estar vacio");
 				paso = false;
 			}
 			if(plan.Precio <= 0)
 			{
-				MessageBox.Show("El campo Costo no puede estar vacio", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				ErrorMessage +=("\nEl campo Costo no puede estar vacio");
 				paso = false;
 			}
+			if(!paso)
+				MessageBox.Show(ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
+			return paso;
+		}
+		public static bool ValidarPagos(Pagos pago)
+		{
+			bool paso = true;
+			string ErrorMessage = "";
 			return paso;
 		}
 	}

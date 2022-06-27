@@ -42,6 +42,7 @@
     <Resource Include=".\Resources\beavers.png" />
     <Resource Include=".\Resources\Combo.png" />
     <Resource Include=".\Resources\Pagos.png" />
+    <Resource Include=".\Resources\Refrescar.png" />
   </ItemGroup>
 
 </Project>

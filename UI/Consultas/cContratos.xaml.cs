@@ -11,26 +11,36 @@ namespace UI
     {
         private DateTime fechaDesde = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
         private DateTime fechaHasta = DateTime.Now;
+        private string CadenaRespaldo="";
         private List<Contratos>? lista = new List<Contratos>();
         public Contratos contrato = new Contratos();
-        private bool EsParaBuscar = false;
+        private rContratos? VentanaRegistro;
         public cContratos()
         {
             InitializeComponent();
         }
-        public cContratos(Contratos _contrato)
+        public cContratos(rContratos Registro)
         {
             InitializeComponent();
-            EsParaBuscar = true;
-            this.contrato = _contrato;
+            VentanaRegistro = Registro;
         }
         private void BusquedaTB_KeyDown(object sender, KeyEventArgs e)
 		{
             if (e.Key == Key.Enter)
                 Buscar();
 		}
+        private void Refrescar(object sander, RoutedEventArgs e)
+        {
+            Refrescar();
+        }
+        private void Refrescar()
+		{
+            BusquedaTB.Text = CadenaRespaldo;
+            Buscar();
+        }
         private void Buscar()
         {
+            CadenaRespaldo = BusquedaTB.Text;
             if(BusquedaTB.Text.Trim().Length>0)
             {
                 switch(FiltroBox.SelectedIndex)
@@ -287,11 +297,23 @@ namespace UI
             if (TablaDatos.SelectedIndex >= 0)
             {
                 this.contrato = (Contratos)TablaDatos.SelectedItem;
-                rContratos r = new rContratos(this.contrato);
-                r.Show();
-                if(EsParaBuscar)
-                    this.Close();
-            }
+                if(VentanaRegistro!=null)
+				{
+                    VentanaRegistro.CargarContrato(this.contrato);
+                    VentanaRegistro.CerrarConsulta(this);
+				}else
+				{
+                    new rContratos(this.contrato, this).Show();
+				}
+			}
         }
-    }
+		private void PresionoTecla(object sender, KeyEventArgs e)
+		{
+            if (e.Key == Key.F5)
+                Refrescar();
+
+            if (e.Key == Key.Enter)
+                Buscar();
+		}
+	}
 }
