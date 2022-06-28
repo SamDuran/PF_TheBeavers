@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PF_THEBEAVERS.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,7 +17,8 @@ namespace PF_THEBEAVERS.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     NombreCliente = table.Column<string>(type: "TEXT", nullable: false),
                     ApellidoCliente = table.Column<string>(type: "TEXT", nullable: false),
-                    Cedula = table.Column<string>(type: "TEXT", nullable: false)
+                    Cedula = table.Column<string>(type: "TEXT", nullable: false),
+                    Estado = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,11 +56,10 @@ namespace PF_THEBEAVERS.Migrations
                 {
                     PagoId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    NombreCliente = table.Column<string>(type: "TEXT", nullable: false),
-                    ApellidoCliente = table.Column<string>(type: "TEXT", nullable: false),
                     MontoPago = table.Column<double>(type: "REAL", nullable: false),
-                    FechaPago = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Asunto = table.Column<string>(type: "TEXT", nullable: false),
                     Comentario = table.Column<string>(type: "TEXT", nullable: false),
+                    FechaPago = table.Column<DateTime>(type: "TEXT", nullable: false),
                     TipoPagoId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>

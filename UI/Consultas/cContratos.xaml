@@ -9,12 +9,15 @@
         WindowStartupLocation="CenterScreen" 
         Icon="/Resources/Contratos.png" 
         Background="#FFC1C1C1" 
-        WindowStyle="ThreeDBorderWindow">
-    <DockPanel>
-        <StackPanel Margin="20,20,20,5" VerticalAlignment="Top" Height="45" DockPanel.Dock="Top">
+        WindowStyle="ThreeDBorderWindow" KeyDown="PresionoTecla">
+    <DockPanel KeyDown="PresionoTecla">
+        <StackPanel Margin="20,20,20,5" VerticalAlignment="Top" Orientation="Horizontal" Height="45" DockPanel.Dock="Top">
             <Label Content="Consulta de Contratos" FontSize="24" FontFamily="Impact" />
+            <Button Background="#00FF9800" BorderBrush="#00FF9800" Height="40" Width="67" Click="Refrescar" RenderTransformOrigin="0.5,0.5">
+                <Image Source="/Resources/Refrescar.png" VerticalAlignment="Top" ToolTip="Refrecar consulta (f" IsHitTestVisible="False" Stretch="Fill" Height="25" Width="25"/>
+            </Button>
         </StackPanel>
-        <StackPanel>
+        <StackPanel KeyDown="PresionoTecla">
             <!-- Filtros y botones -->
             <DockPanel Margin="20,0" VerticalAlignment="Top">
                 <!--Filtro-->

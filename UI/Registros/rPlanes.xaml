@@ -24,17 +24,17 @@
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Registro de Plan" FontWeight="Normal" FontFamily="Impact" FontSize="36"/>
                 </StackPanel>
-                <RadioButton HorizontalAlignment="Right" Content="Suspendido" IsEnabledChanged="RadioButton_IsEnabledChanged" x:Name="EstadoButton" Margin="440,0,0,0"/>
+                <CheckBox x:Name="EstadoCB" Content="Suspendido" Margin="440,0,0,0" Checked="EstadoCB_Checked" Unchecked="EstadoCB_Checked" />
             </StackPanel>
             <!--Fechas-->
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Horizontal" Margin="10,0,0,0" HorizontalAlignment="Right">
                     <Label x:Name="FechaCLabel" Content="Fecha creacion: " Width="94"/>
-                    <Label x:Name="fCreacionLabel" Content="{Binding FechaCreacion, StringFormat=\{0:d\}}" Width="100" Height="26" Foreground="#FF252525"/>
+                    <Label x:Name="fCreacionLabel" Content="{Binding FechaCreacion, StringFormat=\{dd/MM/yyyy\}}" Width="120" Height="26" Foreground="#FF252525"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="350,0,0,0" HorizontalAlignment="Left">
                     <Label x:Name="FechaMLabel" Content="Ultima Modificacion: " Width="114"/>
-                    <Label x:Name="fModifLabel" Content="{Binding FechaModificacion, StringFormat=\{0:d\}}" Width="100" Height="26" Foreground="#FF131313"/>
+                    <Label x:Name="fModifLabel" Content="{Binding FechaModificacion, StringFormat=\{0:d\}}" Width="110" Height="26" Foreground="#FF131313"/>
                 </StackPanel>
             </StackPanel>
             <!--ID-->

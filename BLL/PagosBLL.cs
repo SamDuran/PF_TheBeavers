@@ -24,49 +24,7 @@ namespace BLL
 			}
 			return paso;
         }
-        public static string? ExisteNombreCliente(string NombreCliente)
-		{
-			Contexto contexto = new Contexto();
-			string? NombreClienteEnco = null;
-			try
-			{
-				var contrato = contexto.Pagos.Where(p => p.NombreCliente == NombreCliente).FirstOrDefault();
-				NombreClienteEnco =(contrato!=null)? contrato.NombreCliente: null;
-			}
-			catch
-			{
-				throw;
-			}
-			finally
-			{
-				contexto.Dispose();
-			}
-			return NombreCliente;
-       
-        
-         }
-         public static string? ExisteApellidoCliente(string ApellidoCliente)
-		{
-			Contexto contexto = new Contexto();
-			string? ApellidoClienteEnco = null;
-			try
-			{
-				var contrato = contexto.Pagos.Where(p => p.ApellidoCliente == ApellidoCliente).FirstOrDefault();
-				ApellidoClienteEnco =(contrato!=null)? contrato.ApellidoCliente: null;
-			}
-			catch
-			{
-				throw;
-			}
-			finally
-			{
-				contexto.Dispose();
-			}
-			return ApellidoClienteEnco;
-       
-        
-         }
-         private static bool Modificar(Pagos pago)
+        private static bool Modificar(Pagos pago)
 		{
 			bool paso = false;
 			Contexto contexto = new Contexto();
@@ -117,7 +75,7 @@ namespace BLL
 			Pagos? pago;
 			try
 			{
-				pago = contexto.Pagos.Find(PagoId);
+				pago = contexto.Pagos.AsNoTracking().FirstOrDefault(p => p.PagoId== PagoId);
 			}
 			catch
 			{

@@ -67,7 +67,7 @@ namespace BLL
 			}
 			return paso;
 		} //Update
-		private static bool Existe(int? Id)
+		public static bool Existe(int? Id)
 		{
 			Contexto contexto = new Contexto();
 			bool existe = false;

@@ -47,12 +47,13 @@ namespace UI
             this.DataContext = null;
             this.DataContext = plan;
             PlanCombo.SelectedValue = plan.PlanId;
+            EstadoCB.IsChecked = !plan.Estado;
             MostrarLabels();
         }
-        private void OcultarLabels()
+		private void OcultarLabels()
         {
             IdPlanTB.IsEnabled = false;
-
+            EstadoCB.IsChecked = false;
             FechaMLabel.Visibility = Visibility.Hidden;
             fModifLabel.Visibility = Visibility.Hidden;
             FechaCLabel.Visibility = Visibility.Hidden;
@@ -101,14 +102,18 @@ namespace UI
         private void GuardarBTN_Click(object sender, RoutedEventArgs e)
         {
             plan.TipoPlanId = IdPlan;
-            if(PlanesBLL.Guardar(plan))
+            NombreTB.Text = Utilities.Utilities.CorregirNombre_O_Apellido(NombreTB.Text);
+            if(Validations.ValidarPlan(this.plan))
             {
-                MessageBox.Show("Guardado", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-                Limpiar();
-            }
-            else
-            {
-                MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                if(PlanesBLL.Guardar(plan))
+                {
+                    MessageBox.Show("Guardado", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
         private void EliminarBTN_Click(object sender, RoutedEventArgs e)
@@ -135,8 +140,6 @@ namespace UI
                 PrecioTB.Focus();
         }
 
-
-
         //------------------------------------------------------OnFocus------------------------------------------------------------
         private void IdTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -158,22 +161,24 @@ namespace UI
             NombreTB.Background = new SolidColorBrush(Colors.White);
             NombreTB.Background.Opacity = 0.5;
         }
-
         private void PrecioTB_GotFocus(object sender, RoutedEventArgs e)
         {
             PrecioTB.Background = new SolidColorBrush(Colors.White);
             PrecioTB.Background.Opacity = 0.5;
         }
-
         private void PrecioB_GotUnfocused(object sender, RoutedEventArgs e)
         {
             PrecioTB.Background = new SolidColorBrush(Colors.White);
             PrecioTB.Background.Opacity = 0.5;
         }
 
-		private void RadioButton_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+		private void EstadoCB_Checked(object sender, RoutedEventArgs e)
 		{
-            this.plan.Estado = !(bool)e.NewValue; 
+            if(EstadoCB.IsChecked == true)
+                plan.Estado = false;
+            else
+                plan.Estado = true;
+            
 		}
 	}
 }
