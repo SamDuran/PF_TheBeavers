@@ -11,6 +11,7 @@
         Width="1000" 
         Icon="./Resources/Icono.png" Background="#FF8E7352">
     <Grid Height="529" VerticalAlignment="Top">
+
         <Menu x:Name="MainMenu" VerticalAlignment="Top" Background="#FF715431">
             <MenuItem x:Name="Registros" Background="#FF714E24" Header="Registros" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF714E24">
 
@@ -39,9 +40,9 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Background="#FF714E24" Header="Reportes" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF714E24">
-                
+
             </MenuItem>
-            <MenuItem x:Name="CerrarSeccionMenuItem" Header="Cerrar Sesión" HorizontalAlignment="Right" Click="CerrarSesionMenuItem_Click" VerticalAlignment="Stretch" Margin="575,0,0,0" Background="#FF714E24" />
+            <MenuItem x:Name="CerrarSesionMenuItem" Header="Cerrar Sesión" HorizontalAlignment="Right" Click="CerrarSesionMenuItem_Click" VerticalAlignment="Stretch" Margin="575,0,0,0" Background="#FF714E24" />
         </Menu>
         <Grid>
             <Grid.RowDefinitions>
@@ -50,6 +51,12 @@
             </Grid.RowDefinitions>
             <Image Grid.RowSpan="2"></Image>
             <Image Source="/Resources/beavers.png" HorizontalAlignment="Right" Height="431" VerticalAlignment="Top" Width="779" Grid.RowSpan="2" Margin="0,125,0,0" />
+
+
+       
+
+
+
         </Grid>
     </Grid>
 </Window>
