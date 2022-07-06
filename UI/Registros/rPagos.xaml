@@ -7,8 +7,8 @@
     mc:Ignorable="d" 
     WindowStartupLocation="CenterScreen" 
     Title="Registro de Pagos" 
-    Height="630" 
     Width="870" 
+    Height="630" 
     ResizeMode="CanMinimize" 
     Icon="/Resources/Icono.png" 
     Background="#FFDADADA">
@@ -21,10 +21,7 @@
                     <Label Content="Registro de Pagos" FontWeight="Normal" FontFamily="Impact" FontSize="36" />
                 </StackPanel>
                 <!-- NoContrato -->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="243,0,0,0">
-                    <Label x:Name="ContratoLabel1" Content="No.Contrato:" Width="94" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" />
-                    <Label x:Name="NoContratoLabel" Content="{Binding NoContrato}" Width="100" Foreground="Red" FontSize="11" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" />
-                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="243,0,0,0"/>
             </StackPanel>
             <!-- Fechas -->
             <StackPanel Orientation="Horizontal">
@@ -43,34 +40,43 @@
                         <Label HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontStyle="Normal" Foreground="#FF383838" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="11" FontFamily="Bahnschrift SemiBold" Content="Buscar" />
                     </StackPanel>
                 </Button>
-                <Label Content="IDContrato" Margin="28,0,0,0" Height="26" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right" />
-                <TextBox x:Name="IdContratoTb" Text="{Binding contrato.ContratoId}" GotFocus="IdConTB_GotFocus" LostFocus="IdConTB_GotUnfocused" KeyDown="IdConTb_KeyDown" HorizontalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="135" Height="26" VerticalContentAlignment="Center" Background="#7FFFFFFF" />
-                <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="88" Height="26" Click="BuscarContratoBTN_Click" BorderBrush="#FF4C5FBD" Grid.Column="5" Background="#437FA6" Foreground="White">
+                <Label Content="No.Contrato" Margin="28,0,0,0" Height="26" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right" />
+                <TextBox x:Name="IdContratoTb" Text="{Binding contrato.ContratoId}" GotFocus="IdConTB_GotFocus" LostFocus="IdConTB_GotUnfocused" KeyDown="IdConTb_KeyDown" HorizontalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="165" Height="26" VerticalContentAlignment="Center" Background="#7FFFFFFF" />
+                <Button HorizontalAlignment="Left" VerticalAlignment="Top"  Height="26" Click="BuscarContratoBTN_Click" BorderBrush="#FF4C5FBD" Grid.Column="5" Background="#437FA6" Foreground="White">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Resources/Lupa.png" />
-                        <Label HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontStyle="Normal" Foreground="#FF383838" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="11" FontFamily="Bahnschrift SemiBold" Content="Buscar" />
                     </StackPanel>
                 </Button>
             </StackPanel>
             <!--Nombre Cliente-->
-            <StackPanel Orientation="Horizontal" Margin="20,10,20,10">
+            <StackPanel Orientation="Horizontal" Margin="20,10,20,3">
                 <Label Content="Nombre Cliente" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right" />
-                <TextBox x:Name="NombreTB" Text="{Binding NombreCliente}" GotFocus="NombreTB_GotFocus" LostFocus="NombreTB_GotUnfocused" KeyDown="NombreTextBox_KeyDown" HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" Grid.Column="1" VerticalContentAlignment="Center" Background="#7FFFFFFF" />
+                <TextBox x:Name="NombreTB"  HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" Grid.Column="1" VerticalContentAlignment="Center" Background="#7FFFFFFF" IsEnabled="False" />
             </StackPanel>
             <!--Apellido Cliente-->
-            <StackPanel Orientation="Horizontal" Margin="20,10,20,10">
+            <StackPanel Orientation="Horizontal" Margin="20,10,20,3">
                 <Label Content="Apellido Cliente" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right" />
-                <TextBox x:Name="ApellidoTB" Text="{Binding ApellidoCliente}" GotFocus="ApellidoTB_GotFocus" LostFocus="ApellidoTB_GotUnfocused" KeyDown="ApellidoTextBox_KeyDown" HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" Grid.Column="1" VerticalContentAlignment="Center" Background="#7FFFFFFF" />
+                <TextBox x:Name="ApellidoTB"  HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" Grid.Column="1" VerticalContentAlignment="Center" Background="#7FFFFFFF" IsEnabled="False" />
+            </StackPanel>
+            <!--Cedula Cliente-->
+            <StackPanel Orientation="Horizontal" Margin="20,10,20,3">
+                <Label Content="Cedula Cliente" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right" />
+                <TextBox x:Name="CedulaTB"  HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" Grid.Column="1" VerticalContentAlignment="Center" Background="#7FFFFFFF" IsEnabled="False" />
             </StackPanel>
             <!-- TipoPago -->
-            <StackPanel Orientation="Horizontal" Margin="20,10,20,10">
+            <StackPanel Orientation="Horizontal" Margin="20,10,20,3">
                 <Label Content="Tipo de Pago" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right" />
-                <ComboBox x:Name="TipoPagoCombo" HorizontalAlignment="Center" SelectedValue="{Binding pago.TipoPagoId}" SelectedIndex="0" Margin="50,0,0,0" Width="558" BorderBrush="#FFA0A0A0" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="#7FFFFFFF"></ComboBox>
+                <ComboBox SelectionChanged="TipoPagoCombo_SelectionChanged" x:Name="TipoPagoCombo" HorizontalAlignment="Center" SelectedValue="{Binding pago.TipoPagoId}" SelectedIndex="0" Margin="50,0,0,0" Width="558" BorderBrush="#FFA0A0A0" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="#7FFFFFFF"></ComboBox>
             </StackPanel>
             <!--MontoPago-->
-            <StackPanel Orientation="Horizontal" Margin="20,10,20,10">
+            <StackPanel Orientation="Horizontal" Margin="20,10,20,3">
                 <Label Content="Monto" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right" />
                 <TextBox x:Name="MontoTb" Text="{Binding MontoPago}" GotFocus="MontoTB_GotFocus" LostFocus="MontoTB_GotUnfocused" KeyDown="MontoTextBox_KeyDown" HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" Grid.Column="1" VerticalContentAlignment="Center" Background="#7FFFFFFF" />
+            </StackPanel>
+            <!--Asunto:-->
+            <StackPanel Orientation="Horizontal" Margin="20,10,20,3">
+                <Label Content="Asunto de pago" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right" />
+                <ComboBox x:Name="AsuntoCombo" HorizontalAlignment="Center" Margin="50,0,0,0" Width="558" BorderBrush="#FFA0A0A0" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="#7FFFFFFF"/>
             </StackPanel>
             <!-- Commentario -->
             <StackPanel Orientation="Horizontal" Margin="20,10,20,10">

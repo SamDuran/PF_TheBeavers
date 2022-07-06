@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PF_THEBEAVERS.Migrations
 {
-    public partial class inicial : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,10 +15,9 @@ namespace PF_THEBEAVERS.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    NombreCliente = table.Column<string>(type: "TEXT", nullable: false),
-                    ApellidoCliente = table.Column<string>(type: "TEXT", nullable: false),
-                    Cedula = table.Column<string>(type: "TEXT", nullable: false),
-                    Estado = table.Column<int>(type: "INTEGER", nullable: false)
+                    Nombre = table.Column<string>(type: "TEXT", nullable: false),
+                    Apellido = table.Column<string>(type: "TEXT", nullable: false),
+                    Cedula = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,7 +42,10 @@ namespace PF_THEBEAVERS.Migrations
                     TelefonoReferencial = table.Column<string>(type: "TEXT", nullable: true),
                     PlanId = table.Column<int>(type: "INTEGER", nullable: false),
                     Plan = table.Column<string>(type: "TEXT", nullable: false),
-                    Comentario = table.Column<string>(type: "TEXT", nullable: true)
+                    Comentario = table.Column<string>(type: "TEXT", nullable: true),
+                    Estado = table.Column<int>(type: "INTEGER", nullable: false),
+                    UsuarioId = table.Column<int>(type: "INTEGER", nullable: false),
+                    UltimoPagoId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -56,11 +58,13 @@ namespace PF_THEBEAVERS.Migrations
                 {
                     PagoId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    NoContrato = table.Column<string>(type: "TEXT", nullable: false),
+                    TipoPagoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    TipoPago = table.Column<string>(type: "TEXT", nullable: false),
                     MontoPago = table.Column<double>(type: "REAL", nullable: false),
                     Asunto = table.Column<string>(type: "TEXT", nullable: false),
                     Comentario = table.Column<string>(type: "TEXT", nullable: false),
-                    FechaPago = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    TipoPagoId = table.Column<int>(type: "INTEGER", nullable: false)
+                    FechaPago = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -119,7 +123,7 @@ namespace PF_THEBEAVERS.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Nombres = table.Column<string>(type: "TEXT", nullable: false),
                     UserName = table.Column<string>(type: "TEXT", nullable: false),
-                    Password = table.Column<string>(type: "TEXT", nullable: false)
+                    Password = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -180,6 +184,11 @@ namespace PF_THEBEAVERS.Migrations
                 table: "Usuarios",
                 columns: new[] { "UsuarioId", "Nombres", "Password", "UserName" },
                 values: new object[] { 5, "Yunilda Justo", "20190274", "YunildaJ" });
+
+            migrationBuilder.InsertData(
+                table: "Usuarios",
+                columns: new[] { "UsuarioId", "Nombres", "Password", "UserName" },
+                values: new object[] { 6, "Usuario Admin", null, "admin" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

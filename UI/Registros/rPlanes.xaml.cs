@@ -23,7 +23,7 @@ namespace UI
     public partial class rPlanes : Window
     {
         Planes plan = new Planes();
-        int IdPlan;
+        private int IdPlan=0;
         public rPlanes()
         {
             InitializeComponent();

@@ -35,13 +35,13 @@ namespace Utilities
             string nombre="";
             for(int i = 0; i<cadena.Length;i++)
             {
-                if(char.IsLower(cadena[i]) && i==0)//Para que siempre se empieze con mayuscula
+                if(i==0)//Para que siempre se empieze con mayuscula
                 {
                     nombre+=char.ToUpper(cadena[i]);
                     continue;
                 }
 
-                if (char.IsLower(cadena[i]) && (char.IsSeparator(cadena[i-1])))
+                if ( char.IsUpper(cadena[i]) || (char.IsLower(cadena[i]) && (char.IsSeparator(cadena[i-1]))))
                 {
                     nombre+=char.ToUpper(cadena[i]);
                 }

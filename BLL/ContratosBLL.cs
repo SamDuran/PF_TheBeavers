@@ -13,6 +13,15 @@ namespace BLL
 		private static bool Insertar(Contratos contrato)
 		{
 			bool paso = false;
+			var cliente = ClientesBLL.BuscarCedula(contrato.Cedula);
+			if(cliente==null)//Si el cliente no está registrado
+			{
+				cliente = new Clientes();
+				cliente.Cedula = contrato.Cedula;
+				cliente.Nombre = contrato.NombreCliente;
+				cliente.Apellido = contrato.ApellidoCliente;
+				ClientesBLL.Guardar(cliente);
+			}
 			Contexto contexto = new Contexto();
 			try
 			{
@@ -28,13 +37,13 @@ namespace BLL
 			}
 			return paso;
 		}//Create
-		public static Contratos? ExisteCedula(string Cedula)
+		public static Contratos? BuscarNoContrato(string NoContrato)
 		{
 			Contexto contexto = new Contexto();
 			Contratos? contrato;
 			try
 			{
-				contrato = contexto.Contratos.Where(c => c.Cedula == Cedula)
+				contrato = contexto.Contratos.Where(c => c.NoContrato.Contains( NoContrato))
 				.AsNoTracking()
 				.FirstOrDefault();
 			}
@@ -102,6 +111,8 @@ namespace BLL
 				contrato = contexto.Contratos.Where(c =>c.ContratoId == ContratoId)
 				.AsNoTracking()
 				.FirstOrDefault();
+				if(contrato!=null)
+					ActualizarContrato(contrato);
 			}
 			catch
 			{
@@ -113,6 +124,32 @@ namespace BLL
 			}
 			return contrato;
 		}//Read
+		private static void ActualizarContrato(Contratos contrato)
+		{
+			var ultimopago = PagosBLL.Buscar(contrato.UltimoPagoId);
+			var DiaQueDeberiaPagar = new DateTime(DateTime.Now.Year, DateTime.Now.Month, contrato.FechaCreacion.Day);
+			var Hoy  = DateTime.Today;
+			if(ultimopago==null && Hoy.Day - contrato.FechaCreacion.Day >=30)//si no hay pago y paso un mes de su creacion
+			{
+				contrato.Estado=1;
+			}else if(ultimopago!=null && Hoy.Day-ultimopago.FechaPago.Day >30 )//Si hay pago y se generó un mes
+			{
+				if(contrato.Estado==1)
+					return;
+				
+				contrato.Estado=1;
+			}
+			if(ultimopago!=null && Hoy.Day-ultimopago.FechaPago.Day >60 )//Si hay pago y se generó un mes
+			{
+				if(contrato.Estado==3)
+					return;
+				
+				contrato.Estado=3;
+			}
+
+
+			Guardar(contrato);
+		}
 		public static bool Eliminar(int? ContratoId)
 		{
 			Contexto contexto = new Contexto();
@@ -143,6 +180,13 @@ namespace BLL
 			List<Contratos> contratos;
 			try
 			{
+				contratos = contexto.Contratos.Where(expression)
+				.AsNoTracking()
+				.ToList();
+				
+				if(contratos!=null)
+					foreach(var contrato in contratos)  ActualizarContrato(contrato);//actualiza todos los contratos
+
 				contratos = contexto.Contratos.Where(expression)
 				.AsNoTracking()
 				.ToList();

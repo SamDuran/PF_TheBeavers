@@ -19,7 +19,20 @@ namespace UI
             TipoPagoCombo.ItemsSource = TipoPagosBLL.GetList();
             TipoPagoCombo.SelectedValuePath = "TipoPagoId";
             TipoPagoCombo.DisplayMemberPath = "NombrePago";
+
             Limpiar();
+        }
+        public rPagos(Pagos _pago, cPagos consulta)
+        {
+            this.pago = _pago;
+            InitializeComponent();
+            this.DataContext = pago;
+            TipoPagoCombo.ItemsSource = TipoPagosBLL.GetList();
+            TipoPagoCombo.SelectedValuePath = "TipoPagoId";
+            TipoPagoCombo.DisplayMemberPath = "NombrePago";
+            if (MessageBox.Show("¿Desea cerrar la ventana de consultas de Pagos?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                consulta.Close();
+            Cargar();
         }
         //---------------------------------------------------Utilidades----------------------------------------------------
         private void Limpiar()
@@ -27,69 +40,75 @@ namespace UI
             pago = new Pagos();
             contrato = new Contratos();
             this.DataContext = pago;
-            TipoPagoCombo.SelectedIndex = 0;
+            AsuntoCombo.ItemsSource = null;
             OcultarLabels();
+            LimpiarDatos();
             IdContratoTb.Focus();
+            TipoPagoCombo.SelectedIndex = 0;
         }
         private void Cargar()
         {
             this.DataContext = null;
             this.DataContext = pago;
             TipoPagoCombo.SelectedValue = pago.TipoPagoId;
+            AsuntoCombo.SelectedItem = pago.Asunto;
+            ColocarDatos();
             MostrarLabels();
         }
         private void OcultarLabels()
         {
-            idPagoTb.IsEnabled = false;
-            ContratoLabel1.Visibility = Visibility.Hidden;
-            NoContratoLabel.Visibility = Visibility.Hidden;
+            ComentTB.IsEnabled = idPagoTb.IsEnabled = MontoTb.IsEnabled = false;
             FechaCLabel.Visibility = Visibility.Hidden;
             fCreacionLabel.Visibility = Visibility.Hidden;
         }
         private void MostrarLabels()
         {
-            ContratoLabel1.Visibility = Visibility.Visible;
-            NoContratoLabel.Visibility = Visibility.Visible;
             FechaCLabel.Visibility = Visibility.Visible;
             fCreacionLabel.Visibility = Visibility.Visible;
         }
+        private void ColocarDatos()
+        {
+            NombreTB.Text = contrato.NombreCliente;
+            ApellidoTB.Text = contrato.ApellidoCliente;
+            CedulaTB.Text = contrato.Cedula;
+        }
+        private void LimpiarDatos()
+        {
+            NombreTB.Text = ApellidoTB.Text = CedulaTB.Text = "";
+        }
+        public void Cargarpago(Pagos _pago)
+		{
+            this.pago = _pago;
+            Cargar();
+		}
+        public void CerrarConsulta(cPagos c)
+		{
+            c.Close();
+		}
         //----------------------------------------------------Botones------------------------------------------------------
         private void BuscarBTN_Click(object sander, RoutedEventArgs e)
         {
-            if (this.pago.PagoId == null)
-            {
-                idPagoTb.IsEnabled = true;
-            }
-            else
-            {
-                if (String.IsNullOrEmpty(idPagoTb.Text) || string.IsNullOrWhiteSpace(idPagoTb.Text) || idPagoTb.Text == "0")
-                {
-                    MessageBox.Show("Debe ingresar un ID de pago valido");
-                    return;
-                }
-                var PagoAux = PagosBLL.Buscar(pago.PagoId);
-                if (PagoAux != null)
-                {
-                    pago = PagoAux;
-                    Cargar();
-                }
-                else
-                {
-                    MessageBox.Show("No se encontro!", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
+            
+            cPagos consulta = new cPagos(this);
+            consulta.ShowDialog();
+            
         }
         private void BuscarContratoBTN_Click(object sender, RoutedEventArgs e)
         {
-            if (String.IsNullOrEmpty(IdContratoTb.Text) || string.IsNullOrWhiteSpace(IdContratoTb.Text) || IdContratoTb.Text == "0")
+            if (String.IsNullOrEmpty(IdContratoTb.Text) || string.IsNullOrWhiteSpace(IdContratoTb.Text) || IdContratoTb.Text.Length<10)
             {
                 MessageBox.Show("Debe ingresar un numero de contrato valido");
                 return;
             }
-            var contratoAux = ContratosBLL.Buscar(contrato.ContratoId);
+            var contratoAux = ContratosBLL.BuscarNoContrato(contrato.NoContrato);
             if (contratoAux != null)
             {
                 contrato = contratoAux;
+                ComentTB.IsEnabled= true;
+                pago.NoContrato = contrato.NoContrato;
+                ColocarDatos();
+                AsuntoCombo.ItemsSource = contrato.PosibilidadesPago();
+                AsuntoCombo.SelectedIndex = 0;
             }
             else
             {
@@ -103,14 +122,21 @@ namespace UI
         private void GuardarBTN_Click(object sander, RoutedEventArgs e)
         {
             pago.TipoPagoId = (int)TipoPagoCombo.SelectedValue;
-            if (PagosBLL.Guardar(this.pago))
+            pago.Asunto = (string)AsuntoCombo.SelectedItem;
+            var TipoPago = TipoPagosBLL.Buscar(pago.TipoPagoId);
+            if(TipoPago!=null)
+                pago.TipoPago = TipoPago.NombrePago;
+            if(Validations.ValidarPago(pago))
             {
-                Limpiar();
-                MessageBox.Show("Guardado!", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                MessageBox.Show("No se pudo guardar!", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (PagosBLL.Guardar(this.pago))
+                {
+                    Limpiar();
+                    MessageBox.Show("Guardado!", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo guardar!", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
         private void EliminarBTN_Click(object sander, RoutedEventArgs e)
@@ -135,16 +161,6 @@ namespace UI
         {
             if (e.Key == Key.Enter)
                 NombreTB.Focus();
-        }
-        private void NombreTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-                ApellidoTB.Focus();
-        }
-        private void ApellidoTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-                TipoPagoCombo.Focus();
         }
         private void MontoTextBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -172,26 +188,6 @@ namespace UI
             IdContratoTb.Background = new SolidColorBrush(Colors.White);
             IdContratoTb.Background.Opacity = 0.5;
         }
-        private void NombreTB_GotFocus(object sender, RoutedEventArgs e)
-        {
-            NombreTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
-            NombreTB.Background.Opacity = 0.5;
-        }
-        private void NombreTB_GotUnfocused(object sender, RoutedEventArgs e)
-        {
-            NombreTB.Background = new SolidColorBrush(Colors.White);
-            NombreTB.Background.Opacity = 0.5;
-        }
-        private void ApellidoTB_GotFocus(object sender, RoutedEventArgs e)
-        {
-            ApellidoTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
-            ApellidoTB.Background.Opacity = 0.5;
-        }
-        private void ApellidoTB_GotUnfocused(object sender, RoutedEventArgs e)
-        {
-            ApellidoTB.Background = new SolidColorBrush(Colors.White);
-            ApellidoTB.Background.Opacity = 0.5;
-        }
         private void MontoTB_GotFocus(object sender, RoutedEventArgs e)
         {
             MontoTb.Background = new SolidColorBrush(Colors.LightSeaGreen);
@@ -202,5 +198,24 @@ namespace UI
             MontoTb.Background = new SolidColorBrush(Colors.White);
             MontoTb.Background.Opacity = 0.5;
         }
-    }
+
+		private void TipoPagoCombo_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+		{
+            ColocarMonto(contrato.Estado);
+            if (pago.TipoPagoId == 1)
+                MontoTb.IsEnabled = true;
+            else
+                MontoTb.IsEnabled = false;
+		}
+        private void ColocarMonto(int caso)
+        {
+            var plan = PlanesBLL.Buscar(contrato.PlanId);
+            if(plan!=null)
+            {
+                decimal precio = plan.Precio;
+                pago.MontoPago=(double)precio;
+                MontoTb.Text = precio.ToString();
+            }
+        }
+	}
 }

@@ -30,11 +30,23 @@ namespace UI
 
         private void IngresarButton_Click(object sender, RoutedEventArgs e)
         {
-            bool paso = LoginBLL.Validar(txtUsername.Text, txtPassword.Password);
+            Ingresar();
+        }
+        private void CancelarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+        private void Ingresar()
+        {
+            var bll = new LoginBLL();
+            bool paso = bll.Validar(txtUsername.Text, txtPassword.Password);
+
 
             if (paso)
             {
+                int id = bll.getUsuario();
                 this.Close();
+                MenuPrincipal.UsuarioLogeadoId = id;
                 MenuPrincipal.Show();
             }
             else
@@ -44,13 +56,7 @@ namespace UI
                 txtPassword.Clear();
 
             }
-
         }
-        private void CancelarButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
 
         private void toggleTheme(object sender, RoutedEventArgs e)
         {
@@ -68,7 +74,10 @@ namespace UI
             }
             paletteHelper.SetTheme(theme);
         }
-
-
+        private void IngresarKeyDown(object sender, KeyEventArgs e)
+		{
+            if(e.Key == Key.Enter)
+                Ingresar();
+		}
     }
 }

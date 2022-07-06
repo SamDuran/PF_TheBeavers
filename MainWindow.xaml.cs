@@ -1,25 +1,10 @@
 ﻿using UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-//Hice un cambio de ejemplo
 namespace PF_THEBEAVERS
 {
     public partial class MainWindow : Window
     {
-       
-
+        public int UsuarioLogeadoId { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -30,8 +15,6 @@ namespace PF_THEBEAVERS
             rContratos ContratosView = new rContratos();
             ContratosView.Show();
         }
-
-
         private void rPlanes_Click(object sender, RoutedEventArgs e)
         {
             rPlanes PlanesView = new rPlanes();
@@ -47,6 +30,11 @@ namespace PF_THEBEAVERS
         {
             cContratos ContratosView = new cContratos();
             ContratosView.Show();
+        }
+        private void cPagos_Click(object sender, RoutedEventArgs e)
+        {
+            cPagos PagosView = new cPagos();
+            PagosView.Show();
         }
 
         private void CerrarSesionMenuItem_Click(object sender, RoutedEventArgs e)

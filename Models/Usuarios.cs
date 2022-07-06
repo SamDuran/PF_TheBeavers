@@ -10,7 +10,7 @@ namespace Models
         public int UsuarioId { get; set; }
         public string Nombres { get; set; }
         public string UserName { get; set; }
-        public string Password { get; set; }
+        public string? Password { get; set; }
         public Usuarios()
         {
             UsuarioId = 0;
