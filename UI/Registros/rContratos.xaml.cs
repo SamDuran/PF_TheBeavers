@@ -12,13 +12,16 @@ namespace UI
     {
         private Contratos contrato = new Contratos();
         int estadoContrato = 0;
+        public bool HayPlanes=false;
         public rContratos() 
         {
             if(PlanesBLL.GetList(e => true).Count==0)
             {
                 MessageBox.Show("No hay planes registrados.\nPor favor intente registrar al menos un plan antes de registrar contratos","Error",MessageBoxButton.OK);
+                this.Close();
                 return;
             }
+            HayPlanes = true;
             InitializeComponent();
             TipoPlanCombo.ItemsSource = PlanesBLL.GetList(e => true);
             TipoPlanCombo.SelectedValuePath = "PlanId";

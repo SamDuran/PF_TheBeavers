@@ -11,10 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using PF_THEBEAVERS;
-using MaterialDesignThemes.Wpf;
 using BLL;
+using MaterialDesignThemes.Wpf;
 using Models;
+using PF_THEBEAVERS;
 namespace UI
 {
     public partial class Login : Window
@@ -51,7 +51,7 @@ namespace UI
             }
             else
             {
-                MessageBox.Show("Nombre Usuario o Contraseña incorrecta!", "Error!");
+                MessageBox.Show("Nombre de Usuario o Contraseña incorrecta!", "Error!");
                 txtUsername.Focus();
                 txtPassword.Clear();
 
@@ -75,9 +75,36 @@ namespace UI
             paletteHelper.SetTheme(theme);
         }
         private void IngresarKeyDown(object sender, KeyEventArgs e)
-		{
-            if(e.Key == Key.Enter)
+        {
+            if (e.Key == Key.Enter)
                 Ingresar();
-		}
+        }
+
+        private void Username_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                txtPassword.Focus();
+        }
+
+
+        private void Password_KeySign(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                IngresarButton_Click(sender, e);
+        }
+
+        private void Password_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up)
+                txtUsername.Focus();
+        }
+
+        private void Username_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up)
+                txtPassword.Focus();
+        }
+
+
     }
 }

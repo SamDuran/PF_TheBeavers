@@ -11,6 +11,7 @@
         Width="1000" 
         Icon="./Resources/Icono.png" Background="#FF8E7352">
     <Grid Height="529" VerticalAlignment="Top">
+
         <Menu x:Name="MainMenu" VerticalAlignment="Top" Background="#FF715431">
             <Menu.ItemsPanel>
                 <ItemsPanelTemplate>

@@ -13,7 +13,8 @@ namespace PF_THEBEAVERS
         private void rContratos_Click(object sender, RoutedEventArgs e)
         {
             rContratos ContratosView = new rContratos();
-            ContratosView.Show();
+            if(ContratosView.HayPlanes)
+                ContratosView.Show();
         }
         private void rPlanes_Click(object sender, RoutedEventArgs e)
         {

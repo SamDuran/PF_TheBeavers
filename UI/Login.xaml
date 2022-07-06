@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-         Icon="/Resources/Icono.png"
+        Icon="/Resources/Icono.png"
         Title="Login" Height="602" Width="861"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}" Background="{x:Null}"
         AllowsTransparency="True"
@@ -35,14 +35,13 @@
                 <TextBlock Margin="0 25 0 5" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" Text="Bienvenido" />
 
                 <TextBlock FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Center" Text="Telecable The Beavers" Height="32" Width="173"/>
-                <TextBox x:Name="txtUsername" Width="300" FontSize="18" materialDesign:HintAssist.Hint="Ingrese Usuario" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="64"/>
+                <TextBox x:Name="txtUsername" Width="300" FontSize="18" materialDesign:HintAssist.Hint="Ingrese Usuario" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="64" KeyDown="Username_KeyDown"  />
 
-                <PasswordBox Margin=" 0 20 0 0" x:Name="txtPassword" Width="300" FontSize="18" materialDesign:HintAssist.Hint="Ingrese Contraseña" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesingDivider}" Style="{StaticResource MaterialDesignOutlinedPasswordBox}"/>
+                <PasswordBox Margin=" 0 20 0 0" x:Name="txtPassword" Width="300" FontSize="18" materialDesign:HintAssist.Hint="Ingrese Contraseña" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesingDivider}" Style="{StaticResource MaterialDesignOutlinedPasswordBox}" KeyDown="Password_KeySign" KeyUp="Password_KeyUp" />
 
                 <Button Margin="0 20 0 0" x:Name="IngresarBtn" Style="{StaticResource MaterialDesignFlatMidBgButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="53" Width="300" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="Ingresar" Click="IngresarButton_Click" Cursor="Hand"/>
 
                 <Button x:Name="SalirBtn" Style="{StaticResource ResourceKey=MaterialDesignFlatButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="53" Width="300" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="Cancelar" Click="CancelarButton_Click" Cursor="Hand" />
-          
 			</StackPanel>
         </materialDesign:DialogHost>
     </materialDesign:Card>
