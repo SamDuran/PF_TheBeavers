@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace PF_THEBEAVERS.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220706044737_Inicial")]
-    partial class Inicial
+    [Migration("20220708062123_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

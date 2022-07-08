@@ -51,6 +51,7 @@ namespace UI
             this.DataContext = null;
             this.DataContext = pago;
             TipoPagoCombo.SelectedValue = pago.TipoPagoId;
+            AsuntoCombo.ItemsSource = contrato.PosibilidadesPago();
             AsuntoCombo.SelectedItem = pago.Asunto;
             ColocarDatos();
             MostrarLabels();
@@ -78,6 +79,11 @@ namespace UI
         }
         public void Cargarpago(Pagos _pago)
 		{
+            var contratoAux = ContratosBLL.BuscarNoContrato(_pago.NoContrato);
+            if(contratoAux!=null)
+            {
+                contrato = contratoAux;
+            }
             this.pago = _pago;
             Cargar();
 		}
@@ -100,7 +106,7 @@ namespace UI
                 MessageBox.Show("Debe ingresar un numero de contrato valido");
                 return;
             }
-            var contratoAux = ContratosBLL.BuscarNoContrato(contrato.NoContrato);
+            var contratoAux = ContratosBLL.BuscarNoContrato(IdContratoTb.Text);
             if (contratoAux != null)
             {
                 contrato = contratoAux;
