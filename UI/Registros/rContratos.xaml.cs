@@ -11,13 +11,17 @@ namespace UI
     public partial class rContratos : Window
     {
         private Contratos contrato = new Contratos();
+        int estadoContrato = 0;
+        public bool HayPlanes=false;
         public rContratos() 
         {
             if(PlanesBLL.GetList(e => true).Count==0)
             {
                 MessageBox.Show("No hay planes registrados.\nPor favor intente registrar al menos un plan antes de registrar contratos","Error",MessageBoxButton.OK);
+                this.Close();
                 return;
             }
+            HayPlanes = true;
             InitializeComponent();
             TipoPlanCombo.ItemsSource = PlanesBLL.GetList(e => true);
             TipoPlanCombo.SelectedValuePath = "PlanId";
@@ -42,12 +46,14 @@ namespace UI
             this.DataContext = contrato;
             TipoPlanCombo.SelectedIndex = 0;
             OcultarLabels();
+            estadoContrato = 0;
             NombreTB.Focus();
         }
         private void Cargar()
 		{
             this.DataContext = contrato;
             TipoPlanCombo.SelectedValue = contrato.PlanId;
+            estadoContrato=contrato.Estado;
             MostrarLabels();
         }
         private void OcultarLabels()
@@ -83,7 +89,7 @@ namespace UI
             contrato.NombreCliente = Utilities.Utilities.CorregirNombre_O_Apellido(contrato.NombreCliente);
             ApellidoTB.Text = Utilities.Utilities.CorregirNombre_O_Apellido(ApellidoTB.Text);
             contrato.ApellidoCliente = Utilities.Utilities.CorregirNombre_O_Apellido(contrato.ApellidoCliente);
-            if (ContratosBLL.Buscar(contrato.ContratoId) == null) //si no existe el contrato 
+            if (ContratosBLL.Buscar(contrato.ContratoId) == null) //si no existe el contrato  
                 contrato.FechaCreacion = DateTime.Now; //se coloca la fecha de creación
 
             string dia = (contrato.FechaCreacion.Day > 9) ? (contrato.FechaCreacion.Day).ToString() : "0" + contrato.FechaCreacion.Day;
@@ -101,6 +107,11 @@ namespace UI
         private void NuevoBTN_Click(object sender, RoutedEventArgs e)
         {
             Limpiar();
+        }
+        private void CancelarBTN_Click(object sender, RoutedEventArgs e)
+        {
+            if(MessageBox.Show("¿Está seguro que desea cancelar este contrato?","Confirmacion",MessageBoxButton.YesNo, MessageBoxImage.Warning) ==MessageBoxResult.Yes)
+                this.contrato.Estado = 4;
         }
         private void GuardarBTN_Click(object sender, RoutedEventArgs e)
         {
@@ -133,13 +144,14 @@ namespace UI
         }
         private void EliminarBTN_Click(object sender, RoutedEventArgs e)
         {
-            if (ContratosBLL.Eliminar(this.contrato.ContratoId))
-            {
-                Limpiar();
-                MessageBox.Show("Operación exitosa");
-            }
-            else
-                MessageBox.Show("No se pudo completar la operación");
+            if (MessageBox.Show("¿Está seguro que desea eliminar este contrato?", "Confirmacion", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                if (ContratosBLL.Eliminar(this.contrato.ContratoId))
+                {
+                    Limpiar();
+                    MessageBox.Show("Operación exitosa");
+                }
+                else
+                    MessageBox.Show("No se pudo completar la operación");
         }
         
         //------------------------------------------------------Keydowns-----------------------------------------------------------
@@ -264,5 +276,13 @@ namespace UI
             TelRefTB.Background = new SolidColorBrush(Colors.White);
             TelRefTB.Background.Opacity = 0.5;
         }
+
+		private void ActualizarEstado(object sender, RoutedEventArgs e)
+		{
+            if(SuspendidoCB.IsChecked == true)
+                contrato.Estado = estadoContrato;
+            else
+                contrato.Estado = 2;
+		}
 	}
 }

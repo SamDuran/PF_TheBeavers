@@ -47,13 +47,16 @@
             <!--ID-->
             <StackPanel Orientation="Horizontal" Margin="20,20,20,10">
                 <Label Content="Id Contrato" Width="140" FontSize="14" Padding="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right" />
-                <TextBox x:Name="IdContratoTB" Text="{Binding ContratoId}"  KeyDown="IdTextBox_KeyDown" Margin="50,0,0,0" GotFocus="IdTextBox_GotFocus" LostFocus="IdTextBox_GotUnfocused" IsEnabled="False" TextWrapping="Wrap" Width="450" Height="26" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" AutomationProperties.HelpText="ID del Contrato" Background="#7FFFFFFF" />
+                <TextBox x:Name="IdContratoTB" Text="{Binding ContratoId}"  KeyDown="IdTextBox_KeyDown" Margin="50,0,0,0" GotFocus="IdTextBox_GotFocus" LostFocus="IdTextBox_GotUnfocused" IsEnabled="False" TextWrapping="Wrap" Width="310" Height="26" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" AutomationProperties.HelpText="ID del Contrato" Background="#7FFFFFFF" />
                 <Button HorizontalAlignment="Left"  Margin="20,0,0,0" VerticalAlignment="Top"  Width="88" Height="26" Click="BuscarBTN_Click" BorderBrush="#FF4C5FBD" Grid.Column="5" Background="#437FA6" Foreground="White">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Resources/Lupa.png"/>
                         <Label HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontStyle="Normal" Foreground="#FF383838" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="11" FontFamily="Bahnschrift SemiBold" Content="Buscar"/>
                     </StackPanel>
                 </Button>
+                <CheckBox x:Name="SuspendidoCB" Checked="ActualizarEstado" Unchecked="ActualizarEstado" Margin="50,0,0,0">
+                    <Label Content="Suspendido"/>
+                </CheckBox>
             </StackPanel>
             <!--Nombre Contrato-->
             <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
@@ -101,21 +104,27 @@
             <!-- Botones -->
             <StackPanel Orientation="Horizontal" Margin="0,4" Width="700" HorizontalAlignment="Center" >
                 <!-- Boton Nuevo -->
-                <Button Click="NuevoBTN_Click" BorderThickness="2" Height="70" Width="115"  Background="#437FA6" BorderBrush="#FF2B419C" Foreground="White" FontWeight="Bold" Margin="60,0,75,0">
+                <Button Click="NuevoBTN_Click" BorderThickness="2" Height="70" Width="115"  Background="#437FA6" BorderBrush="#FF2B419C" Foreground="White" FontWeight="Bold" Margin="30,0,45,0">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/Resources/Nuevo.png" Height="35" Width="57"></Image>
                         <Label HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Normal" Foreground="#FF232323" Content="Nuevo"/>
                     </StackPanel>
                 </Button>
                 <!-- Boton Guardar -->
-                <Button Click="GuardarBTN_Click" BorderThickness="2" Height="70" Width="104" Background="#FF499230" BorderBrush="#FF347D1B" Foreground="White" FontWeight="Bold" Margin="60,0,60,0">
+                <Button Click="GuardarBTN_Click" BorderThickness="2" Height="70" Width="104" Background="#FF499230" BorderBrush="#FF347D1B" Foreground="White" FontWeight="Bold" Margin="30,0,45,0">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/Resources/Guardar.png" Height="35" Width="57"/>
                         <Label HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Normal" Foreground="#FF2F2F2F" Content="Guardar"/>
                     </StackPanel>
                 </Button>
+                <Button Click="CancelarBTN_Click" BorderThickness="2" Height="70" Width="104" Background="#FF646464" BorderBrush="#FF3C3C3C" Foreground="White" FontWeight="Bold" Margin="30,0,45,0" Cursor="Hand">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/Resources/CancelarContrato.png" Height="35" Width="57"/>
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Normal" Foreground="#FF2F2F2F" Content="Cancelar"/>
+                    </StackPanel>
+                </Button>
                 <!-- Boton Eliminar -->
-                <Button Click="EliminarBTN_Click" BorderThickness="2" Height="70" Width="104" Background="#FFC73F2E" BorderBrush="#FFAF3526" Foreground="White" FontWeight="Bold" Margin="60,0,60,0">
+                <Button Click="EliminarBTN_Click" BorderThickness="2" Height="70" Width="104" Background="#FFC73F2E" BorderBrush="#FFAF3526" Foreground="White" FontWeight="Bold" Margin="30,0,45,0">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/Resources/Eliminar.png" Height="35" Width="57"/>
                         <Label HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Normal" Foreground="#FF313131" Content="Eliminar"/>

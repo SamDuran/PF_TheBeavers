@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace PF_THEBEAVERS.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220627024955_inicial")]
-    partial class inicial
+    [Migration("20220708033202_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,7 +25,7 @@ namespace PF_THEBEAVERS.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("ApellidoCliente")
+                    b.Property<string>("Apellido")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -33,10 +33,7 @@ namespace PF_THEBEAVERS.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Estado")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("NombreCliente")
+                    b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -70,6 +67,9 @@ namespace PF_THEBEAVERS.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Estado")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("TEXT");
 
@@ -98,6 +98,12 @@ namespace PF_THEBEAVERS.Migrations
                     b.Property<string>("TelefonoReferencial")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("UltimoPagoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("ContratoId");
 
                     b.ToTable("Contratos");
@@ -122,6 +128,14 @@ namespace PF_THEBEAVERS.Migrations
 
                     b.Property<double>("MontoPago")
                         .HasColumnType("REAL");
+
+                    b.Property<string>("NoContrato")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TipoPago")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("TipoPagoId")
                         .HasColumnType("INTEGER");
@@ -237,7 +251,6 @@ namespace PF_THEBEAVERS.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UserName")
@@ -283,6 +296,12 @@ namespace PF_THEBEAVERS.Migrations
                             Nombres = "Yunilda Justo",
                             Password = "20190274",
                             UserName = "YunildaJ"
+                        },
+                        new
+                        {
+                            UsuarioId = 6,
+                            Nombres = "Usuario Admin",
+                            UserName = "admin"
                         });
                 });
 #pragma warning restore 612, 618

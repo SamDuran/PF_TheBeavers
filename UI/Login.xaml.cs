@@ -11,10 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using PF_THEBEAVERS;
-using MaterialDesignThemes.Wpf;
 using BLL;
+using MaterialDesignThemes.Wpf;
 using Models;
+using PF_THEBEAVERS;
 namespace UI
 {
     public partial class Login : Window
@@ -30,11 +30,23 @@ namespace UI
 
         private void IngresarButton_Click(object sender, RoutedEventArgs e)
         {
-            bool paso = LoginBLL.Validar(txtUsername.Text, txtPassword.Password);
+            Ingresar();
+        }
+        private void CancelarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+        private void Ingresar()
+        {
+            var bll = new LoginBLL();
+            bool paso = bll.Validar(txtUsername.Text, txtPassword.Password);
+
 
             if (paso)
             {
+                int id = bll.getUsuario();
                 this.Close();
+                MenuPrincipal.UsuarioLogeadoId = id;
                 MenuPrincipal.Show();
             }
             else
@@ -44,13 +56,7 @@ namespace UI
                 txtPassword.Clear();
 
             }
-
         }
-        private void CancelarButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
 
         private void toggleTheme(object sender, RoutedEventArgs e)
         {
@@ -68,6 +74,11 @@ namespace UI
             }
             paletteHelper.SetTheme(theme);
         }
+        private void IngresarKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                Ingresar();
+        }
 
         private void Username_KeyDown(object sender, KeyEventArgs e)
         {
@@ -76,23 +87,23 @@ namespace UI
         }
 
 
-      private void Password_KeySign(object sender, KeyEventArgs e)
+        private void Password_KeySign(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
                 IngresarButton_Click(sender, e);
-        }   
+        }
 
-    private void Password_KeyUp(object sender, KeyEventArgs e)
-    {
-        if (e.Key == Key.Up)
-            txtUsername.Focus();
-    }
+        private void Password_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up)
+                txtUsername.Focus();
+        }
 
-    private void Username_KeyUp(object sender, KeyEventArgs e)
-    {
-        if (e.Key == Key.Up)
-            txtPassword.Focus();
-    }
+        private void Username_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up)
+                txtPassword.Focus();
+        }
 
 
     }

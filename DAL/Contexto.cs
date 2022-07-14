@@ -5,13 +5,13 @@ namespace DAL
 {
     public class Contexto : DbContext
     {
-        public DbSet<Contratos> Contratos { get; set; }
-        public DbSet<Planes> Planes { get; set; }
-        public DbSet<TipoPlanes> TipoPlanes { get; set; }
-        public DbSet<Pagos> Pagos { get; set; }
-        public DbSet<TipoPagos> TipoPagos { get; set; }
-        public DbSet<Clientes> Clientes { get; set; }
-        public DbSet<Usuarios> Usuarios { get; set; }
+        public DbSet<Contratos> Contratos { get; set; } = null!;
+        public DbSet<Planes> Planes { get; set; } = null!;
+        public DbSet<TipoPlanes> TipoPlanes { get; set; } = null!;
+        public DbSet<Pagos> Pagos { get; set; } = null!;
+        public DbSet<TipoPagos> TipoPagos { get; set; } = null!;
+        public DbSet<Clientes> Clientes { get; set; } = null!;
+        public DbSet<Usuarios> Usuarios { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -57,6 +57,13 @@ namespace DAL
                 Nombres = "Yunilda Justo",
                 UserName = "YunildaJ",
                 Password = "20190274"
+            });
+            builder.Entity<Usuarios>().HasData(new Usuarios
+            {
+                UsuarioId = 6,
+                Nombres = "Usuario Admin",
+                UserName = "admin",
+                Password = null
             });
 
 

@@ -13,13 +13,9 @@ namespace BLL
         public static void Guardar(Clientes cliente)
         {
             if (!Existe(cliente.Id))
-            {
                 Insertar(cliente);
-            }
             else
-            {
                 Modificar(cliente);
-            }
         }
         private static bool Insertar(Clientes cliente)
         {
@@ -76,6 +72,24 @@ namespace BLL
                 contexto.Dispose();
             }
             return encontrado;
+        }
+        public static Clientes? BuscarCedula(string cedula)
+        {
+            Contexto contexto = new Contexto();
+            Clientes? cliente = new Clientes();
+            try
+            {
+                cliente = contexto.Clientes.AsNoTracking().FirstOrDefault(c => c.Cedula == cedula);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+            return cliente;
         }
         public static Clientes? Buscar(int id)
         {

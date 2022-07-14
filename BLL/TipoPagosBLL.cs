@@ -27,6 +27,24 @@ namespace BLL
 			}
 			return pag;
 		}
+        public static TipoPagos? Buscar(string tipo)
+        {
+            Contexto contexto = new Contexto();
+            TipoPagos? pag;
+            try
+            {
+                pag = contexto.TipoPagos.AsNoTracking().FirstOrDefault(p => p.NombrePago == tipo);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+            return pag;
+        }
         public static List<TipoPagos> GetList()
         {
             Contexto contexto = new Contexto();

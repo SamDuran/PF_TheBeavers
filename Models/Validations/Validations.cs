@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace Models.Validations
@@ -93,7 +88,7 @@ namespace Models.Validations
 		public static bool ValidarPlan(Planes plan)
 		{
 			bool paso = true;
-			Regex NombreValidation = new Regex(@"^[a-zA-Z]*$");
+			Regex NombreValidation = new Regex(@"^[a-zA-ZáéíóúÁÉÍÓÚ ]*$");
 			string ErrorMessage ="";
 			
 			if(string.IsNullOrEmpty(plan.Nombre)||string.IsNullOrWhiteSpace(plan.Nombre))
@@ -121,10 +116,29 @@ namespace Models.Validations
 
 			return paso;
 		}
-		public static bool ValidarPagos(Pagos pago)
+		public static bool ValidarPago(Pagos pago)
 		{
 			bool paso = true;
 			string ErrorMessage = "";
+			if(pago.TipoPagoId==0)
+			{
+				ErrorMessage +=("\nSe debe seleccionar un tipo de pago");
+				paso = false;
+			}
+			if(string.IsNullOrEmpty(pago.NoContrato))
+			{
+				ErrorMessage +=("\nSe debe seleccionar un contrato");
+				paso = false;
+			}
+			if(pago.MontoPago <= 0)
+			{
+				ErrorMessage +=("\nEl campo Monto no puede ser 0 o menor");
+				paso = false;
+			}
+
+			if(!paso)
+				MessageBox.Show(ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
 			return paso;
 		}
 	}

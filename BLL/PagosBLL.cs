@@ -1,7 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Linq;
+using System;
 using Models;
 using DAL;
-using System.Linq;
 
 namespace BLL
 {
@@ -64,6 +67,7 @@ namespace BLL
 		}
         public static bool Guardar(Pagos pago)
 		{
+			pago.FechaPago = DateTime.Now;
 			if (Existe(pago.PagoId))
 				return Modificar(pago);
 			else
@@ -111,7 +115,24 @@ namespace BLL
 			}
 			return paso;
 		}
+		public static List<Pagos> GetList(Expression<Func<Pagos, bool>> criterio)
+		{
+			Contexto contexto = new Contexto();
+			List<Pagos> lista;
 
-    
-}
+			try
+			{
+				lista = contexto.Pagos.Where(criterio).AsNoTracking().ToList();
+			}
+			catch
+			{
+				throw;
+			}
+			finally
+			{
+				contexto.Dispose();
+			}
+			return lista;
+		}
+	}
 }
