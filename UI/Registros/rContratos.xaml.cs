@@ -11,11 +11,10 @@ namespace UI
     public partial class rContratos : Window
     {
         private Contratos contrato = new Contratos();
-        int estadoContrato = 0;
         public bool HayPlanes=false;
         public rContratos() 
         {
-            if(PlanesBLL.GetList(e => true).Count==0)
+            if(PlanesBLL.GetListExistentes(e => true).Count==0)
             {
                 MessageBox.Show("No hay planes registrados.\nPor favor intente registrar al menos un plan antes de registrar contratos","Error",MessageBoxButton.OK);
                 this.Close();
@@ -23,7 +22,7 @@ namespace UI
             }
             HayPlanes = true;
             InitializeComponent();
-            TipoPlanCombo.ItemsSource = PlanesBLL.GetList(e => true);
+            TipoPlanCombo.ItemsSource = PlanesBLL.GetListExistentes(e => true);
             TipoPlanCombo.SelectedValuePath = "PlanId";
             TipoPlanCombo.DisplayMemberPath = "Nombre";
             Limpiar();
@@ -32,7 +31,7 @@ namespace UI
         {
             this.contrato = _contrato;
             InitializeComponent();
-            TipoPlanCombo.ItemsSource = PlanesBLL.GetList(e => true);
+            TipoPlanCombo.ItemsSource = PlanesBLL.GetListExistentes(e => true);
             TipoPlanCombo.SelectedValuePath = "PlanId";
             TipoPlanCombo.DisplayMemberPath = "Nombre";
             if (MessageBox.Show("¿Desea cerrar la ventana de consultas de contratos?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
@@ -46,14 +45,14 @@ namespace UI
             this.DataContext = contrato;
             TipoPlanCombo.SelectedIndex = 0;
             OcultarLabels();
-            estadoContrato = 0;
+            SuspendidoCB.IsChecked = false;
             NombreTB.Focus();
         }
         private void Cargar()
 		{
             this.DataContext = contrato;
             TipoPlanCombo.SelectedValue = contrato.PlanId;
-            estadoContrato=contrato.Estado;
+            SuspendidoCB.IsChecked = contrato.Estado==2;
             MostrarLabels();
         }
         private void OcultarLabels()
@@ -132,7 +131,10 @@ namespace UI
 
                 if(ContratosBLL.Guardar(this.contrato))
                 {
-                    MessageBox.Show(resultado, "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    if(MessageBox.Show(resultado+"\n¿Desea copiar el No.Contrato?", "Exito", MessageBoxButton.YesNo , MessageBoxImage.Information)==MessageBoxResult.Yes)
+                        Clipboard.SetText(contrato.NoContrato);
+                    
                     Limpiar();
                 }
                 else
@@ -279,8 +281,8 @@ namespace UI
 
 		private void ActualizarEstado(object sender, RoutedEventArgs e)
 		{
-            if(SuspendidoCB.IsChecked == true)
-                contrato.Estado = estadoContrato;
+            if(SuspendidoCB.IsChecked != true)
+                contrato.Estado = 0;
             else
                 contrato.Estado = 2;
 		}

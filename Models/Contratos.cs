@@ -26,21 +26,21 @@ namespace Models
 		//suspendido por el cliente: el contrato es suspendido por el cliente
 		//retrasado: el pago del contrato es retrasado
 		//al dia: el pago del contrato esta al dia
-		public int UsuarioId { get; set; }
 		public int UltimoPagoId { get; set; } //Id del ultimo pago realizado
-
+		public int UsuarioId { get; set; } //Quien creo el contrato
+		public bool Existente { get; set; } = true; //si el contrato existe en la base de datos o no
 
 		public string[] PosibilidadesPago()
 		{
 			
 			//Al dia
 			if(Estado==0)
-				return new string[] {"Pagar mensualidad", "Pagar adelantado", "Pagar mensualidad + adelanto"};
+				return new string[] {"Pagar mensualidad", "Pagar adelanto", "Pagar mensualidad + adelanto"};
 
 			//Retrasado 
 			else if(Estado==1)
 				return new string[] { "Pagar monto pendiente", "pagar monto pendiente + Pagar mensualidad",
-					"Pagar monto pendiente+ Pagar mensualidad + Pagar adelanto" };//Mora 20% del precio de la mensualidad
+					"Pagar monto pendiente + Pagar mensualidad + Pagar adelanto" };//Mora 20% del precio de la mensualidad
 
 			//Suspendido por el cliente
 			else if(Estado==2)
@@ -48,7 +48,7 @@ namespace Models
 
 				//suspendido por mora
 			else if(Estado==3)
-				return new string[] { "Pagar monto pendiente", "Pagar monto pendiente + Mensualidad", "" };
+				return new string[] { "Pagar monto pendiente", "Pagar monto pendiente + Mensualidad" };
 				//Mora 20% del precio; mensualidad hare referencia al mes que se debe pagar (el mes pasado que la factura está generada)
 
 			//Cancelado

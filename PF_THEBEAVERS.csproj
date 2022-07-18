@@ -16,10 +16,12 @@
 
   <ItemGroup>
     <None Remove="Icono.png" />
+    <None Remove="Resources\Splashscreen.png" />
     <None Remove="UI\Registros\Icono.png" />
-  </ItemGroup> 
+  </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="boldreports.wpf" Version="4.1.84" />
     <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
     <PackageReference Include="microsoft.entityframeworkcore.sqlite" Version="6.0.5" />
     <PackageReference Include="microsoft.entityframeworkcore.tools" Version="6.0.5">
@@ -43,7 +45,14 @@
     <Resource Include=".\Resources\Combo.png" />
     <Resource Include=".\Resources\Pagos.png" />
     <Resource Include=".\Resources\Refrescar.png" />
+    <Resource Include=".\Resources\CargarContrato.png" />
+    <Resource Include=".\Resources\DescargarContrato.png" />
     <Resource Include=".\Resources\CancelarContrato.png" />
+    <Resource Include=".\Resources\ShowPassword.png" />
+    <Resource Include=".\Resources\HidePassword.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="Resources\Splashscreen.png" />
   </ItemGroup>
 
 </Project>

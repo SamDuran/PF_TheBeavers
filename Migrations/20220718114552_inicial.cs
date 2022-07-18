@@ -44,8 +44,9 @@ namespace PF_THEBEAVERS.Migrations
                     Plan = table.Column<string>(type: "TEXT", nullable: false),
                     Comentario = table.Column<string>(type: "TEXT", nullable: true),
                     Estado = table.Column<int>(type: "INTEGER", nullable: false),
+                    UltimoPagoId = table.Column<int>(type: "INTEGER", nullable: false),
                     UsuarioId = table.Column<int>(type: "INTEGER", nullable: false),
-                    UltimoPagoId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Existente = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -60,11 +61,15 @@ namespace PF_THEBEAVERS.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     NoContrato = table.Column<string>(type: "TEXT", nullable: false),
                     TipoPagoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    NombreCliente = table.Column<string>(type: "TEXT", nullable: false),
+                    ApellidoCliente = table.Column<string>(type: "TEXT", nullable: false),
+                    CedulaCliente = table.Column<string>(type: "TEXT", nullable: false),
                     TipoPago = table.Column<string>(type: "TEXT", nullable: false),
-                    MontoPago = table.Column<double>(type: "REAL", nullable: false),
+                    MontoPago = table.Column<float>(type: "REAL", nullable: true),
                     Asunto = table.Column<string>(type: "TEXT", nullable: false),
                     Comentario = table.Column<string>(type: "TEXT", nullable: false),
-                    FechaPago = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    FechaPago = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Existente = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -78,7 +83,8 @@ namespace PF_THEBEAVERS.Migrations
                     PlanId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Nombre = table.Column<string>(type: "TEXT", nullable: false),
-                    Precio = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Precio = table.Column<float>(type: "REAL", nullable: true),
+                    FechaCreacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Descripcion = table.Column<string>(type: "TEXT", nullable: false),
                     TipoPlanId = table.Column<int>(type: "INTEGER", nullable: false),
@@ -129,6 +135,26 @@ namespace PF_THEBEAVERS.Migrations
                 {
                     table.PrimaryKey("PK_Usuarios", x => x.UsuarioId);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Planes",
+                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
+                values: new object[] { 1, "3 Mbps/1 Mbps + 150 canales", true, new DateTime(2022, 7, 18, 7, 45, 51, 811, DateTimeKind.Local).AddTicks(5370), new DateTime(2022, 7, 18, 7, 45, 51, 811, DateTimeKind.Local).AddTicks(5372), "Combo Básico", 1000f, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Planes",
+                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
+                values: new object[] { 2, "10 Mbps/3 Mbps + 175 canales", true, new DateTime(2022, 7, 18, 7, 45, 51, 811, DateTimeKind.Local).AddTicks(5473), new DateTime(2022, 7, 18, 7, 45, 51, 811, DateTimeKind.Local).AddTicks(5475), "Combo Medio", 1700f, 2 });
+
+            migrationBuilder.InsertData(
+                table: "Planes",
+                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
+                values: new object[] { 3, "50 Mbps/10 Mbps + 275 canales", true, new DateTime(2022, 7, 18, 7, 45, 51, 811, DateTimeKind.Local).AddTicks(5531), new DateTime(2022, 7, 18, 7, 45, 51, 811, DateTimeKind.Local).AddTicks(5532), "Combo Premium", 2850f, 3 });
+
+            migrationBuilder.InsertData(
+                table: "Planes",
+                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
+                values: new object[] { 4, "25 Mbps/5 Mbps + 225 canales", true, new DateTime(2022, 7, 18, 7, 45, 51, 811, DateTimeKind.Local).AddTicks(5586), new DateTime(2022, 7, 18, 7, 45, 51, 811, DateTimeKind.Local).AddTicks(5588), "Combo Deluxe", 2500f, 3 });
 
             migrationBuilder.InsertData(
                 table: "TipoPagos",

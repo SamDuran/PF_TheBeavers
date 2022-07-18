@@ -83,7 +83,7 @@ namespace BLL
 
             try
             {
-                plan = contexto.Planes.Find(id);
+                plan = contexto.Planes.AsNoTracking().FirstOrDefault(p => p.PlanId == id);
             }
             catch (Exception)
             {
@@ -104,9 +104,11 @@ namespace BLL
             {
                 var plan = contexto.Planes.Find(id);
                 if(plan!=null)
-                    contexto.Planes.Remove(plan);
-
-                eliminado = contexto.SaveChanges() > 0;
+                {
+                    plan.Existente = false;
+                    contexto.Entry(plan).State = EntityState.Modified;
+                    eliminado = contexto.SaveChanges() > 0;
+                }
             }
             catch (Exception)
             {
@@ -118,7 +120,31 @@ namespace BLL
             }
             return eliminado;
         }
-        public static List<Planes> GetList(Expression<Func<Planes, bool>> criterio)
+        public static bool EliminarPermanente(int? id)
+        {
+            Contexto contexto = new Contexto();
+            bool eliminado = false;
+
+            try
+            {
+                var plan = contexto.Planes.Find(id);
+                if(plan!=null)
+                {
+                    contexto.Planes.Remove(plan);
+                    eliminado = contexto.SaveChanges() > 0;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+            return eliminado;
+        }
+        public static List<Planes> GetListNoExistentes(Expression<Func<Planes, bool>> criterio)
         {
             Contexto contexto = new Contexto();
             List<Planes> lista = new List<Planes>();
@@ -137,7 +163,28 @@ namespace BLL
             {
                 contexto.Dispose();
             }
-            return lista;
+            return lista.Where(p => p.Existente == false).ToList();
+        }
+        public static List<Planes> GetListExistentes(Expression<Func<Planes, bool>> criterio)
+        {
+            Contexto contexto = new Contexto();
+            List<Planes> lista = new List<Planes>();
+
+            try
+            {
+                lista = contexto.Planes.Where(criterio)
+                .AsNoTracking()
+                .ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+            return lista.Where(p => p.Existente).ToList();
         }
     }
 }

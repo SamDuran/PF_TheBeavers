@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace PF_THEBEAVERS.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220708062123_inicial")]
+    [Migration("20220718114552_inicial")]
     partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,6 +70,9 @@ namespace PF_THEBEAVERS.Migrations
                     b.Property<int>("Estado")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("Existente")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("TEXT");
 
@@ -111,11 +114,19 @@ namespace PF_THEBEAVERS.Migrations
 
             modelBuilder.Entity("Models.Pagos", b =>
                 {
-                    b.Property<int>("PagoId")
+                    b.Property<int?>("PagoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("ApellidoCliente")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Asunto")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CedulaCliente")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -123,13 +134,20 @@ namespace PF_THEBEAVERS.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("Existente")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("FechaPago")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("MontoPago")
+                    b.Property<float?>("MontoPago")
                         .HasColumnType("REAL");
 
                     b.Property<string>("NoContrato")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NombreCliente")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -158,6 +176,9 @@ namespace PF_THEBEAVERS.Migrations
                     b.Property<bool>("Estado")
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("FechaModificacion")
                         .HasColumnType("TEXT");
 
@@ -165,8 +186,8 @@ namespace PF_THEBEAVERS.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Precio")
-                        .HasColumnType("TEXT");
+                    b.Property<float?>("Precio")
+                        .HasColumnType("REAL");
 
                     b.Property<int>("TipoPlanId")
                         .HasColumnType("INTEGER");
@@ -174,6 +195,52 @@ namespace PF_THEBEAVERS.Migrations
                     b.HasKey("PlanId");
 
                     b.ToTable("Planes");
+
+                    b.HasData(
+                        new
+                        {
+                            PlanId = 1,
+                            Descripcion = "3 Mbps/1 Mbps + 150 canales",
+                            Estado = true,
+                            FechaCreacion = new DateTime(2022, 7, 18, 7, 45, 51, 811, DateTimeKind.Local).AddTicks(5370),
+                            FechaModificacion = new DateTime(2022, 7, 18, 7, 45, 51, 811, DateTimeKind.Local).AddTicks(5372),
+                            Nombre = "Combo Básico",
+                            Precio = 1000f,
+                            TipoPlanId = 1
+                        },
+                        new
+                        {
+                            PlanId = 2,
+                            Descripcion = "10 Mbps/3 Mbps + 175 canales",
+                            Estado = true,
+                            FechaCreacion = new DateTime(2022, 7, 18, 7, 45, 51, 811, DateTimeKind.Local).AddTicks(5473),
+                            FechaModificacion = new DateTime(2022, 7, 18, 7, 45, 51, 811, DateTimeKind.Local).AddTicks(5475),
+                            Nombre = "Combo Medio",
+                            Precio = 1700f,
+                            TipoPlanId = 2
+                        },
+                        new
+                        {
+                            PlanId = 3,
+                            Descripcion = "50 Mbps/10 Mbps + 275 canales",
+                            Estado = true,
+                            FechaCreacion = new DateTime(2022, 7, 18, 7, 45, 51, 811, DateTimeKind.Local).AddTicks(5531),
+                            FechaModificacion = new DateTime(2022, 7, 18, 7, 45, 51, 811, DateTimeKind.Local).AddTicks(5532),
+                            Nombre = "Combo Premium",
+                            Precio = 2850f,
+                            TipoPlanId = 3
+                        },
+                        new
+                        {
+                            PlanId = 4,
+                            Descripcion = "25 Mbps/5 Mbps + 225 canales",
+                            Estado = true,
+                            FechaCreacion = new DateTime(2022, 7, 18, 7, 45, 51, 811, DateTimeKind.Local).AddTicks(5586),
+                            FechaModificacion = new DateTime(2022, 7, 18, 7, 45, 51, 811, DateTimeKind.Local).AddTicks(5588),
+                            Nombre = "Combo Deluxe",
+                            Precio = 2500f,
+                            TipoPlanId = 3
+                        });
                 });
 
             modelBuilder.Entity("Models.TipoPagos", b =>
