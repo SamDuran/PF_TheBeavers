@@ -1,10 +1,10 @@
-﻿<Window x:Class="UI.cContratos" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+﻿<Window x:Class="UI.pContratos" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:local="clr-namespace:UI" 
         mc:Ignorable="d" 
-        Title="Consulta de contratos" 
+        Title="Papelera de contratos" 
         Height="740" Width="1250"
         MinHeight="740"
         MinWidth="1250"
@@ -14,9 +14,8 @@
         WindowStyle="ThreeDBorderWindow" KeyDown="PresionoTecla" GotFocus="WindowGotFocus">
     <DockPanel KeyDown="PresionoTecla">
         <StackPanel Margin="20,20,20,5" VerticalAlignment="Top" Orientation="Horizontal" Height="50" DockPanel.Dock="Top">
-            <Label Content="Consulta de Contratos" FontSize="24" FontFamily="Impact" />
-            
-            <Border CornerRadius="0" Margin="515,0,0,0" BorderThickness="0.5" BorderBrush="LightSlateGray">
+            <Label Content="Papelera de Contratos" FontSize="24" FontFamily="Impact" />
+            <Border CornerRadius="0" Margin="520,0,0,0" BorderThickness="0.5" BorderBrush="LightSlateGray">
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
                     <StackPanel Orientation="Vertical">
                         <CheckBox  x:Name="IncluirCanCB" Content="Incluir Cancelados" Checked="Cancelados_Checked"  Unchecked="Cancelados_Checked"/>
@@ -33,23 +32,21 @@
                 <Image Source="/Resources/Refrescar.png" VerticalAlignment="Top" ToolTip="Refrecar (f5)" Stretch="Fill" Height="25" Width="25" Tag="Refrecar (f5)"/>
             </Button>
             <StackPanel Orientation="Vertical" Margin="0,0,0,0">
-                <Button x:Name="CargarBTN" HorizontalAlignment="Left" Margin="0,0,0,1" Click="CargarBTNClick" VerticalAlignment="Top" Width="120" Height="24" BorderBrush="#FF227523" Background="#FF78A643" Foreground="White" ToolTip="Doble click en tupla a seleccionar" Cursor="Hand">
+                <Button Margin="0,0,0,1" HorizontalAlignment="Left" Click="Restarurar_Click" VerticalAlignment="Top" Width="120" Height="24" BorderBrush="#FF238615" Background="#FF46A643" Foreground="White" ToolTip="Buscar (Enter)" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/CargarContrato.png" />
-                        <Label HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontStyle="Normal" Foreground="White" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="9" FontFamily="Bahnschrift SemiBold" Content="Cargar Contrato" />
+                        <Image Source="/Resources/DescargarContrato.png" />
+                        <Label HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontStyle="Normal" Foreground="White" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="8" FontFamily="Bahnschrift SemiBold" Content="Restaurar contrato" />
                     </StackPanel>
                 </Button>
-
-                <Button Margin="0,1,0,0" HorizontalAlignment="Left" Click="PagarBTN_Click" VerticalAlignment="Top" Width="120" Height="24" BorderBrush="#FF256F79" Background="#FF378690" Foreground="White" ToolTip="Buscar (Enter)" Cursor="Hand">
+                <Button Margin="0,1,0,0" HorizontalAlignment="Left" Click="Eliminar_Click" VerticalAlignment="Top" Width="120" Height="24" BorderBrush="#FFC82727" Background="#FFE24545" Foreground="White" ToolTip="Buscar (Enter)" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Pagos.png" />
-                        <Label HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontStyle="Normal" Foreground="White" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="9" FontFamily="Bahnschrift SemiBold" Content="Realizar pago" />
+                        <Image Source="/Resources/Eliminar.png" />
+                        <Label HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontStyle="Normal" Foreground="White" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="8" FontFamily="Bahnschrift SemiBold" Content="Eliminar contrato" />
                     </StackPanel>
                 </Button>
 
             </StackPanel>
 
-            
 
         </StackPanel>
         <StackPanel KeyDown="PresionoTecla">
@@ -113,10 +110,13 @@
                 </Border>
 
                 <StackPanel Orientation="Vertical" DockPanel.Dock="Right">
-                    <Button HorizontalAlignment="Left" Click="BuscarBTN_Click" Margin="5,10,0,0" VerticalAlignment="Top" Width="120" Height="35" BorderBrush="#FF4C5FBD" Background="#437FA6" Foreground="White" ToolTip="Buscar (Enter)">
+                    
+                    
+
+                    <Button HorizontalAlignment="Left"  Margin="0,5,0,0" Click="BuscarBTN_Click" VerticalAlignment="Top" Width="120" Height="40" BorderBrush="#FF4C5FBD" Background="#437FA6" Foreground="White" ToolTip="Buscar (Enter)">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Resources/Lupa.png" />
-                            <Label HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontStyle="Normal" Foreground="#FF383838" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="15" FontFamily="Bahnschrift SemiBold" Content="Buscar" />
+                            <Label HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontStyle="Normal" Foreground="#FF383838" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="17" FontFamily="Bahnschrift SemiBold" Content="Buscar" />
                         </StackPanel>
                     </Button>
                 </StackPanel>

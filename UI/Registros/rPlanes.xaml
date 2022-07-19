@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
-        Icon="/Resources/Icono.png" Background="#FFDADADA"
+        Icon="/Resources/Icono.png" Background="#DADADA"
         Title="Registro de Plan" Height="550" Width="870">
     <Grid Height="400" VerticalAlignment="Center" HorizontalAlignment="Center" Width="830" ShowGridLines="True" Margin="20,13,0,0">
         <StackPanel Orientation="Vertical">
@@ -54,14 +54,15 @@
                 <Label Content="Nombre del plan" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
                 <TextBox x:Name="NombreTB" Text="{Binding Nombre}"  GotFocus="NombreTB_GotFocus" LostFocus="NombreTB_GotUnfocused" KeyDown="NombreTextBox_KeyDown" HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" Grid.Column="1" VerticalContentAlignment="Center" Background="#7FFFFFFF"/>
             </StackPanel>
-            <!--PLAN-->
+            <!--Precio-->
             <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
                 <Label Content="Precio" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="PrecioTB" Text="{Binding Precio}"  HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" VerticalContentAlignment="Center" Background="#7FFFFFFF"/>
+                <TextBox x:Name="PrecioTB" Text="{Binding Precio}"  GotFocus="PrecioTB_GotFocus" LostFocus="PrecioTB_GotUnfocused" HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="558" Height="26" VerticalContentAlignment="Center" Background="#7FFFFFFF"/>
             </StackPanel>
+            <!-- Plan  -->
             <StackPanel Orientation="Horizontal" Margin="20,0,20,10">
                 <Label Content="Plan" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <ComboBox x:Name="PlanCombo"  HorizontalAlignment="Center" SelectedValue="{Binding IdPlan}" SelectedIndex="0" Margin="50,0,0,0" Width="558" BorderBrush="#FFA0A0A0" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="#7FFFFFFF">
+                <ComboBox x:Name="PlanCombo"  HorizontalAlignment="Center" Margin="50,0,0,0" Width="558" BorderBrush="#FFA0A0A0" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="#7FFFFFFF">
                 </ComboBox>
             </StackPanel>
             <!-- Descripcion -->

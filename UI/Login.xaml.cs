@@ -23,7 +23,7 @@ namespace UI
         MainWindow MenuPrincipal = new MainWindow();
         public Login()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
         public bool IsDarkTheme { get; set; }
         private readonly PaletteHelper paletteHelper = new PaletteHelper();
@@ -54,7 +54,6 @@ namespace UI
                 MessageBox.Show("Nombre de Usuario o Contraseña incorrecta!", "Error!");
                 txtUsername.Focus();
                 txtPassword.Clear();
-
             }
         }
 
@@ -86,7 +85,6 @@ namespace UI
                 txtPassword.Focus();
         }
 
-
         private void Password_KeySign(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -104,7 +102,29 @@ namespace UI
             if (e.Key == Key.Up)
                 txtPassword.Focus();
         }
-
-
+        private void Hide_PreviewMouseDown(object sander, MouseEventArgs e)
+		{
+            HideIMG.Visibility = Visibility.Hidden;
+            ShowIMG.Visibility = Visibility.Visible;
+            ShowPassWord();
+		}
+        private void Show_PreviewMouseUp(object sander, MouseEventArgs e)
+		{
+            ShowIMG.Visibility = Visibility.Hidden;
+            HideIMG.Visibility = Visibility.Visible;
+            HidePassWord();
+		}
+        private void ShowPassWord()
+		{
+            visibleTxtPassword.Text = txtPassword.Password;
+            txtPassword.Visibility = Visibility.Hidden;
+            visibleTxtPassword.Visibility = Visibility.Visible;
+		}
+        private void HidePassWord()
+        {
+            txtPassword.Visibility = Visibility.Visible;
+            visibleTxtPassword.Visibility = Visibility.Hidden;
+            txtPassword.Focus();
+        }
     }
 }

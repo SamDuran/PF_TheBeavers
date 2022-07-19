@@ -23,13 +23,12 @@ namespace UI
     public partial class rPlanes : Window
     {
         Planes plan = new Planes();
-        private int IdPlan=0;
         public rPlanes()
         {
             InitializeComponent();
             this.DataContext=plan;
             PlanCombo .ItemsSource = TipoPlanesBLL.GetList();
-            PlanCombo .SelectedValuePath = "PlanId";
+            PlanCombo .SelectedValuePath = "TipoPlanId";
             PlanCombo .DisplayMemberPath = "NombrePlan";
             Limpiar();
         }
@@ -39,6 +38,7 @@ namespace UI
             plan = new Planes();
             this.DataContext = plan;
             PlanCombo.SelectedIndex = 0;
+            EstadoCB.IsChecked = false;
             OcultarLabels();
             NombreTB.Focus();
         }
@@ -46,8 +46,9 @@ namespace UI
         {
             this.DataContext = null;
             this.DataContext = plan;
-            PlanCombo.SelectedValue = plan.PlanId;
-            EstadoCB.IsChecked = !plan.Estado;
+            PlanCombo.SelectedValue = plan.TipoPlanId;
+
+            EstadoCB.IsChecked = !plan.Estado; 
             MostrarLabels();
         }
 		private void OcultarLabels()
@@ -85,8 +86,22 @@ namespace UI
                     var planAux = PlanesBLL.Buscar(Utilities.Utilities.ToInt(IdPlanTB.Text));
                     if (planAux != null)
                     {
-                        plan = planAux;
-                        Cargar();
+                        if(!planAux.Existente)
+                        {
+                            if(MessageBox.Show("El plan fue eliminado, ¿Desea restaurarlo?","",MessageBoxButton.YesNo,MessageBoxImage.Question)==MessageBoxResult.Yes)
+                            {
+                                //Abrir papelera de planes para restarurar el plan
+                                plan = planAux;
+                                Cargar();
+                            }
+                            else
+                                return;
+                        }
+                        else
+                        {
+                            plan = planAux;
+                            Cargar();
+                        }
                     }
                     else
                     {
@@ -101,7 +116,7 @@ namespace UI
         }
         private void GuardarBTN_Click(object sender, RoutedEventArgs e)
         {
-            plan.TipoPlanId = IdPlan;
+            plan.TipoPlanId = (int)PlanCombo.SelectedValue;
             NombreTB.Text = Utilities.Utilities.CorregirNombre_O_Apellido(NombreTB.Text);
             if(Validations.ValidarPlan(this.plan))
             {
@@ -139,7 +154,6 @@ namespace UI
             if (e.Key == Key.Enter)
                 PrecioTB.Focus();
         }
-
         //------------------------------------------------------OnFocus------------------------------------------------------------
         private void IdTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -163,15 +177,14 @@ namespace UI
         }
         private void PrecioTB_GotFocus(object sender, RoutedEventArgs e)
         {
-            PrecioTB.Background = new SolidColorBrush(Colors.White);
+            PrecioTB.Background = new SolidColorBrush(Colors.LightSeaGreen);
             PrecioTB.Background.Opacity = 0.5;
         }
-        private void PrecioB_GotUnfocused(object sender, RoutedEventArgs e)
+        private void PrecioTB_GotUnfocused(object sender, RoutedEventArgs e)
         {
             PrecioTB.Background = new SolidColorBrush(Colors.White);
             PrecioTB.Background.Opacity = 0.5;
         }
-
 		private void EstadoCB_Checked(object sender, RoutedEventArgs e)
 		{
             if(EstadoCB.IsChecked == true)

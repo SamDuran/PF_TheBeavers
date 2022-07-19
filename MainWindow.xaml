@@ -21,7 +21,7 @@
 
             <MenuItem x:Name="Registros" Background="#FF714E24" Header="Registros" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF714E24">
 
-                <MenuItem x:Name="mPlanes" Header="Planes" Click="rPlanes_Click">
+                <MenuItem x:Name="mPlanes"  Header="Planes" Click="rPlanes_Click" >
                     <MenuItem.Icon>
                         <Image Source="/Resources/Combo.png"></Image>
                     </MenuItem.Icon>
@@ -37,7 +37,15 @@
                         <Image Source="/Resources/Pagos.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
+                 <MenuItem x:Name="mAverias" Header="Averias" Click="rAverias_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Pagos.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
+
+
+
             <MenuItem x:Name="Consultas" Background="#FF714E24" Header="Consultas" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF714E24">
                 <MenuItem x:Name="cContratos" Header="Contratos" Click="cContratos_Click">
                     <MenuItem.Icon>
@@ -53,6 +61,13 @@
             <MenuItem Background="#FF714E24" Header="Reportes" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF714E24">
 
             </MenuItem>
+            <MenuItem Background="#FF714E24" Header="Papelera" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF714E24">
+                <MenuItem x:Name="pContratos" Header="Contratos" Click="pContratos_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Contratos.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
             <MenuItem x:Name="CerrarSeccionMenuItem" Header="Cerrar Sesión" Click="CerrarSesionMenuItem_Click" VerticalAlignment="Stretch" HorizontalAlignment="Right" Background="#FF714E24" FlowDirection="RightToLeft" HorizontalContentAlignment="Right" />
         </Menu>
         <Grid>
@@ -60,7 +75,6 @@
                 <RowDefinition Height="249*" />
                 <RowDefinition Height="280*" />
             </Grid.RowDefinitions>
-            <Image Grid.RowSpan="2"></Image>
             <Image Source="/Resources/beavers.png" HorizontalAlignment="Right" Height="540" VerticalAlignment="Bottom" Width="779" Grid.RowSpan="2" Margin="0,0,0,-5" Grid.ColumnSpan="1" />
         </Grid>
     </Grid>

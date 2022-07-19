@@ -11,7 +11,7 @@
     Height="630" 
     ResizeMode="CanMinimize" 
     Icon="/Resources/Icono.png" 
-    Background="#FFDADADA">
+    Background="#DADADA">
     <Grid Height="546" VerticalAlignment="Center" HorizontalAlignment="Center" Width="830" ShowGridLines="True" Margin="40,13,0,0">
         <StackPanel Orientation="Vertical">
             <!-- Headers -->
@@ -20,12 +20,10 @@
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Registro de Pagos" FontWeight="Normal" FontFamily="Impact" FontSize="36" />
                 </StackPanel>
-                <!-- NoContrato -->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="243,0,0,0"/>
             </StackPanel>
             <!-- Fechas -->
             <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Horizontal" Margin="10,0,0,0" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal" Margin="10,0,0,0" HorizontalAlignment="Right"> 
                     <Label x:Name="FechaCLabel" Content="Fecha del pago: " Width="94" />
                     <Label x:Name="fCreacionLabel" Content="{Binding FechaPago, StringFormat=\{0:d\}}" Width="100" Height="26" Foreground="#FF252525" />
                 </StackPanel>
@@ -33,18 +31,17 @@
             <!-- IDs TextBoxs -->
             <StackPanel Orientation="Horizontal" Margin="20,10,20,10">
                 <Label Content="IDPago" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right" />
-                <TextBox x:Name="idPagoTb" Text="{Binding PagoId}" GotFocus="IdPagoTB_GotFocus" LostFocus="IdPagoTB_GotUnfocused" KeyDown="IdPagoTb_KeyDown" HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="135" Height="26" VerticalContentAlignment="Center" Background="#87FFFFFF" />
+                <TextBox x:Name="idPagoTb" Text="{Binding PagoId}" IsEnabled="False" GotFocus="IdPagoTB_GotFocus" HorizontalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="290" Height="26" VerticalContentAlignment="Center" Background="#87FFFFFF" />
                 <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="88" Height="26" Click="BuscarBTN_Click" BorderBrush="#FF4C5FBD" Grid.Column="5" Background="#437FA6" Foreground="White">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Resources/Lupa.png" />
                         <Label HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontStyle="Normal" Foreground="#FF383838" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="11" FontFamily="Bahnschrift SemiBold" Content="Buscar" />
                     </StackPanel>
                 </Button>
-                <Label Content="No.Contrato" Margin="28,0,0,0" Height="26" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right" />
-                <TextBox x:Name="IdContratoTb" Text="{Binding contrato.ContratoId}" GotFocus="IdConTB_GotFocus" LostFocus="IdConTB_GotUnfocused" KeyDown="IdConTb_KeyDown" HorizontalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="165" Height="26" VerticalContentAlignment="Center" Background="#7FFFFFFF" />
-                <Button HorizontalAlignment="Left" VerticalAlignment="Top"  Height="26" Click="BuscarContratoBTN_Click" BorderBrush="#FF4C5FBD" Grid.Column="5" Background="#437FA6" Foreground="White">
+                <Button Margin="40,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"  Height="30" Click="BuscarContratoBTN_Click" BorderBrush="#FF287977" Grid.Column="5" Background="#FF43A6A4" Foreground="White">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Lupa.png" />
+                        <Image Source="/Resources/CargarContrato.png" />
+                        <Label Content="Buscar contrato" FontSize="11"/>
                     </StackPanel>
                 </Button>
             </StackPanel>
@@ -66,7 +63,7 @@
             <!-- TipoPago -->
             <StackPanel Orientation="Horizontal" Margin="20,10,20,3">
                 <Label Content="Tipo de Pago" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right" />
-                <ComboBox SelectionChanged="TipoPagoCombo_SelectionChanged" x:Name="TipoPagoCombo" HorizontalAlignment="Center" SelectedValue="{Binding pago.TipoPagoId}" SelectedIndex="0" Margin="50,0,0,0" Width="558" BorderBrush="#FFA0A0A0" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="#7FFFFFFF"></ComboBox>
+                <ComboBox x:Name="TipoPagoCombo" SelectionChanged="TipoPagoCombo_SelectionChanged" HorizontalAlignment="Center" Margin="50,0,0,0" Width="558" BorderBrush="#FFA0A0A0" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="#7FFFFFFF"></ComboBox>
             </StackPanel>
             <!--MontoPago-->
             <StackPanel Orientation="Horizontal" Margin="20,10,20,3">
@@ -76,7 +73,7 @@
             <!--Asunto:-->
             <StackPanel Orientation="Horizontal" Margin="20,10,20,3">
                 <Label Content="Asunto de pago" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right" />
-                <ComboBox x:Name="AsuntoCombo" HorizontalAlignment="Center" Margin="50,0,0,0" Width="558" BorderBrush="#FFA0A0A0" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="#7FFFFFFF"/>
+                <ComboBox x:Name="AsuntoCombo" LostFocus="AsuntoCBLostFocus" HorizontalAlignment="Center" Margin="50,0,0,0" Width="558" BorderBrush="#FFA0A0A0" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="#7FFFFFFF"/>
             </StackPanel>
             <!-- Commentario -->
             <StackPanel Orientation="Horizontal" Margin="20,10,20,10">
@@ -86,7 +83,7 @@
             <!-- Botones -->
             <StackPanel Orientation="Horizontal" Margin="0,25" Width="700" HorizontalAlignment="Center">
                 <!-- Boton Nuevo -->
-                <Button Click="NuevoBTN_Click" BorderThickness="2" Height="70" Width="115" Background="#437FA6" BorderBrush="#FF2B419C" Foreground="White" FontWeight="Bold" Margin="60,0,75,0">
+                <Button Click="NuevoBTN_Click" BorderThickness="2" Height="70" Width="115" Background="#437FA6" BorderBrush="#FF296892" Foreground="White" FontWeight="Bold" Margin="60,0,75,0">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/Resources/Nuevo.png" Height="35" Width="57"></Image>
                         <Label HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Normal" Foreground="#FF232323" Content="Nuevo" />

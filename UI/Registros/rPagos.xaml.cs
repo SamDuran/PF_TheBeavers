@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -12,6 +13,7 @@ namespace UI
     {
         private Pagos pago = new Pagos();
         private Contratos contrato = new Contratos();
+        private bool PantallaCargo = false;
         public rPagos()
         {
             InitializeComponent();
@@ -19,8 +21,10 @@ namespace UI
             TipoPagoCombo.ItemsSource = TipoPagosBLL.GetList();
             TipoPagoCombo.SelectedValuePath = "TipoPagoId";
             TipoPagoCombo.DisplayMemberPath = "NombrePago";
-
             Limpiar();
+            PantallaCargo = true;
+            TipoPagoCombo.SelectedIndex = 1;
+
         }
         public rPagos(Pagos _pago, cPagos consulta)
         {
@@ -33,18 +37,45 @@ namespace UI
             if (MessageBox.Show("¿Desea cerrar la ventana de consultas de Pagos?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 consulta.Close();
             Cargar();
+            PantallaCargo = true;
         }
+        public rPagos(Contratos _contrato, cContratos consulta)
+        {
+            this.contrato = _contrato;
+            InitializeComponent();
+            this.DataContext = pago;
+            TipoPagoCombo.ItemsSource = TipoPagosBLL.GetList();
+            TipoPagoCombo.SelectedValuePath = "TipoPagoId";
+            TipoPagoCombo.DisplayMemberPath = "NombrePago";
+            if (MessageBox.Show("¿Desea cerrar la ventana de consultas?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                consulta.Close();
+            ColocarDatos();
+            PantallaCargo = true;
+
+            TipoPagoCombo.SelectedIndex = 0;
+            AsuntoCombo.SelectedIndex = 0;
+        }
+
+
         //---------------------------------------------------Utilidades----------------------------------------------------
         private void Limpiar()
         {
             pago = new Pagos();
             contrato = new Contratos();
             this.DataContext = pago;
+            TipoPagoCombo.SelectedIndex = 0;
             AsuntoCombo.ItemsSource = null;
             OcultarLabels();
             LimpiarDatos();
-            IdContratoTb.Focus();
-            TipoPagoCombo.SelectedIndex = 0;
+        }
+        public void CerrarConsultaContratos(cContratos c)
+        {
+            c.Close();
+        }
+        public void CargarContrato(Contratos c)
+        {
+            this.contrato = c;
+            ColocarDatos();
         }
         private void Cargar()
         {
@@ -53,6 +84,7 @@ namespace UI
             TipoPagoCombo.SelectedValue = pago.TipoPagoId;
             AsuntoCombo.ItemsSource = contrato.PosibilidadesPago();
             AsuntoCombo.SelectedItem = pago.Asunto;
+
             ColocarDatos();
             MostrarLabels();
         }
@@ -69,57 +101,51 @@ namespace UI
         }
         private void ColocarDatos()
         {
+
+            ComentTB.IsEnabled = true;
+            pago.NoContrato = contrato.NoContrato;
+            pago.NombreCliente = contrato.NombreCliente;
+            pago.ApellidoCliente = contrato.ApellidoCliente;
+            pago.CedulaCliente = contrato.Cedula;
             NombreTB.Text = contrato.NombreCliente;
             ApellidoTB.Text = contrato.ApellidoCliente;
             CedulaTB.Text = contrato.Cedula;
+            AsuntoCombo.ItemsSource = contrato.PosibilidadesPago();
+            AsuntoCombo.SelectedIndex = 0;
+            ColocarMonto(contrato.Estado);
         }
         private void LimpiarDatos()
         {
             NombreTB.Text = ApellidoTB.Text = CedulaTB.Text = "";
         }
         public void Cargarpago(Pagos _pago)
-		{
+        {
             var contratoAux = ContratosBLL.BuscarNoContrato(_pago.NoContrato);
-            if(contratoAux!=null)
+            if (contratoAux != null)
             {
                 contrato = contratoAux;
             }
             this.pago = _pago;
             Cargar();
-		}
+        }
         public void CerrarConsulta(cPagos c)
-		{
+        {
             c.Close();
-		}
+        }
         //----------------------------------------------------Botones------------------------------------------------------
         private void BuscarBTN_Click(object sander, RoutedEventArgs e)
         {
-            
+
             cPagos consulta = new cPagos(this);
             consulta.ShowDialog();
-            
+
         }
         private void BuscarContratoBTN_Click(object sender, RoutedEventArgs e)
         {
-            if (String.IsNullOrEmpty(IdContratoTb.Text) || string.IsNullOrWhiteSpace(IdContratoTb.Text) || IdContratoTb.Text.Length<10)
-            {
-                MessageBox.Show("Debe ingresar un numero de contrato valido");
-                return;
-            }
-            var contratoAux = ContratosBLL.BuscarNoContrato(IdContratoTb.Text);
-            if (contratoAux != null)
-            {
-                contrato = contratoAux;
-                ComentTB.IsEnabled= true;
-                pago.NoContrato = contrato.NoContrato;
-                ColocarDatos();
-                AsuntoCombo.ItemsSource = contrato.PosibilidadesPago();
-                AsuntoCombo.SelectedIndex = 0;
-            }
-            else
-            {
-                MessageBox.Show("No se encontro!", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            cContratos consulta = new cContratos(this);
+            consulta.ShowDialog();
+
+
         }
         private void NuevoBTN_Click(object sander, RoutedEventArgs e)
         {
@@ -130,19 +156,25 @@ namespace UI
             pago.TipoPagoId = (int)TipoPagoCombo.SelectedValue;
             pago.Asunto = (string)AsuntoCombo.SelectedItem;
             var TipoPago = TipoPagosBLL.Buscar(pago.TipoPagoId);
-            if(TipoPago!=null)
+            if (TipoPago != null)
                 pago.TipoPago = TipoPago.NombrePago;
-            if(Validations.ValidarPago(pago))
+            if(MontoValido())
             {
-                if (PagosBLL.Guardar(this.pago))
+                if (Validations.ValidarPago(pago))
                 {
-                    Limpiar();
-                    MessageBox.Show("Guardado!", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    if (PagosBLL.Guardar(this.pago))
+                    {
+                        Limpiar();
+                        MessageBox.Show("Guardado!", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo guardar!", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("No se pudo guardar!", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+            }else
+            {
+                MessageBox.Show("El monto no es valido!", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void EliminarBTN_Click(object sander, RoutedEventArgs e)
@@ -158,16 +190,6 @@ namespace UI
             }
         }
         //------------------------------------------------------Keydowns-----------------------------------------------------------
-        private void IdPagoTb_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-                IdContratoTb.Focus();
-        }
-        private void IdConTb_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-                NombreTB.Focus();
-        }
         private void MontoTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -184,16 +206,6 @@ namespace UI
             idPagoTb.Background = new SolidColorBrush(Colors.White);
             idPagoTb.Background.Opacity = 0.5;
         }
-        private void IdConTB_GotFocus(object sender, RoutedEventArgs e)
-        {
-            IdContratoTb.Background = new SolidColorBrush(Colors.LightSeaGreen);
-            IdContratoTb.Background.Opacity = 0.5;
-        }
-        private void IdConTB_GotUnfocused(object sender, RoutedEventArgs e)
-        {
-            IdContratoTb.Background = new SolidColorBrush(Colors.White);
-            IdContratoTb.Background.Opacity = 0.5;
-        }
         private void MontoTB_GotFocus(object sender, RoutedEventArgs e)
         {
             MontoTb.Background = new SolidColorBrush(Colors.LightSeaGreen);
@@ -204,24 +216,71 @@ namespace UI
             MontoTb.Background = new SolidColorBrush(Colors.White);
             MontoTb.Background.Opacity = 0.5;
         }
-
-		private void TipoPagoCombo_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-		{
+        private void AsuntoCBLostFocus(object sender, RoutedEventArgs e)
+        {
+            pago.Asunto = (string)AsuntoCombo.SelectedItem;
             ColocarMonto(contrato.Estado);
-            if (pago.TipoPagoId == 1)
-                MontoTb.IsEnabled = true;
-            else
-                MontoTb.IsEnabled = false;
-		}
+        }
+        private bool MontoValido()
+        {
+            var Plan = PlanesBLL.Buscar(contrato.PlanId);
+            return Plan!=null && (float)Utilities.Utilities.ToDecimal(MontoTb.Text) >= Plan.Precio;
+        }
+
+        private void TipoPagoCombo_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (this.PantallaCargo)
+            {
+                ColocarMonto(contrato.Estado);
+                if (TipoPagoCombo.Items.Count > 2 && Utilities.Utilities.ToInt(TipoPagoCombo.SelectedValue.ToString()) != 0)
+                {
+                    var intAux = Utilities.Utilities.ToInt(TipoPagoCombo.SelectedValue.ToString());
+                    var TipoPago = TipoPagosBLL.Buscar(intAux);
+                    if (TipoPago != null)
+                    {
+                        pago.TipoPago = TipoPago.NombrePago;
+                        pago.TipoPagoId = intAux;
+
+                        if (pago.TipoPago == "Efectivo")
+                            MontoTb.IsEnabled = true;
+                        else
+                            MontoTb.IsEnabled = false;
+                    }
+                }
+            }
+        }
         private void ColocarMonto(int caso)
         {
             var plan = PlanesBLL.Buscar(contrato.PlanId);
-            if(plan!=null)
+            if (plan != null)
             {
-                decimal precio = plan.Precio;
-                pago.MontoPago=(double)precio;
+                var precio = CalcularMonto(plan);
+                pago.MontoPago = precio;
                 MontoTb.Text = precio.ToString();
             }
         }
-	}
+        private float? CalcularMonto(Planes plan)
+        {
+            var PagoMensual = plan.Precio;
+            var PagoAdelanto = PagoMensual;
+            var PagoPendiente = plan.Precio + (0.2f * plan.Precio);
+
+            if (pago.Asunto.Equals("Pagar mensualidad") || pago.Asunto.Equals("Pagar adelanto"))
+                return PagoMensual;
+
+            if (pago.Asunto.Equals("Pagar mensualidad + adelanto"))
+                return PagoMensual + PagoAdelanto;
+
+            if (pago.Asunto.Equals("Pagar monto pendiente + Pagar mensualidad + Pagar adelanto"))
+                return PagoPendiente + PagoMensual + PagoAdelanto;
+
+            if (pago.Asunto.Equals("Pagar monto pendiente + Pagar mensualidad"))
+                return PagoPendiente + PagoMensual;
+
+            if (pago.Asunto.Equals("Pagar monto pendiente"))
+                return PagoPendiente;
+
+            return 0;
+        }
+    }
 }

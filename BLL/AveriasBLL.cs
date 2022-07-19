@@ -8,14 +8,14 @@ using DAL;
 
 namespace BLL
 {
-    public class PlanesBLL
+    public class AveriasBLL
     {
-        public static bool Guardar(Planes plan)
+        public static bool Guardar(Averias averias)
         {
-            if(Existe(plan.PlanId))
-                return Modificar(plan);
+            if (Existe(averias.AveriaId))
+                return Modificar(averias);
             else
-                return Insertar(plan);
+                return Insertar(averias);
         }
         private static bool Existe(int? id)
         {
@@ -36,14 +36,14 @@ namespace BLL
             }
             return encontrado;
         }
-        private static bool Insertar(Planes plan)
+        private static bool Insertar(Averias averias)
         {
             Contexto contexto = new Contexto();
             bool guardado = false;
 
             try
             {
-                contexto.Planes.Add(plan);
+                contexto.Averias.Add(averias);
                 guardado = contexto.SaveChanges() > 0;
             }
             catch (Exception)
@@ -56,14 +56,14 @@ namespace BLL
             }
             return guardado;
         }
-        private static bool Modificar(Planes plan)
+        private static bool Modificar(Averias averias)
         {
             Contexto contexto = new Contexto();
             bool modificado = false;
 
             try
             {
-                contexto.Entry(plan).State = EntityState.Modified;
+                contexto.Entry(averias).State = EntityState.Modified;
                 modificado = contexto.SaveChanges() > 0;
             }
             catch (Exception)
@@ -76,14 +76,14 @@ namespace BLL
             }
             return modificado;
         }
-        public static Planes? Buscar(int? id)
+        public static Averias? Buscar(int? id)
         {
             Contexto contexto = new Contexto();
-            Planes? plan;
+            Averias? averias;
 
             try
             {
-                plan = contexto.Planes.AsNoTracking().FirstOrDefault(p => p.PlanId == id);
+                averias = contexto.Averias.AsNoTracking().FirstOrDefault(p => p.AveriaId == id);
             }
             catch (Exception)
             {
@@ -93,24 +93,22 @@ namespace BLL
             {
                 contexto.Dispose();
             }
-            return plan;
+            return averias;
         }
         public static bool Eliminar(int id)
         {
             Contexto contexto = new Contexto();
-            bool eliminado = false;
-
+            bool paso = false;
             try
             {
-                var plan = contexto.Planes.Find(id);
-                if(plan!=null)
+                var averias = contexto.Averias.Find(id);
+                if (averias != null)
                 {
-                    plan.Existente = false;
-                    contexto.Entry(plan).State = EntityState.Modified;
-                    eliminado = contexto.SaveChanges() > 0;
+                    contexto.Entry(averias).State = EntityState.Deleted;
+                    paso = contexto.SaveChanges() > 0;
                 }
             }
-            catch (Exception)
+            catch
             {
                 throw;
             }
@@ -118,7 +116,7 @@ namespace BLL
             {
                 contexto.Dispose();
             }
-            return eliminado;
+            return paso;
         }
         public static bool EliminarPermanente(int? id)
         {
@@ -127,10 +125,10 @@ namespace BLL
 
             try
             {
-                var plan = contexto.Planes.Find(id);
-                if(plan!=null)
+                var averias = contexto.Averias.Find(id);
+                if (averias != null)
                 {
-                    contexto.Planes.Remove(plan);
+                    contexto.Averias.Remove(averias);
                     eliminado = contexto.SaveChanges() > 0;
                 }
             }
@@ -144,14 +142,14 @@ namespace BLL
             }
             return eliminado;
         }
-        public static List<Planes> GetListNoExistentes(Expression<Func<Planes, bool>> criterio)
+        public static List<Averias> GetListNoExistentes(Expression<Func<Averias, bool>> criterio)
         {
             Contexto contexto = new Contexto();
-            List<Planes> lista = new List<Planes>();
+            List<Averias> lista = new List<Averias>();
 
             try
             {
-                lista = contexto.Planes.Where(criterio)
+                lista = contexto.Averias.Where(criterio)
                 .AsNoTracking()
                 .ToList();
             }
@@ -163,16 +161,16 @@ namespace BLL
             {
                 contexto.Dispose();
             }
-            return lista.Where(p => p.Existente == false).ToList();
+            return lista;
         }
-        public static List<Planes> GetListExistentes(Expression<Func<Planes, bool>> criterio)
+        public static List<Averias> GetListExistentes(Expression<Func<Averias, bool>> criterio)
         {
             Contexto contexto = new Contexto();
-            List<Planes> lista = new List<Planes>();
+            List<Averias> lista = new List<Averias>();
 
             try
             {
-                lista = contexto.Planes.Where(criterio)
+                lista = contexto.Averias.Where(criterio)
                 .AsNoTracking()
                 .ToList();
             }
@@ -184,7 +182,7 @@ namespace BLL
             {
                 contexto.Dispose();
             }
-            return lista.Where(p => p.Existente).ToList();
+            return lista;
         }
     }
 }

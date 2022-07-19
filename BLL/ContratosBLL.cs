@@ -160,8 +160,10 @@ namespace BLL
 				var contrato = contexto.Contratos.Find(ContratoId);
 				if(contrato!=null) //Si encontro un contrato con ese ID
 				{
-					contexto.Contratos.Remove(contrato);
-					paso = contexto.SaveChanges()>0;
+					contrato.Existente = false;
+					contexto.Entry(contrato).State = EntityState.Modified;
+					paso = contexto.SaveChanges() > 0;
+
 				}
 			}
 			catch
@@ -174,7 +176,33 @@ namespace BLL
 			}
 			return paso;
 		}//Delete
-		public static List<Contratos> GetList(Expression<Func<Contratos, bool>> expression)
+		public static bool EliminarPermanente(int? id)
+		{
+			Contexto contexto = new Contexto();
+			bool paso = false;
+
+			try
+			{
+				var contrato = contexto.Contratos.Find(id);
+				if(contrato!=null) //Si encontro un contrato con ese ID
+				{
+					contexto.Contratos.Remove(contrato);
+
+					paso = contexto.SaveChanges() > 0;
+
+				}
+			}
+			catch
+			{
+				throw;
+			}
+			finally
+			{
+				contexto.Dispose();
+			}
+			return paso;
+		}
+		public static List<Contratos> GetListExistentes(Expression<Func<Contratos, bool>> expression)
 		{
 			Contexto contexto = new Contexto();
 			List<Contratos> contratos;
@@ -190,6 +218,7 @@ namespace BLL
 				contratos = contexto.Contratos.Where(expression)
 				.AsNoTracking()
 				.ToList();
+				
 			}
 			catch
 			{
@@ -199,7 +228,49 @@ namespace BLL
 			{
 				contexto.Dispose();
 			}
-			return contratos;
+			return contratos.Where(c=>c.Existente).ToList();
+		}
+		public static List<Contratos> GetListNoExistentes(Expression<Func<Contratos, bool>> expression)
+		{
+			Contexto contexto = new Contexto();
+			List<Contratos> contratos;
+			try
+			{
+				contratos = contexto.Contratos.Where(expression)
+				.AsNoTracking()
+				.ToList();
+				
+				if(contratos!=null)
+					foreach(var contrato in contratos)  ActualizarContrato(contrato);//actualiza todos los contratos
+
+				contratos = contexto.Contratos.Where(expression)
+				.AsNoTracking()
+				.ToList();
+				
+			}
+			catch
+			{
+				throw;
+			}
+			finally
+			{
+				contexto.Dispose();
+			}
+			return contratos.Where(c => !c.Existente).ToList();
+		}
+		public static List<Contratos> GetListSuspendidosNoExistentes(Expression<Func<Contratos, bool>> expression)
+		{
+			var lista = new List<Contratos>();
+			lista = GetListNoExistentes(expression);
+
+			return lista.Where(c => c.Estado == 2).ToList();
+		}
+		public static List<Contratos> GetListSuspendidosExistentes(Expression<Func<Contratos, bool>> expression)
+		{
+			var lista = new List<Contratos>();
+			lista = GetListExistentes(expression);
+
+			return lista.Where(c => c.Estado == 2).ToList();
 		}
 	}
 }

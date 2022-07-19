@@ -5,72 +5,112 @@
         xmlns:local="clr-namespace:UI" 
         mc:Ignorable="d" 
         Title="Consulta de Pagos" 
-        Height="700" Width="1200" 
+        Height="740" Width="1250"
+        MinHeight="740"
+        MinWidth="1250"
         WindowStartupLocation="CenterScreen" 
         Icon="/Resources/Pagos.png" 
-        Background="#FFC1C1C1" 
-        WindowStyle="ThreeDBorderWindow" KeyDown="PresionoTecla">
+        Background="#DADADA" 
+        WindowStyle="ThreeDBorderWindow" KeyDown="PresionoTecla" GotFocus="cPagosFocus">
     <DockPanel KeyDown="PresionoTecla">
         <StackPanel Margin="20,20,20,5" VerticalAlignment="Top" Orientation="Horizontal" Height="45" DockPanel.Dock="Top">
             <Label Content="Consulta de Pagos" FontSize="24" FontFamily="Impact" />
-            <Button Background="#00FF9800" BorderBrush="#00FF9800" Height="40" Width="67" Click="Refrescar" RenderTransformOrigin="0.5,0.5">
-                <Image Source="/Resources/Refrescar.png" VerticalAlignment="Top" ToolTip="Refrecar consulta (f" IsHitTestVisible="False" Stretch="Fill" Height="25" Width="25"/>
-            </Button>
         </StackPanel>
         <StackPanel KeyDown="PresionoTecla">
             <!-- Filtros y botones -->
             <DockPanel Margin="20,0" VerticalAlignment="Top">
-                <!--Filtro-->
-                <StackPanel Margin="20,0,20,0">
-                    <Label Content="Filtro" />
-                    <ComboBox x:Name="FiltroBox" Width="200">
-                        <ComboBoxItem Content="ID" />
-                        <ComboBoxItem Content="No Contrato" />
-                        <ComboBoxItem Content="Tipo Pago" />
-                        <ComboBoxItem Content="Monto" />
-                        <ComboBoxItem Content="Asunto" />
-                    </ComboBox>
-                </StackPanel>
-                <!--Fecha desde-->
-                <StackPanel Margin="20,0,20,0">
-                    <Label Content="Fecha desde" />
-                    <DatePicker x:Name="DesdePicker" Width="100" />
-                </StackPanel>
-                <!--Fecha hasta-->
-                <StackPanel Margin="20,0,20,0">
-                    <Label Content="Fecha hasta" />
-                    <DatePicker x:Name="HastaPicker" Width="100" />
-                </StackPanel>
-                <!--Fecha busqueda-->
-                <StackPanel Margin="20,0,20,0">
-                    <Label Content="Búsqueda" />
-                    <TextBox x:Name="BusquedaTB" KeyDown="BusquedaTB_KeyDown" Width="490" />
-                </StackPanel>
-                <!--Boton Buscar-->
-                <Button HorizontalAlignment="Left" Click="BuscarBTN_Click" VerticalAlignment="Top" Margin="0,20,0,0" Width="88" Height="26" BorderBrush="#FF4C5FBD" Background="#437FA6" Foreground="White">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Lupa.png" />
-                        <Label HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontStyle="Normal" Foreground="#FF383838" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="11" FontFamily="Bahnschrift SemiBold" Content="Buscar" />
+                <!-- Fechas -->
+                <StackPanel Orientation="Vertical">
+                    <!--Fecha desde-->
+                    <StackPanel Orientation= "Horizontal"  Margin="20,0,20,0">
+                        <Label Content="Desde" />
+                        <DatePicker x:Name="DesdePicker"  Width="100" />
                     </StackPanel>
-                </Button>
+                    <!--Fecha hasta-->
+                    <StackPanel Orientation= "Horizontal" Margin="20,0,20,0">
+                        <Label Content="Hasta " />
+                        <DatePicker x:Name="HastaPicker"  Width="100" />
+                    </StackPanel>
+                </StackPanel>
+                <!--Nombre y apellido Cliente-->
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation= "Horizontal"  Margin="20,0,20,0">
+                        <Label Content="Nombre cliente" />
+                        <TextBox x:Name="NombreTB"  Width="100" />
+                    </StackPanel>
+                    <StackPanel Orientation= "Horizontal" Margin="20,0,20,0">
+                        <Label Content="Apellido Cliente" />
+                        <TextBox x:Name="ApellidoTB"  Width="100" />
+                    </StackPanel>
+                </StackPanel>
+                <!-- Tipo Pago y asunto -->
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation= "Horizontal"  Margin="20,0,20,0">
+                        <Label Content="Tipo  pago" />
+                        <TextBox x:Name="TipoPagoTB"  Width="100" />
+                    </StackPanel>
+                    <StackPanel Orientation= "Horizontal" HorizontalAlignment="Right" Margin="20,0,20,0">
+                        <Label Content="Asunto" />
+                        <TextBox x:Name="AsuntoTB"  Width="100" />
+                    </StackPanel>
+                </StackPanel>
+                <!-- Filtro y Busqueda -->
+                <Border CornerRadius="0" Margin="20,0,20,0" BorderThickness="0.5" BorderBrush="LightSlateGray">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20,0,20,0">
+                            <Label Content="Filtro" />
+                            <ComboBox x:Name="FiltroBox" Width="270">
+                                <ComboBoxItem Content="ID" />
+                                <ComboBoxItem Content="No Contrato" />
+                                <ComboBoxItem Content="Monto" />
+                                <ComboBoxItem Content="Cedula" />
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,0,20,0">
+                            <Label Content="Búsqueda" />
+                            <TextBox x:Name="BusquedaTB" KeyDown="BusquedaTB_KeyDown"  Width="270" />
+                        </StackPanel>
+
+                    </StackPanel>
+                </Border>
+
+                <StackPanel Orientation="Vertical" DockPanel.Dock="Right">
+
+                    <Button Background="#00FF9800" BorderBrush="#00FF9800" HorizontalAlignment="Left" Margin="20,0,0,0" Height="40" Width="67" Click="Refrescar" RenderTransformOrigin="0.5,0.5">
+                        <Image Source="/Resources/Refrescar.png" VerticalAlignment="Top" ToolTip="Refrecar (f5)" Stretch="Fill" Height="25" Width="25" Tag="Refrecar (f5)"/>
+                    </Button>
+
+                    <Button HorizontalAlignment="Left" Click="BuscarBTN_Click" VerticalAlignment="Top" Width="100" Height="30" BorderBrush="#FF4C5FBD" Background="#437FA6" Foreground="White" ToolTip="Buscar (Enter)">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Resources/Lupa.png" />
+                            <Label HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontStyle="Normal" Foreground="#FF383838" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="11" FontFamily="Bahnschrift SemiBold" Content="Buscar" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
             </DockPanel>
-            <StackPanel Margin="20">
-                <DataGrid x:Name="TablaDatos" CanUserReorderColumns="False" CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" IsReadOnly="True" CanUserSortColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ContratoId" Binding="{Binding PagoId}" />
-                        <DataGridTextColumn Header="NoContrato" Binding="{Binding NoContrato}" />
-                        <DataGridTextColumn Header="Tipo de pago" Binding="{Binding TipoPago}" />
-                        <DataGridTextColumn Header="Monto" Binding="{Binding MontoPago}" />
-                        <DataGridTextColumn Header="Asunto" Binding="{Binding Asunto}" />
-                        <DataGridTextColumn Header="Fecha pago" Binding="{Binding FechaPago}" />
-                    </DataGrid.Columns>
-                    <DataGrid.Resources>
-                        <Style TargetType="DataGridRow">
-                            <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" />
-                        </Style>
-                    </DataGrid.Resources>
-                </DataGrid>
-            </StackPanel>
+            <DockPanel Height="500" Margin="20" Background="Gray">
+                <Border CornerRadius="50" Grid.Column="1">
+                    <DataGrid  x:Name="TablaDatos"  CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" IsReadOnly="True" CanUserSortColumns="False" CanUserResizeRows="False" AlternatingRowBackground="#F7F7F7" DockPanel.Dock="Left" CanUserResizeColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding PagoId}" />
+                            <DataGridTextColumn Header="NoContrato" Binding="{Binding NoContrato}" />
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding NombreCliente}" />
+                            <DataGridTextColumn Header="Apellido" Binding="{Binding ApellidoCliente}" />
+                            <DataGridTextColumn Header="Cedula" Binding="{Binding CedulaCliente}" />
+                            <DataGridTextColumn Header="Tipo de pago" Binding="{Binding TipoPago}" />
+                            <DataGridTextColumn Header="Monto" Binding="{Binding MontoPago}" />
+                            <DataGridTextColumn Header="Asunto" Binding="{Binding Asunto}" />
+                            <DataGridTextColumn Header="Fecha pago" Binding="{Binding FechaPago}" />
+                        </DataGrid.Columns>
+                        <DataGrid.Resources>
+                            <Style TargetType="DataGridRow">
+                                <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" />
+                            </Style>
+                        </DataGrid.Resources>
+                    </DataGrid>
+                </Border>
+            </DockPanel>
         </StackPanel>
     </DockPanel>
 </Window>

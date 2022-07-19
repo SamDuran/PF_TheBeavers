@@ -101,6 +101,31 @@ namespace BLL
 				var pago = contexto.Pagos.Find(PagoId);
 				if(pago!=null) 
 				{
+					pago.Existente = false;
+					contexto.Entry(pago).State = EntityState.Modified;
+					paso = contexto.SaveChanges()>0;
+				}
+			}
+			catch
+			{
+				throw;
+			}
+			finally
+			{
+				contexto.Dispose();
+			}
+			return paso;
+		}
+        public static bool EliminarPermanente(int? PagoId)
+		{
+			Contexto contexto = new Contexto();
+			bool paso = false;
+
+			try
+			{
+				var pago = contexto.Pagos.Find(PagoId);
+				if(pago!=null) 
+				{
 					contexto.Pagos.Remove(pago);
 					paso = contexto.SaveChanges()>0;
 				}
@@ -115,7 +140,7 @@ namespace BLL
 			}
 			return paso;
 		}
-		public static List<Pagos> GetList(Expression<Func<Pagos, bool>> criterio)
+		public static List<Pagos> GetListNoExistentes(Expression<Func<Pagos, bool>> criterio)
 		{
 			Contexto contexto = new Contexto();
 			List<Pagos> lista;
@@ -132,7 +157,26 @@ namespace BLL
 			{
 				contexto.Dispose();
 			}
-			return lista;
+			return lista.Where(p => p.Existente == false).ToList();
+		}
+		public static List<Pagos> GetListExistentes(Expression<Func<Pagos, bool>> criterio)
+		{
+			Contexto contexto = new Contexto();
+			List<Pagos> lista;
+
+			try
+			{
+				lista = contexto.Pagos.Where(criterio).AsNoTracking().ToList();
+			}
+			catch
+			{
+				throw;
+			}
+			finally
+			{
+				contexto.Dispose();
+			}
+			return lista.Where(p => p.Existente).ToList();
 		}
 	}
 }

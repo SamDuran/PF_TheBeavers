@@ -1,5 +1,7 @@
 ﻿using UI;
 using System.Windows;
+using System.Windows.Input;
+
 namespace PF_THEBEAVERS
 {
     public partial class MainWindow : Window
@@ -27,6 +29,12 @@ namespace PF_THEBEAVERS
             rPagos PagosView = new rPagos();
             PagosView.Show();
         }
+
+        private void rAverias_Click(object sender, RoutedEventArgs e)
+        {
+            rAverias AveriasView = new rAverias();
+            AveriasView.Show();
+        } 
         private void cContratos_Click(object sender, RoutedEventArgs e)
         {
             cContratos ContratosView = new cContratos();
@@ -37,6 +45,16 @@ namespace PF_THEBEAVERS
             cPagos PagosView = new cPagos();
             PagosView.Show();
         }
+        private void cPlanes_Click(object sender, RoutedEventArgs e)
+        {
+            //cPlanes PlanesView = new cPlanes();
+            //PlanesView.Show();
+        }
+        private void pContratos_Click(object sender, RoutedEventArgs e)
+        {
+            pContratos ContratosView = new pContratos();
+            ContratosView.Show();
+        }
 
         private void CerrarSesionMenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -46,5 +64,5 @@ namespace PF_THEBEAVERS
                 this.Close();
             }
         }
-    }
+	}
 }
