@@ -40,7 +40,7 @@
                     </StackPanel>
                 </Button>
 
-                <Button Margin="0,1,0,0" HorizontalAlignment="Left" Click="PagarBTN_Click" VerticalAlignment="Top" Width="120" Height="24" BorderBrush="#FF256F79" Background="#FF378690" Foreground="White" ToolTip="Buscar (Enter)" Cursor="Hand">
+                <Button Margin="0,1,0,0" HorizontalAlignment="Left" Click="PagarBTN_Click" VerticalAlignment="Top" Width="120" Height="24" BorderBrush="#FF256F79" Background="#FF378690" Foreground="White" ToolTip="Click derecho en tupla a pagar" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Resources/Pagos.png" />
                         <Label HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontStyle="Normal" Foreground="White" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="9" FontFamily="Bahnschrift SemiBold" Content="Realizar pago" />
@@ -125,7 +125,7 @@
 
             <DockPanel Height="500" Margin="20" Background="Gray">
                 <Border CornerRadius="50" Grid.Column="1">
-                    <DataGrid x:Name="TablaDatos"  CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" IsReadOnly="True" CanUserSortColumns="False" CanUserResizeRows="False" AlternatingRowBackground="#F7F7F7" DockPanel.Dock="Left" CanUserResizeColumns="False">
+                    <DataGrid x:Name="TablaDatos"  CanUserDeleteRows="False" CanUserAddRows="False" AutoGenerateColumns="False" IsReadOnly="True" CanUserSortColumns="False" CanUserResizeRows="False" AlternatingRowBackground="#F7F7F7" DockPanel.Dock="Left" CanUserResizeColumns="False" IsManipulationEnabled="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding ContratoId}" />
                             <DataGridTextColumn Header="NoContrato" Binding="{Binding NoContrato}" />
