@@ -10,6 +10,25 @@ namespace PF_THEBEAVERS.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Averias",
+                columns: table => new
+                {
+                    AveriaId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ClienteId = table.Column<int>(type: "INTEGER", nullable: true),
+                    TecnicoId = table.Column<int>(type: "INTEGER", nullable: true),
+                    Nombre = table.Column<string>(type: "TEXT", nullable: false),
+                    FechaCreacion = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Descripcion = table.Column<string>(type: "TEXT", nullable: false),
+                    TipoAveriaId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Averias", x => x.AveriaId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Clientes",
                 columns: table => new
                 {
@@ -96,6 +115,34 @@ namespace PF_THEBEAVERS.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tecnicos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nombre = table.Column<string>(type: "TEXT", nullable: false),
+                    Apellido = table.Column<string>(type: "TEXT", nullable: false),
+                    NoCarnet = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tecnicos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TipoAverias",
+                columns: table => new
+                {
+                    TipoAveriaId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    NombreAveria = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TipoAverias", x => x.TipoAveriaId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TipoPagos",
                 columns: table => new
                 {
@@ -137,24 +184,69 @@ namespace PF_THEBEAVERS.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Planes",
-                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
-                values: new object[] { 1, "3 Mbps/1 Mbps + 150 canales", true, new DateTime(2022, 7, 18, 20, 25, 42, 8, DateTimeKind.Local).AddTicks(9514), new DateTime(2022, 7, 18, 20, 25, 42, 8, DateTimeKind.Local).AddTicks(9516), "Combo Básico", 1000f, 1 });
+                table: "Clientes",
+                columns: new[] { "Id", "Apellido", "Cedula", "Nombre" },
+                values: new object[] { 1, "", "", "Cliente No Registrado" });
 
             migrationBuilder.InsertData(
                 table: "Planes",
                 columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
-                values: new object[] { 2, "10 Mbps/3 Mbps + 175 canales", true, new DateTime(2022, 7, 18, 20, 25, 42, 8, DateTimeKind.Local).AddTicks(9574), new DateTime(2022, 7, 18, 20, 25, 42, 8, DateTimeKind.Local).AddTicks(9575), "Combo Medio", 1700f, 2 });
+                values: new object[] { 1, "3 Mbps/1 Mbps + 150 canales", true, new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(6932), new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(6935), "Combo Básico", 1000f, 1 });
 
             migrationBuilder.InsertData(
                 table: "Planes",
                 columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
-                values: new object[] { 3, "50 Mbps/10 Mbps + 275 canales", true, new DateTime(2022, 7, 18, 20, 25, 42, 8, DateTimeKind.Local).AddTicks(9622), new DateTime(2022, 7, 18, 20, 25, 42, 8, DateTimeKind.Local).AddTicks(9624), "Combo Premium", 2850f, 3 });
+                values: new object[] { 2, "10 Mbps/3 Mbps + 175 canales", true, new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(7016), new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(7019), "Combo Medio", 1700f, 2 });
 
             migrationBuilder.InsertData(
                 table: "Planes",
                 columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
-                values: new object[] { 4, "25 Mbps/5 Mbps + 225 canales", true, new DateTime(2022, 7, 18, 20, 25, 42, 8, DateTimeKind.Local).AddTicks(9671), new DateTime(2022, 7, 18, 20, 25, 42, 8, DateTimeKind.Local).AddTicks(9672), "Combo Deluxe", 2500f, 3 });
+                values: new object[] { 3, "50 Mbps/10 Mbps + 275 canales", true, new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(7084), new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(7086), "Combo Premium", 2850f, 3 });
+
+            migrationBuilder.InsertData(
+                table: "Planes",
+                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
+                values: new object[] { 4, "25 Mbps/5 Mbps + 225 canales", true, new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(7151), new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(7153), "Combo Deluxe", 2500f, 3 });
+
+            migrationBuilder.InsertData(
+                table: "Tecnicos",
+                columns: new[] { "Id", "Apellido", "NoCarnet", "Nombre" },
+                values: new object[] { 1, "Baltodano", "1234567891", "Luis Rafael Baltodano" });
+
+            migrationBuilder.InsertData(
+                table: "Tecnicos",
+                columns: new[] { "Id", "Apellido", "NoCarnet", "Nombre" },
+                values: new object[] { 2, "Reyes", "1234567892", "Jeison Reyes" });
+
+            migrationBuilder.InsertData(
+                table: "Tecnicos",
+                columns: new[] { "Id", "Apellido", "NoCarnet", "Nombre" },
+                values: new object[] { 3, "Duran", "1234567893", "Samuel Duran" });
+
+            migrationBuilder.InsertData(
+                table: "Tecnicos",
+                columns: new[] { "Id", "Apellido", "NoCarnet", "Nombre" },
+                values: new object[] { 4, "Rosario", "1234567894", "Elianny Rosario" });
+
+            migrationBuilder.InsertData(
+                table: "Tecnicos",
+                columns: new[] { "Id", "Apellido", "NoCarnet", "Nombre" },
+                values: new object[] { 5, "Justo", "1234567895", "Yunilda Justo" });
+
+            migrationBuilder.InsertData(
+                table: "TipoAverias",
+                columns: new[] { "TipoAveriaId", "NombreAveria" },
+                values: new object[] { 1, "Fibra Rota" });
+
+            migrationBuilder.InsertData(
+                table: "TipoAverias",
+                columns: new[] { "TipoAveriaId", "NombreAveria" },
+                values: new object[] { 2, "No Señal" });
+
+            migrationBuilder.InsertData(
+                table: "TipoAverias",
+                columns: new[] { "TipoAveriaId", "NombreAveria" },
+                values: new object[] { 3, "Averia General" });
 
             migrationBuilder.InsertData(
                 table: "TipoPagos",
@@ -220,6 +312,9 @@ namespace PF_THEBEAVERS.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Averias");
+
+            migrationBuilder.DropTable(
                 name: "Clientes");
 
             migrationBuilder.DropTable(
@@ -230,6 +325,12 @@ namespace PF_THEBEAVERS.Migrations
 
             migrationBuilder.DropTable(
                 name: "Planes");
+
+            migrationBuilder.DropTable(
+                name: "Tecnicos");
+
+            migrationBuilder.DropTable(
+                name: "TipoAverias");
 
             migrationBuilder.DropTable(
                 name: "TipoPagos");

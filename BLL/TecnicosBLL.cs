@@ -8,22 +8,22 @@ using DAL;
 
 namespace BLL
 {
-    public class ClientesBLL
+    public class TecnicosBLL
     {
-        public static void Guardar(Clientes cliente)
+        public static void Guardar(Tecnicos tecnico)
         {
-            if (!Existe(cliente.Id))
-                Insertar(cliente);
+            if (!Existe(tecnico.Id))
+                Insertar(tecnico);
             else
-                Modificar(cliente);
+                Modificar(tecnico);
         }
-        private static bool Insertar(Clientes cliente)
+        private static bool Insertar(Tecnicos tecnico)
         {
             Contexto contexto = new Contexto();
             bool paso = false;
             try
             {
-                contexto.Clientes.Add(cliente);
+                contexto.Tecnicos.Add(tecnico);
                 paso = contexto.SaveChanges() > 0;
             }
             catch
@@ -36,13 +36,13 @@ namespace BLL
             }
             return paso;
         }
-        private static bool Modificar(Clientes cliente)
+        private static bool Modificar(Tecnicos tecnico)
         {
             Contexto contexto = new Contexto();
             bool paso = false;
             try
             {
-                contexto.Entry(cliente).State = EntityState.Modified;
+                contexto.Entry(tecnico).State = EntityState.Modified;
                 paso = contexto.SaveChanges() > 0;
             }
             catch
@@ -61,7 +61,7 @@ namespace BLL
             bool encontrado = false;
             try
             {//encontrato es true si es diferente de null
-                encontrado = contexto.Clientes.Any(c => c.Id == id);
+                encontrado = contexto.Tecnicos.Any(c => c.Id == id);
             }
             catch
             {
@@ -73,13 +73,13 @@ namespace BLL
             }
             return encontrado;
         }
-        public static Clientes? BuscarCedula(string cedula)
+        public static Tecnicos? BuscarCarnet(string Carnet)
         {
             Contexto contexto = new Contexto();
-            Clientes? cliente ;
+            Tecnicos? tecnico = new Tecnicos();
             try
             {
-                cliente = contexto.Clientes.AsNoTracking().FirstOrDefault(c => c.Cedula == cedula);
+                tecnico = contexto.Tecnicos.AsNoTracking().FirstOrDefault(c => c.NoCarnet == Carnet);
             }
             catch
             {
@@ -89,15 +89,15 @@ namespace BLL
             {
                 contexto.Dispose();
             }
-            return cliente;
+            return tecnico;
         }
-        public static Clientes? Buscar(int id)
+        public static Tecnicos? Buscar(int id)
         {
             Contexto contexto = new Contexto();
-            Clientes? cliente;
+            Tecnicos? tecnico;
             try
             {
-                cliente = contexto.Clientes.Where(c => c.Id == id)
+                tecnico = contexto.Tecnicos.Where(c => c.Id == id)
                 .AsNoTracking()
                 .FirstOrDefault();
             }
@@ -109,7 +109,7 @@ namespace BLL
             {
                 contexto.Dispose();
             }
-            return cliente;
+            return tecnico;
         }
         public static bool Eliminar(int id)
         {
@@ -117,10 +117,10 @@ namespace BLL
             bool paso = false;
             try
             {
-                var cliente = contexto.Clientes.Find(id);
-                if (cliente != null)
+                var tecnico = contexto.Tecnicos.Find(id);
+                if (tecnico != null)
                 {
-                    contexto.Entry(cliente).State = EntityState.Deleted;
+                    contexto.Entry(tecnico).State = EntityState.Deleted;
                     paso = contexto.SaveChanges() > 0;
                 }
             }
@@ -134,13 +134,13 @@ namespace BLL
             }
             return paso;
         }
-        public static List<Clientes> GetList(Expression<Func<Clientes , bool>> criterio)
+        public static List<Tecnicos> GetList(Expression<Func<Tecnicos , bool>> criterio)
         {
             Contexto contexto = new Contexto();
-            List<Clientes> lista;
+            List<Tecnicos> lista;
             try
             {
-                lista = contexto.Clientes.Where(criterio)
+                lista = contexto.Tecnicos.Where(criterio)
                 .AsNoTracking()
                 .ToList();
             }

@@ -50,6 +50,8 @@
     <Resource Include=".\Resources\CancelarContrato.png" />
     <Resource Include=".\Resources\ShowPassword.png" />
     <Resource Include=".\Resources\HidePassword.png" />
+    <Resource Include=".\Resources\Averias.png" />
+    <Resource Include=".\Resources\AsignAverias.png" />
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="Resources\Splashscreen.png" />

@@ -1,5 +1,5 @@
-using Microsoft.EntityFrameworkCore;
 using System;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace DAL
@@ -12,7 +12,10 @@ namespace DAL
         public DbSet<Pagos> Pagos { get; set; } = null!;
         public DbSet<TipoPagos> TipoPagos { get; set; } = null!;
         public DbSet<Clientes> Clientes { get; set; } = null!;
+        public DbSet<Tecnicos> Tecnicos { get; set; } = null!;
         public DbSet<Usuarios> Usuarios { get; set; } = null!;
+        public DbSet<Averias> Averias { get; set; } = null!;
+        public DbSet<TipoAverias> TipoAverias { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -20,39 +23,46 @@ namespace DAL
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Clientes>().HasData(new Clientes
+                {
+                    Id = 1,
+                    Nombre = "Cliente No Registrado",
+                    Apellido = "",
+                    Cedula = ""
+                });
             // Users
             {
                 builder.Entity<Usuarios>().HasData(new Usuarios
-                    {
-                        UsuarioId = 1,
-                        Nombres = "Luis Rafael Baltodano",
-                        UserName = "RafaelB",
-                        Password = "20200070"
-                    });
+                {
+                    UsuarioId = 1,
+                    Nombres = "Luis Rafael Baltodano",
+                    UserName = "RafaelB",
+                    Password = "20200070"
+                });
 
                 builder.Entity<Usuarios>().HasData(new Usuarios
-                    {
-                        UsuarioId = 2,
-                        Nombres = "Jeison Reyes",
-                        UserName = "JeisonR",
-                        Password = "20190564"
-                    });
+                {
+                    UsuarioId = 2,
+                    Nombres = "Jeison Reyes",
+                    UserName = "JeisonR",
+                    Password = "20190564"
+                });
 
                 builder.Entity<Usuarios>().HasData(new Usuarios
-                    {
-                        UsuarioId = 3,
-                        Nombres = "Samuel Duran",
-                        UserName = "SamuelD",
-                        Password = "20190793"
-                    });
+                {
+                    UsuarioId = 3,
+                    Nombres = "Samuel Duran",
+                    UserName = "SamuelD",
+                    Password = "20190793"
+                });
 
                 builder.Entity<Usuarios>().HasData(new Usuarios
-                    {
-                        UsuarioId = 4,
-                        Nombres = "Elianny Rosario",
-                        UserName = "EliannyR",
-                        Password = "20190255"
-                    });
+                {
+                    UsuarioId = 4,
+                    Nombres = "Elianny Rosario",
+                    UserName = "EliannyR",
+                    Password = "20190255"
+                });
 
                 builder.Entity<Usuarios>().HasData(new Usuarios
                 {
@@ -87,8 +97,65 @@ namespace DAL
                     NombrePlan = "Plan Premium"
                 });
             }
+            //Tecnicos
+            {
+                builder.Entity<Tecnicos>().HasData(new Tecnicos
+                {
+                    Id = 1,
+                    Nombre = "Luis Rafael Baltodano",
+                    Apellido = "Baltodano",
+                    NoCarnet = "1234567891"
+                });
+                builder.Entity<Tecnicos>().HasData(new Tecnicos
+                {
+                    Id = 2,
+                    Nombre = "Jeison Reyes",
+                    Apellido = "Reyes",
+                    NoCarnet = "1234567892"
+                });
+                builder.Entity<Tecnicos>().HasData(new Tecnicos
+                {
+                    Id = 3,
+                    Nombre = "Samuel Duran",
+                    Apellido = "Duran",
+                    NoCarnet = "1234567893"
+                });
+                builder.Entity<Tecnicos>().HasData(new Tecnicos
+                {
+                    Id = 4,
+                    Nombre = "Elianny Rosario",
+                    Apellido = "Rosario",
+                    NoCarnet = "1234567894"
+                });
+                builder.Entity<Tecnicos>().HasData(new Tecnicos
+                {
+                    Id = 5,
+                    Nombre = "Yunilda Justo",
+                    Apellido = "Justo",
+                    NoCarnet = "1234567895"
+                });
+
+            }
+            // Tipo Averias
+            {
+                builder.Entity<TipoAverias>().HasData(new TipoAverias
+                {
+                    TipoAveriaId = 1,
+                    NombreAveria = "Fibra Rota"
+                });
+                builder.Entity<TipoAverias>().HasData(new TipoAverias
+                {
+                    TipoAveriaId = 2,
+                    NombreAveria = "No Señal"
+                });
+                builder.Entity<TipoAverias>().HasData(new TipoAverias
+                {
+                    TipoAveriaId = 3,
+                    NombreAveria = "Averia General"
+                });
+            }
             //Tipo Pagos
-			{
+            {
                 builder.Entity<TipoPagos>().HasData(new TipoPagos
                 {
                     TipoPagoId = 1,

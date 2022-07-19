@@ -17,6 +17,40 @@ namespace PF_THEBEAVERS.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
 
+            modelBuilder.Entity("Models.Averias", b =>
+                {
+                    b.Property<int>("AveriaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ClienteId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("FechaModificacion")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("TecnicoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TipoAveriaId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("AveriaId");
+
+                    b.ToTable("Averias");
+                });
+
             modelBuilder.Entity("Models.Clientes", b =>
                 {
                     b.Property<int>("Id")
@@ -38,6 +72,15 @@ namespace PF_THEBEAVERS.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clientes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Apellido = "",
+                            Cedula = "",
+                            Nombre = "Cliente No Registrado"
+                        });
                 });
 
             modelBuilder.Entity("Models.Contratos", b =>
@@ -200,8 +243,8 @@ namespace PF_THEBEAVERS.Migrations
                             PlanId = 1,
                             Descripcion = "3 Mbps/1 Mbps + 150 canales",
                             Estado = true,
-                            FechaCreacion = new DateTime(2022, 7, 18, 20, 25, 42, 8, DateTimeKind.Local).AddTicks(9514),
-                            FechaModificacion = new DateTime(2022, 7, 18, 20, 25, 42, 8, DateTimeKind.Local).AddTicks(9516),
+                            FechaCreacion = new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(6932),
+                            FechaModificacion = new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(6935),
                             Nombre = "Combo Básico",
                             Precio = 1000f,
                             TipoPlanId = 1
@@ -211,8 +254,8 @@ namespace PF_THEBEAVERS.Migrations
                             PlanId = 2,
                             Descripcion = "10 Mbps/3 Mbps + 175 canales",
                             Estado = true,
-                            FechaCreacion = new DateTime(2022, 7, 18, 20, 25, 42, 8, DateTimeKind.Local).AddTicks(9574),
-                            FechaModificacion = new DateTime(2022, 7, 18, 20, 25, 42, 8, DateTimeKind.Local).AddTicks(9575),
+                            FechaCreacion = new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(7016),
+                            FechaModificacion = new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(7019),
                             Nombre = "Combo Medio",
                             Precio = 1700f,
                             TipoPlanId = 2
@@ -222,8 +265,8 @@ namespace PF_THEBEAVERS.Migrations
                             PlanId = 3,
                             Descripcion = "50 Mbps/10 Mbps + 275 canales",
                             Estado = true,
-                            FechaCreacion = new DateTime(2022, 7, 18, 20, 25, 42, 8, DateTimeKind.Local).AddTicks(9622),
-                            FechaModificacion = new DateTime(2022, 7, 18, 20, 25, 42, 8, DateTimeKind.Local).AddTicks(9624),
+                            FechaCreacion = new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(7084),
+                            FechaModificacion = new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(7086),
                             Nombre = "Combo Premium",
                             Precio = 2850f,
                             TipoPlanId = 3
@@ -233,11 +276,103 @@ namespace PF_THEBEAVERS.Migrations
                             PlanId = 4,
                             Descripcion = "25 Mbps/5 Mbps + 225 canales",
                             Estado = true,
-                            FechaCreacion = new DateTime(2022, 7, 18, 20, 25, 42, 8, DateTimeKind.Local).AddTicks(9671),
-                            FechaModificacion = new DateTime(2022, 7, 18, 20, 25, 42, 8, DateTimeKind.Local).AddTicks(9672),
+                            FechaCreacion = new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(7151),
+                            FechaModificacion = new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(7153),
                             Nombre = "Combo Deluxe",
                             Precio = 2500f,
                             TipoPlanId = 3
+                        });
+                });
+
+            modelBuilder.Entity("Models.Tecnicos", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Apellido")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NoCarnet")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tecnicos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Apellido = "Baltodano",
+                            NoCarnet = "1234567891",
+                            Nombre = "Luis Rafael Baltodano"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Apellido = "Reyes",
+                            NoCarnet = "1234567892",
+                            Nombre = "Jeison Reyes"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Apellido = "Duran",
+                            NoCarnet = "1234567893",
+                            Nombre = "Samuel Duran"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Apellido = "Rosario",
+                            NoCarnet = "1234567894",
+                            Nombre = "Elianny Rosario"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Apellido = "Justo",
+                            NoCarnet = "1234567895",
+                            Nombre = "Yunilda Justo"
+                        });
+                });
+
+            modelBuilder.Entity("Models.TipoAverias", b =>
+                {
+                    b.Property<int>("TipoAveriaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("NombreAveria")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("TipoAveriaId");
+
+                    b.ToTable("TipoAverias");
+
+                    b.HasData(
+                        new
+                        {
+                            TipoAveriaId = 1,
+                            NombreAveria = "Fibra Rota"
+                        },
+                        new
+                        {
+                            TipoAveriaId = 2,
+                            NombreAveria = "No Señal"
+                        },
+                        new
+                        {
+                            TipoAveriaId = 3,
+                            NombreAveria = "Averia General"
                         });
                 });
 

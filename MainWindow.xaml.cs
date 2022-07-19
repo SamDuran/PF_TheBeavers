@@ -29,6 +29,17 @@ namespace PF_THEBEAVERS
             rPagos PagosView = new rPagos();
             PagosView.Show();
         }
+
+        private void rAverias_Click(object sender, RoutedEventArgs e)
+        {
+            rAverias AveriasView = new rAverias();
+            AveriasView.Show();
+        } 
+        private void rAsignAverias_Click(object sender, RoutedEventArgs e)
+        {
+            rAveriasSC AveriasView = new rAveriasSC();
+            AveriasView.Show();
+        } 
         private void cContratos_Click(object sender, RoutedEventArgs e)
         {
             cContratos ContratosView = new cContratos();
