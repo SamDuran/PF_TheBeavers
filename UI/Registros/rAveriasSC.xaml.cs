@@ -92,15 +92,12 @@ namespace UI
                     var AveriaAux = AveriasBLL.Buscar(Utilities.Utilities.ToInt(IdAveriasTB.Text));
                     if (AveriaAux != null)
                     {
-
                         Averia = AveriaAux;
                         Cargar();
-
                     }
                     else
-                    {
                         MessageBox.Show("No se encontro el Averia");
-                    }
+                    
                 }
             }
         }

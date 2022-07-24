@@ -191,22 +191,22 @@ namespace PF_THEBEAVERS.Migrations
             migrationBuilder.InsertData(
                 table: "Planes",
                 columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
-                values: new object[] { 1, "3 Mbps/1 Mbps + 150 canales", true, new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(6932), new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(6935), "Combo Básico", 1000f, 1 });
+                values: new object[] { 1, "3 Mbps/1 Mbps + 150 canales", true, new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7764), new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7766), "Combo Básico", 1000f, 1 });
 
             migrationBuilder.InsertData(
                 table: "Planes",
                 columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
-                values: new object[] { 2, "10 Mbps/3 Mbps + 175 canales", true, new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(7016), new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(7019), "Combo Medio", 1700f, 2 });
+                values: new object[] { 2, "10 Mbps/3 Mbps + 175 canales", true, new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7840), new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7842), "Combo Medio", 1700f, 2 });
 
             migrationBuilder.InsertData(
                 table: "Planes",
                 columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
-                values: new object[] { 3, "50 Mbps/10 Mbps + 275 canales", true, new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(7084), new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(7086), "Combo Premium", 2850f, 3 });
+                values: new object[] { 3, "50 Mbps/10 Mbps + 275 canales", true, new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7904), new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7906), "Combo Premium", 2850f, 3 });
 
             migrationBuilder.InsertData(
                 table: "Planes",
                 columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
-                values: new object[] { 4, "25 Mbps/5 Mbps + 225 canales", true, new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(7151), new DateTime(2022, 7, 19, 16, 48, 43, 245, DateTimeKind.Local).AddTicks(7153), "Combo Deluxe", 2500f, 3 });
+                values: new object[] { 4, "25 Mbps/5 Mbps + 225 canales", true, new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7966), new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7967), "Combo Deluxe", 2500f, 3 });
 
             migrationBuilder.InsertData(
                 table: "Tecnicos",

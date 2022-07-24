@@ -42,16 +42,12 @@
                         <Image Source="/Resources/Averias.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
-
                 <MenuItem x:Name="mAverias" Header="Asignar Averias" Click="rAsignAverias_Click">
                     <MenuItem.Icon>
                         <Image Source="/Resources/AsignAverias.png"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
-
             </MenuItem>
-
-
 
             <MenuItem x:Name="Consultas" Background="#FF714E24" Header="Consultas" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF714E24">
                 <MenuItem x:Name="cContratos" Header="Contratos" Click="cContratos_Click">

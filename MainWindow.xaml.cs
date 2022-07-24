@@ -11,7 +11,6 @@ namespace PF_THEBEAVERS
         {
             InitializeComponent();
         }
-
         private void rContratos_Click(object sender, RoutedEventArgs e)
         {
             rContratos ContratosView = new rContratos();
@@ -29,7 +28,6 @@ namespace PF_THEBEAVERS
             rPagos PagosView = new rPagos();
             PagosView.Show();
         }
-
         private void rAverias_Click(object sender, RoutedEventArgs e)
         {
             rAverias AveriasView = new rAverias();
@@ -60,7 +58,6 @@ namespace PF_THEBEAVERS
             pContratos ContratosView = new pContratos();
             ContratosView.Show();
         }
-
         private void CerrarSesionMenuItem_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Está seguro que desea cerrar sesión?", "Volver al Login", MessageBoxButton.YesNo) == MessageBoxResult.Yes)

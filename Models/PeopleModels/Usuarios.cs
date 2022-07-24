@@ -8,9 +8,11 @@ namespace Models
     {
         [Key]
         public int UsuarioId { get; set; }
+        
         public string Nombres { get; set; }
         public string UserName { get; set; }
         public string? Password { get; set; }
+        public TipoUsuarios TipoUsuario { get; set; } = new TipoUsuarios();
         public Usuarios()
         {
             UsuarioId = 0;

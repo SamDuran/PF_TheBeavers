@@ -14,6 +14,7 @@ namespace DAL
         public DbSet<Clientes> Clientes { get; set; } = null!;
         public DbSet<Tecnicos> Tecnicos { get; set; } = null!;
         public DbSet<Usuarios> Usuarios { get; set; } = null!;
+        public DbSet<TipoUsuarios> TipoUsuarios { get; set; } = null!;
         public DbSet<Averias> Averias { get; set; } = null!;
         public DbSet<TipoAverias> TipoAverias { get; set; } = null!;
 
@@ -221,6 +222,24 @@ namespace DAL
                     TipoPlanId = 3,
                     Estado = true,
                     Existente = false
+                });
+            }
+            // Tipo Usuarios
+            {
+                builder.Entity<TipoUsuarios>().HasData(new TipoUsuarios
+                {
+                    Id = 1,
+                    Tipo = "Administrador"
+                });
+                builder.Entity<TipoUsuarios>().HasData(new TipoUsuarios
+                {
+                    Id = 2,
+                    Tipo = "Empleado común"
+                });
+                builder.Entity<TipoUsuarios>().HasData(new TipoUsuarios
+                {
+                    Id = 3,
+                    Tipo = "Empleado Call Center"
                 });
             }
         }
