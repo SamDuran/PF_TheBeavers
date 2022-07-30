@@ -13,6 +13,7 @@ namespace Models
         public DateTime FechaModificacion { get; set; } =  DateTime.Now;
         public string Descripcion { get; set; } = string.Empty;
         public int TipoPlanId { get; set; }
+        public string TipoPlan { get; set; } = string.Empty;
         public bool Estado { get; set; } = true;//(false)Suspendido o (true)activo
         public bool Existente = true;// si el plan existe en la base de datos o no
     }

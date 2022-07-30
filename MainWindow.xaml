@@ -54,6 +54,11 @@
 
 
             <MenuItem x:Name="Consultas" Background="#FF714E24" Header="Consultas" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF714E24">
+                <MenuItem x:Name="cPlanes" Header="Planes" Click="cPlanes_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Combo.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <MenuItem x:Name="cContratos" Header="Contratos" Click="cContratos_Click">
                     <MenuItem.Icon>
                         <Image Source="/Resources/Contratos.png"></Image>

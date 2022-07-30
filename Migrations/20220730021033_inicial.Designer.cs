@@ -11,13 +11,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace PF_THEBEAVERS.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220719211634_Inicial")]
-    partial class Inicial
+    [Migration("20220730021033_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.7");
 
             modelBuilder.Entity("Models.Averias", b =>
                 {
@@ -232,6 +232,10 @@ namespace PF_THEBEAVERS.Migrations
                     b.Property<float?>("Precio")
                         .HasColumnType("REAL");
 
+                    b.Property<string>("TipoPlan")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("TipoPlanId")
                         .HasColumnType("INTEGER");
 
@@ -245,10 +249,11 @@ namespace PF_THEBEAVERS.Migrations
                             PlanId = 1,
                             Descripcion = "3 Mbps/1 Mbps + 150 canales",
                             Estado = true,
-                            FechaCreacion = new DateTime(2022, 7, 19, 17, 16, 34, 510, DateTimeKind.Local).AddTicks(2491),
-                            FechaModificacion = new DateTime(2022, 7, 19, 17, 16, 34, 510, DateTimeKind.Local).AddTicks(2492),
+                            FechaCreacion = new DateTime(2022, 7, 29, 22, 10, 33, 519, DateTimeKind.Local).AddTicks(702),
+                            FechaModificacion = new DateTime(2022, 7, 29, 22, 10, 33, 519, DateTimeKind.Local).AddTicks(703),
                             Nombre = "Combo Básico",
                             Precio = 1000f,
+                            TipoPlan = "",
                             TipoPlanId = 1
                         },
                         new
@@ -256,10 +261,11 @@ namespace PF_THEBEAVERS.Migrations
                             PlanId = 2,
                             Descripcion = "10 Mbps/3 Mbps + 175 canales",
                             Estado = true,
-                            FechaCreacion = new DateTime(2022, 7, 19, 17, 16, 34, 510, DateTimeKind.Local).AddTicks(2508),
-                            FechaModificacion = new DateTime(2022, 7, 19, 17, 16, 34, 510, DateTimeKind.Local).AddTicks(2509),
+                            FechaCreacion = new DateTime(2022, 7, 29, 22, 10, 33, 519, DateTimeKind.Local).AddTicks(719),
+                            FechaModificacion = new DateTime(2022, 7, 29, 22, 10, 33, 519, DateTimeKind.Local).AddTicks(720),
                             Nombre = "Combo Medio",
                             Precio = 1700f,
+                            TipoPlan = "",
                             TipoPlanId = 2
                         },
                         new
@@ -267,10 +273,11 @@ namespace PF_THEBEAVERS.Migrations
                             PlanId = 3,
                             Descripcion = "50 Mbps/10 Mbps + 275 canales",
                             Estado = true,
-                            FechaCreacion = new DateTime(2022, 7, 19, 17, 16, 34, 510, DateTimeKind.Local).AddTicks(2521),
-                            FechaModificacion = new DateTime(2022, 7, 19, 17, 16, 34, 510, DateTimeKind.Local).AddTicks(2522),
+                            FechaCreacion = new DateTime(2022, 7, 29, 22, 10, 33, 519, DateTimeKind.Local).AddTicks(734),
+                            FechaModificacion = new DateTime(2022, 7, 29, 22, 10, 33, 519, DateTimeKind.Local).AddTicks(734),
                             Nombre = "Combo Premium",
                             Precio = 2850f,
+                            TipoPlan = "",
                             TipoPlanId = 3
                         },
                         new
@@ -278,10 +285,11 @@ namespace PF_THEBEAVERS.Migrations
                             PlanId = 4,
                             Descripcion = "25 Mbps/5 Mbps + 225 canales",
                             Estado = true,
-                            FechaCreacion = new DateTime(2022, 7, 19, 17, 16, 34, 510, DateTimeKind.Local).AddTicks(2535),
-                            FechaModificacion = new DateTime(2022, 7, 19, 17, 16, 34, 510, DateTimeKind.Local).AddTicks(2536),
+                            FechaCreacion = new DateTime(2022, 7, 29, 22, 10, 33, 519, DateTimeKind.Local).AddTicks(747),
+                            FechaModificacion = new DateTime(2022, 7, 29, 22, 10, 33, 519, DateTimeKind.Local).AddTicks(748),
                             Nombre = "Combo Deluxe",
                             Precio = 2500f,
+                            TipoPlan = "",
                             TipoPlanId = 3
                         });
                 });

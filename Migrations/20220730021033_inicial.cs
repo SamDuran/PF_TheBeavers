@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PF_THEBEAVERS.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -107,6 +107,7 @@ namespace PF_THEBEAVERS.Migrations
                     FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Descripcion = table.Column<string>(type: "TEXT", nullable: false),
                     TipoPlanId = table.Column<int>(type: "INTEGER", nullable: false),
+                    TipoPlan = table.Column<string>(type: "TEXT", nullable: false),
                     Estado = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -190,23 +191,23 @@ namespace PF_THEBEAVERS.Migrations
 
             migrationBuilder.InsertData(
                 table: "Planes",
-                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
-                values: new object[] { 1, "3 Mbps/1 Mbps + 150 canales", true, new DateTime(2022, 7, 19, 17, 16, 34, 510, DateTimeKind.Local).AddTicks(2491), new DateTime(2022, 7, 19, 17, 16, 34, 510, DateTimeKind.Local).AddTicks(2492), "Combo Básico", 1000f, 1 });
+                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlan", "TipoPlanId" },
+                values: new object[] { 1, "3 Mbps/1 Mbps + 150 canales", true, new DateTime(2022, 7, 29, 22, 10, 33, 519, DateTimeKind.Local).AddTicks(702), new DateTime(2022, 7, 29, 22, 10, 33, 519, DateTimeKind.Local).AddTicks(703), "Combo Básico", 1000f, "", 1 });
 
             migrationBuilder.InsertData(
                 table: "Planes",
-                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
-                values: new object[] { 2, "10 Mbps/3 Mbps + 175 canales", true, new DateTime(2022, 7, 19, 17, 16, 34, 510, DateTimeKind.Local).AddTicks(2508), new DateTime(2022, 7, 19, 17, 16, 34, 510, DateTimeKind.Local).AddTicks(2509), "Combo Medio", 1700f, 2 });
+                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlan", "TipoPlanId" },
+                values: new object[] { 2, "10 Mbps/3 Mbps + 175 canales", true, new DateTime(2022, 7, 29, 22, 10, 33, 519, DateTimeKind.Local).AddTicks(719), new DateTime(2022, 7, 29, 22, 10, 33, 519, DateTimeKind.Local).AddTicks(720), "Combo Medio", 1700f, "", 2 });
 
             migrationBuilder.InsertData(
                 table: "Planes",
-                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
-                values: new object[] { 3, "50 Mbps/10 Mbps + 275 canales", true, new DateTime(2022, 7, 19, 17, 16, 34, 510, DateTimeKind.Local).AddTicks(2521), new DateTime(2022, 7, 19, 17, 16, 34, 510, DateTimeKind.Local).AddTicks(2522), "Combo Premium", 2850f, 3 });
+                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlan", "TipoPlanId" },
+                values: new object[] { 3, "50 Mbps/10 Mbps + 275 canales", true, new DateTime(2022, 7, 29, 22, 10, 33, 519, DateTimeKind.Local).AddTicks(734), new DateTime(2022, 7, 29, 22, 10, 33, 519, DateTimeKind.Local).AddTicks(734), "Combo Premium", 2850f, "", 3 });
 
             migrationBuilder.InsertData(
                 table: "Planes",
-                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
-                values: new object[] { 4, "25 Mbps/5 Mbps + 225 canales", true, new DateTime(2022, 7, 19, 17, 16, 34, 510, DateTimeKind.Local).AddTicks(2535), new DateTime(2022, 7, 19, 17, 16, 34, 510, DateTimeKind.Local).AddTicks(2536), "Combo Deluxe", 2500f, 3 });
+                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlan", "TipoPlanId" },
+                values: new object[] { 4, "25 Mbps/5 Mbps + 225 canales", true, new DateTime(2022, 7, 29, 22, 10, 33, 519, DateTimeKind.Local).AddTicks(747), new DateTime(2022, 7, 29, 22, 10, 33, 519, DateTimeKind.Local).AddTicks(748), "Combo Deluxe", 2500f, "", 3 });
 
             migrationBuilder.InsertData(
                 table: "Tecnicos",
