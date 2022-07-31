@@ -103,7 +103,7 @@ namespace DAL
                 builder.Entity<Tecnicos>().HasData(new Tecnicos
                 {
                     Id = 1,
-                    Nombre = "Luis Rafael Baltodano",
+                    Nombre = "Luis Rafael Baltodano P",
                     Apellido = "Baltodano",
                     NoCarnet = "1234567891"
                 });
