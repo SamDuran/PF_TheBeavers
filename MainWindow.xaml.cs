@@ -50,8 +50,8 @@ namespace PF_THEBEAVERS
         }
         private void cPlanes_Click(object sender, RoutedEventArgs e)
         {
-            //cPlanes PlanesView = new cPlanes();
-            //PlanesView.Show();
+            cPlanes PlanesView = new cPlanes();
+            PlanesView.Show();
         }
         private void pContratos_Click(object sender, RoutedEventArgs e)
         {

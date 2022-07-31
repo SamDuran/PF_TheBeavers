@@ -13,24 +13,53 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Utilities;
 using BLL;
 using Models;
-using Models.Validations; 
+using Models.Validations;
+using Utilities;
 
 namespace UI
 {
     public partial class rPlanes : Window
     {
         Planes plan = new Planes();
+        private Contratos contrato = new Contratos();
         public rPlanes()
         {
             InitializeComponent();
-            this.DataContext=plan;
-            PlanCombo .ItemsSource = TipoPlanesBLL.GetList();
-            PlanCombo .SelectedValuePath = "TipoPlanId";
-            PlanCombo .DisplayMemberPath = "NombrePlan";
+            this.DataContext = plan;
+            PlanCombo.ItemsSource = TipoPlanesBLL.GetList();
+            PlanCombo.SelectedValuePath = "TipoPlanId";
+            PlanCombo.DisplayMemberPath = "NombrePlan";
             Limpiar();
+            PlanCombo.SelectedIndex = 0;
+        }
+        public rPlanes(Planes _plan, cPlanes consulta)
+        {
+            this.plan = _plan;
+            InitializeComponent();
+            this.DataContext = plan;
+            PlanCombo.ItemsSource = TipoPlanesBLL.GetList();
+            PlanCombo.SelectedValuePath = "TipoPlanId";
+            PlanCombo.DisplayMemberPath = "NombrePlan";
+            if (MessageBox.Show("¿Desea cerrar la ventana de consultas de Pagos?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                consulta.Close();
+            Cargar();
+        }
+
+        public rPlanes(Contratos _contrato, cContratos consulta)
+        {
+            this.contrato = _contrato;
+            InitializeComponent();
+            this.DataContext = plan;
+            PlanCombo.ItemsSource = TipoPlanesBLL.GetList();
+            PlanCombo.SelectedValuePath = "TipoPagoId";
+            PlanCombo.DisplayMemberPath = "NombrePago";
+            if (MessageBox.Show("¿Desea cerrar la ventana de consultas?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                consulta.Close();
+            ColocarDatos();
+
+            PlanCombo.SelectedIndex = 0;
         }
         //------------------------------------------------------UTILIDADES--------------------------------------------------------- 
         private void Limpiar()
@@ -48,10 +77,10 @@ namespace UI
             this.DataContext = plan;
             PlanCombo.SelectedValue = plan.TipoPlanId;
 
-            EstadoCB.IsChecked = !plan.Estado; 
+            EstadoCB.IsChecked = !plan.Estado;
             MostrarLabels();
         }
-		private void OcultarLabels()
+        private void OcultarLabels()
         {
             IdPlanTB.IsEnabled = false;
             EstadoCB.IsChecked = false;
@@ -68,7 +97,31 @@ namespace UI
             FechaCLabel.Visibility = Visibility.Visible;
             fCreacionLabel.Visibility = Visibility.Visible;
         }
+
+        private void ColocarDatos()
+        {
+
+            ComentTB.IsEnabled = true;
+            plan.Nombre = contrato.NombreCliente;
+            NombreTB.Text = contrato.NombreCliente;
+        }
         //------------------------------------------------------BOTONES------------------------------------------------------------
+
+        public void Cargarplan(Planes _plan)
+        {
+            var contratoAux = ContratosBLL.Buscar(_plan.PlanId);
+            if (contratoAux != null)
+            {
+                contrato = contratoAux;
+            }
+            this.plan = _plan;
+            Cargar();
+        }
+        public void CerrarConsulta(cPlanes c)
+        {
+            c.Close();
+        }
+
         private void BuscarBTN_Click(object sender, RoutedEventArgs e)
         {
             if (this.plan.PlanId == null)
@@ -77,7 +130,7 @@ namespace UI
             }
             else
             {
-                if(string.IsNullOrEmpty(IdPlanTB.Text) || string.IsNullOrWhiteSpace(IdPlanTB.Text) || IdPlanTB.Text == "0")
+                if (string.IsNullOrEmpty(IdPlanTB.Text) || string.IsNullOrWhiteSpace(IdPlanTB.Text) || IdPlanTB.Text == "0")
                 {
                     MessageBox.Show("Debe de ingresar un ID");
                 }
@@ -86,9 +139,9 @@ namespace UI
                     var planAux = PlanesBLL.Buscar(Utilities.Utilities.ToInt(IdPlanTB.Text));
                     if (planAux != null)
                     {
-                        if(!planAux.Existente)
+                        if (!planAux.Existente)
                         {
-                            if(MessageBox.Show("El plan fue eliminado, ¿Desea restaurarlo?","",MessageBoxButton.YesNo,MessageBoxImage.Question)==MessageBoxResult.Yes)
+                            if (MessageBox.Show("El plan fue eliminado, ¿Desea restaurarlo?", "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                             {
                                 //Abrir papelera de planes para restarurar el plan
                                 plan = planAux;
@@ -117,17 +170,22 @@ namespace UI
         private void GuardarBTN_Click(object sender, RoutedEventArgs e)
         {
             plan.TipoPlanId = (int)PlanCombo.SelectedValue;
-            NombreTB.Text = Utilities.Utilities.CorregirNombre_O_Apellido(NombreTB.Text);
-            if(Validations.ValidarPlan(this.plan))
+            var TipoDePlan = TipoPlanesBLL.Buscar(plan.TipoPlanId);
+            if (TipoDePlan != null)
             {
-                if(PlanesBLL.Guardar(plan))
+                plan.TipoPlan = TipoDePlan.NombrePlan;
+                NombreTB.Text = Utilities.Utilities.CorregirNombre_O_Apellido(NombreTB.Text);
+                if (Validations.ValidarPlan(this.plan))
                 {
-                    MessageBox.Show("Guardado", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Limpiar();
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    if (PlanesBLL.Guardar(plan))
+                    {
+                        MessageBox.Show("Guardado", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                        Limpiar();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
         }
@@ -185,14 +243,14 @@ namespace UI
             PrecioTB.Background = new SolidColorBrush(Colors.White);
             PrecioTB.Background.Opacity = 0.5;
         }
-		private void EstadoCB_Checked(object sender, RoutedEventArgs e)
-		{
-            if(EstadoCB.IsChecked == true)
+        private void EstadoCB_Checked(object sender, RoutedEventArgs e)
+        {
+            if (EstadoCB.IsChecked == true)
                 plan.Estado = false;
             else
                 plan.Estado = true;
-            
-		}
-	}
+
+        }
+    }
 }
 

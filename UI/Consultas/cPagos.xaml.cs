@@ -70,7 +70,7 @@ namespace UI
                             }
                             break;
                         }
-                    case 1: //Buscar por No Contrato
+                    case 1: //Buscar por No
                         {
                             if (DesdePicker.SelectedDate != null && HastaPicker.SelectedDate != null)
                             {

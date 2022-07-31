@@ -11,13 +11,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace PF_THEBEAVERS.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220720005302_inicial")]
-    partial class inicial
+    [Migration("20220724222629_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.7");
 
             modelBuilder.Entity("Models.Averias", b =>
                 {
@@ -232,6 +232,10 @@ namespace PF_THEBEAVERS.Migrations
                     b.Property<float?>("Precio")
                         .HasColumnType("REAL");
 
+                    b.Property<string>("TipoPlan")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("TipoPlanId")
                         .HasColumnType("INTEGER");
 
@@ -245,10 +249,11 @@ namespace PF_THEBEAVERS.Migrations
                             PlanId = 1,
                             Descripcion = "3 Mbps/1 Mbps + 150 canales",
                             Estado = true,
-                            FechaCreacion = new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7764),
-                            FechaModificacion = new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7766),
+                            FechaCreacion = new DateTime(2022, 7, 24, 18, 26, 28, 311, DateTimeKind.Local).AddTicks(8017),
+                            FechaModificacion = new DateTime(2022, 7, 24, 18, 26, 28, 311, DateTimeKind.Local).AddTicks(8019),
                             Nombre = "Combo Básico",
                             Precio = 1000f,
+                            TipoPlan = "",
                             TipoPlanId = 1
                         },
                         new
@@ -256,10 +261,11 @@ namespace PF_THEBEAVERS.Migrations
                             PlanId = 2,
                             Descripcion = "10 Mbps/3 Mbps + 175 canales",
                             Estado = true,
-                            FechaCreacion = new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7840),
-                            FechaModificacion = new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7842),
+                            FechaCreacion = new DateTime(2022, 7, 24, 18, 26, 28, 311, DateTimeKind.Local).AddTicks(8088),
+                            FechaModificacion = new DateTime(2022, 7, 24, 18, 26, 28, 311, DateTimeKind.Local).AddTicks(8090),
                             Nombre = "Combo Medio",
                             Precio = 1700f,
+                            TipoPlan = "",
                             TipoPlanId = 2
                         },
                         new
@@ -267,10 +273,11 @@ namespace PF_THEBEAVERS.Migrations
                             PlanId = 3,
                             Descripcion = "50 Mbps/10 Mbps + 275 canales",
                             Estado = true,
-                            FechaCreacion = new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7904),
-                            FechaModificacion = new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7906),
+                            FechaCreacion = new DateTime(2022, 7, 24, 18, 26, 28, 311, DateTimeKind.Local).AddTicks(8147),
+                            FechaModificacion = new DateTime(2022, 7, 24, 18, 26, 28, 311, DateTimeKind.Local).AddTicks(8149),
                             Nombre = "Combo Premium",
                             Precio = 2850f,
+                            TipoPlan = "",
                             TipoPlanId = 3
                         },
                         new
@@ -278,10 +285,11 @@ namespace PF_THEBEAVERS.Migrations
                             PlanId = 4,
                             Descripcion = "25 Mbps/5 Mbps + 225 canales",
                             Estado = true,
-                            FechaCreacion = new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7966),
-                            FechaModificacion = new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7967),
+                            FechaCreacion = new DateTime(2022, 7, 24, 18, 26, 28, 311, DateTimeKind.Local).AddTicks(8204),
+                            FechaModificacion = new DateTime(2022, 7, 24, 18, 26, 28, 311, DateTimeKind.Local).AddTicks(8206),
                             Nombre = "Combo Deluxe",
                             Precio = 2500f,
+                            TipoPlan = "",
                             TipoPlanId = 3
                         });
                 });
@@ -442,6 +450,38 @@ namespace PF_THEBEAVERS.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Models.TipoUsuarios", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TipoUsuarios");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Tipo = "Administrador"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Tipo = "Empleado común"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Tipo = "Empleado Call Center"
+                        });
+                });
+
             modelBuilder.Entity("Models.Usuarios", b =>
                 {
                     b.Property<int>("UsuarioId")
@@ -454,6 +494,9 @@ namespace PF_THEBEAVERS.Migrations
 
                     b.Property<string>("Password")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("TipoUsuarioId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -469,6 +512,7 @@ namespace PF_THEBEAVERS.Migrations
                             UsuarioId = 1,
                             Nombres = "Luis Rafael Baltodano",
                             Password = "20200070",
+                            TipoUsuarioId = 0,
                             UserName = "RafaelB"
                         },
                         new
@@ -476,6 +520,7 @@ namespace PF_THEBEAVERS.Migrations
                             UsuarioId = 2,
                             Nombres = "Jeison Reyes",
                             Password = "20190564",
+                            TipoUsuarioId = 0,
                             UserName = "JeisonR"
                         },
                         new
@@ -483,6 +528,7 @@ namespace PF_THEBEAVERS.Migrations
                             UsuarioId = 3,
                             Nombres = "Samuel Duran",
                             Password = "20190793",
+                            TipoUsuarioId = 0,
                             UserName = "SamuelD"
                         },
                         new
@@ -490,6 +536,7 @@ namespace PF_THEBEAVERS.Migrations
                             UsuarioId = 4,
                             Nombres = "Elianny Rosario",
                             Password = "20190255",
+                            TipoUsuarioId = 0,
                             UserName = "EliannyR"
                         },
                         new
@@ -497,12 +544,14 @@ namespace PF_THEBEAVERS.Migrations
                             UsuarioId = 5,
                             Nombres = "Yunilda Justo",
                             Password = "20190274",
+                            TipoUsuarioId = 0,
                             UserName = "YunildaJ"
                         },
                         new
                         {
                             UsuarioId = 6,
                             Nombres = "Usuario Admin",
+                            TipoUsuarioId = 0,
                             UserName = "admin"
                         });
                 });

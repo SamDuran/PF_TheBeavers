@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PF_THEBEAVERS.Migrations
 {
-    public partial class inicial : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -107,6 +107,7 @@ namespace PF_THEBEAVERS.Migrations
                     FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Descripcion = table.Column<string>(type: "TEXT", nullable: false),
                     TipoPlanId = table.Column<int>(type: "INTEGER", nullable: false),
+                    TipoPlan = table.Column<string>(type: "TEXT", nullable: false),
                     Estado = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -169,6 +170,19 @@ namespace PF_THEBEAVERS.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TipoUsuarios",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Tipo = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TipoUsuarios", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Usuarios",
                 columns: table => new
                 {
@@ -176,7 +190,8 @@ namespace PF_THEBEAVERS.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Nombres = table.Column<string>(type: "TEXT", nullable: false),
                     UserName = table.Column<string>(type: "TEXT", nullable: false),
-                    Password = table.Column<string>(type: "TEXT", nullable: true)
+                    Password = table.Column<string>(type: "TEXT", nullable: true),
+                    TipoUsuarioId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -190,23 +205,23 @@ namespace PF_THEBEAVERS.Migrations
 
             migrationBuilder.InsertData(
                 table: "Planes",
-                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
-                values: new object[] { 1, "3 Mbps/1 Mbps + 150 canales", true, new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7764), new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7766), "Combo Básico", 1000f, 1 });
+                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlan", "TipoPlanId" },
+                values: new object[] { 1, "3 Mbps/1 Mbps + 150 canales", true, new DateTime(2022, 7, 24, 18, 26, 28, 311, DateTimeKind.Local).AddTicks(8017), new DateTime(2022, 7, 24, 18, 26, 28, 311, DateTimeKind.Local).AddTicks(8019), "Combo Básico", 1000f, "", 1 });
 
             migrationBuilder.InsertData(
                 table: "Planes",
-                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
-                values: new object[] { 2, "10 Mbps/3 Mbps + 175 canales", true, new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7840), new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7842), "Combo Medio", 1700f, 2 });
+                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlan", "TipoPlanId" },
+                values: new object[] { 2, "10 Mbps/3 Mbps + 175 canales", true, new DateTime(2022, 7, 24, 18, 26, 28, 311, DateTimeKind.Local).AddTicks(8088), new DateTime(2022, 7, 24, 18, 26, 28, 311, DateTimeKind.Local).AddTicks(8090), "Combo Medio", 1700f, "", 2 });
 
             migrationBuilder.InsertData(
                 table: "Planes",
-                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
-                values: new object[] { 3, "50 Mbps/10 Mbps + 275 canales", true, new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7904), new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7906), "Combo Premium", 2850f, 3 });
+                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlan", "TipoPlanId" },
+                values: new object[] { 3, "50 Mbps/10 Mbps + 275 canales", true, new DateTime(2022, 7, 24, 18, 26, 28, 311, DateTimeKind.Local).AddTicks(8147), new DateTime(2022, 7, 24, 18, 26, 28, 311, DateTimeKind.Local).AddTicks(8149), "Combo Premium", 2850f, "", 3 });
 
             migrationBuilder.InsertData(
                 table: "Planes",
-                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlanId" },
-                values: new object[] { 4, "25 Mbps/5 Mbps + 225 canales", true, new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7966), new DateTime(2022, 7, 19, 20, 53, 1, 126, DateTimeKind.Local).AddTicks(7967), "Combo Deluxe", 2500f, 3 });
+                columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlan", "TipoPlanId" },
+                values: new object[] { 4, "25 Mbps/5 Mbps + 225 canales", true, new DateTime(2022, 7, 24, 18, 26, 28, 311, DateTimeKind.Local).AddTicks(8204), new DateTime(2022, 7, 24, 18, 26, 28, 311, DateTimeKind.Local).AddTicks(8206), "Combo Deluxe", 2500f, "", 3 });
 
             migrationBuilder.InsertData(
                 table: "Tecnicos",
@@ -279,34 +294,49 @@ namespace PF_THEBEAVERS.Migrations
                 values: new object[] { 3, "Plan Premium" });
 
             migrationBuilder.InsertData(
-                table: "Usuarios",
-                columns: new[] { "UsuarioId", "Nombres", "Password", "UserName" },
-                values: new object[] { 1, "Luis Rafael Baltodano", "20200070", "RafaelB" });
+                table: "TipoUsuarios",
+                columns: new[] { "Id", "Tipo" },
+                values: new object[] { 1, "Administrador" });
+
+            migrationBuilder.InsertData(
+                table: "TipoUsuarios",
+                columns: new[] { "Id", "Tipo" },
+                values: new object[] { 2, "Empleado común" });
+
+            migrationBuilder.InsertData(
+                table: "TipoUsuarios",
+                columns: new[] { "Id", "Tipo" },
+                values: new object[] { 3, "Empleado Call Center" });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "UsuarioId", "Nombres", "Password", "UserName" },
-                values: new object[] { 2, "Jeison Reyes", "20190564", "JeisonR" });
+                columns: new[] { "UsuarioId", "Nombres", "Password", "TipoUsuarioId", "UserName" },
+                values: new object[] { 1, "Luis Rafael Baltodano", "20200070", 0, "RafaelB" });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "UsuarioId", "Nombres", "Password", "UserName" },
-                values: new object[] { 3, "Samuel Duran", "20190793", "SamuelD" });
+                columns: new[] { "UsuarioId", "Nombres", "Password", "TipoUsuarioId", "UserName" },
+                values: new object[] { 2, "Jeison Reyes", "20190564", 0, "JeisonR" });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "UsuarioId", "Nombres", "Password", "UserName" },
-                values: new object[] { 4, "Elianny Rosario", "20190255", "EliannyR" });
+                columns: new[] { "UsuarioId", "Nombres", "Password", "TipoUsuarioId", "UserName" },
+                values: new object[] { 3, "Samuel Duran", "20190793", 0, "SamuelD" });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "UsuarioId", "Nombres", "Password", "UserName" },
-                values: new object[] { 5, "Yunilda Justo", "20190274", "YunildaJ" });
+                columns: new[] { "UsuarioId", "Nombres", "Password", "TipoUsuarioId", "UserName" },
+                values: new object[] { 4, "Elianny Rosario", "20190255", 0, "EliannyR" });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "UsuarioId", "Nombres", "Password", "UserName" },
-                values: new object[] { 6, "Usuario Admin", null, "admin" });
+                columns: new[] { "UsuarioId", "Nombres", "Password", "TipoUsuarioId", "UserName" },
+                values: new object[] { 5, "Yunilda Justo", "20190274", 0, "YunildaJ" });
+
+            migrationBuilder.InsertData(
+                table: "Usuarios",
+                columns: new[] { "UsuarioId", "Nombres", "Password", "TipoUsuarioId", "UserName" },
+                values: new object[] { 6, "Usuario Admin", null, 0, "admin" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -337,6 +367,9 @@ namespace PF_THEBEAVERS.Migrations
 
             migrationBuilder.DropTable(
                 name: "TipoPlanes");
+
+            migrationBuilder.DropTable(
+                name: "TipoUsuarios");
 
             migrationBuilder.DropTable(
                 name: "Usuarios");
