@@ -23,9 +23,9 @@
                         <TextBlock VerticalAlignment="Center" Text="Modo Oscuro" />
                         <ToggleButton Cursor="Hand" ToolTip="Activar Modo Oscuro" Margin="12 0 8 0" x:Name="themeToggle" IsChecked="{Binding IsDarkTheme}" Click="toggleTheme"/>
 
-                        <Button ToolTip="Mas Informacion sobre la app?" Margin="0 8 0 0" Content="ReadMe"/>
+                        <Button x:Name="MasInfo" Click="MasInfoButton_Click" ToolTip="Mas Informacion sobre la aplicación?" Margin="0 8 0 0" Content="Documentación Telecable TheBeavers"/>
 
-                        <Button x:Name="btn_Salir" ToolTip="Close Application" Content="Salir de la Aplicacion" Click="CancelarButton_Click" />
+                        <Button x:Name="btn_Salir" ToolTip="Salir de la Aplicacion" Content="Salir de la Aplicación" Click="CancelarButton_Click" />
 
                     </StackPanel>
 
