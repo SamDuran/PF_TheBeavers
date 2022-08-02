@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,6 +73,12 @@ namespace UI
                 theme.SetBaseTheme(Theme.Dark);
             }
             paletteHelper.SetTheme(theme);
+        }
+
+        private void MasInfoButton_Click(object sender, RoutedEventArgs e)
+        {
+            new Process { StartInfo = new ProcessStartInfo("https://ucneedu-my.sharepoint.com/:w:/g/personal/samuel_duran_ucne_edu_do/EeNulvxKBsVLs1QEAN73CQoB1dtsE5vs-pZ7RXyFqN_EFQ?rtime=gMntQjJ02kg") { UseShellExecute = true } }.Start();
+
         }
         private void IngresarKeyDown(object sender, KeyEventArgs e)
         {
