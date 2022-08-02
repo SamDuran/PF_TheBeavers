@@ -36,16 +36,12 @@
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation= "Horizontal"  Margin="20,0,20,0">
                         <Label Content="Nombre" />
-                        <TextBox x:Name="NombreTB"  Width="100" />
-                    </StackPanel>    
-                </StackPanel>
-                <!-- Tipo Plan y asunto -->
-                <StackPanel Orientation="Vertical">
+                        <TextBox x:Name="NombreTB"  Width="320" />
+                    </StackPanel>
                     <StackPanel Orientation= "Horizontal"  Margin="20,0,20,0">
                         <Label Content="Descripcion" />
-                        <TextBox x:Name="DescripcionTB"  Width="100" />
+                        <TextBox x:Name="DescripcionTB"  Width="300" />
                     </StackPanel>
-                    
                 </StackPanel>
                 <!-- Filtro y Busqueda -->
                 <Border CornerRadius="0" Margin="20,0,20,0" BorderThickness="0.5" BorderBrush="LightSlateGray">
@@ -62,7 +58,6 @@
                             <Label Content="Búsqueda" />
                             <TextBox x:Name="BusquedaTB" KeyDown="BusquedaTB_KeyDown"  Width="270" />
                         </StackPanel>
-
                     </StackPanel>
                 </Border>
 

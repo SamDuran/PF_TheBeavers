@@ -47,6 +47,9 @@ namespace UI
 
         private void Buscar()
         {
+            if(HastaPicker.SelectedDate!=null)
+                HastaPicker.SelectedDate = HastaPicker.SelectedDate.Value.AddHours(23).AddMinutes(59).AddSeconds(59);
+            
             TablaDatos.ItemsSource = null;
             CadenaRespaldo = BusquedaTB.Text;
             if (BusquedaTB.Text.Trim().Length > 0)

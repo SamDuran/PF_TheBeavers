@@ -314,33 +314,61 @@ namespace UI
             }
         }
         private void Incluir_Checked(object sender, RoutedEventArgs e)
-        {
-            if (IncluirCB.IsChecked == true)
+		{
+            if(IncluirCB.IsChecked==true)
             {
-                SoloIncluirCB.IsEnabled = true;
+                SoloIncluirCB.IsEnabled=true;
+                SoloIncluirCanCB.IsChecked =false;
+                SoloIncluirCanCB.IsEnabled=false;
+            }
+            else
+            {
+                SoloIncluirCB.IsEnabled=false;
+                SoloIncluirCB.IsChecked=false;
+            }
+		}
+		private void SoloIncluir_Checked(object sender, RoutedEventArgs e)
+		{
+            if(IncluirCB.IsChecked==true)
+            {
+                SoloIncluirCB.IsEnabled=true;
                 SoloIncluirCanCB.IsChecked = IncluirCanCB.IsChecked = false;
-                SoloIncluirCanCB.IsEnabled = false;
+                SoloIncluirCanCB.IsEnabled=false;
             }
             else
             {
-                SoloIncluirCB.IsEnabled = false;
-                SoloIncluirCB.IsChecked = false;
+                SoloIncluirCB.IsEnabled=false;
+                SoloIncluirCB.IsChecked=false;
             }
-        }
-        private void Cancelados_Checked(object sender, RoutedEventArgs e)
-        {
-            if (IncluirCanCB.IsChecked == true)
+		}
+		private void Cancelados_Checked(object sender, RoutedEventArgs e)
+		{
+            if(IncluirCanCB.IsChecked==true)
             {
-                SoloIncluirCanCB.IsEnabled = true;
-                SoloIncluirCB.IsChecked = IncluirCB.IsChecked = false;
-                SoloIncluirCB.IsEnabled = false;
+                SoloIncluirCanCB.IsEnabled=true;
+                SoloIncluirCB.IsChecked=false;
+                SoloIncluirCB.IsEnabled=false;
             }
             else
             {
-                SoloIncluirCanCB.IsEnabled = false;
-                SoloIncluirCanCB.IsChecked = false;
+                SoloIncluirCanCB.IsEnabled=false;
+                SoloIncluirCanCB.IsChecked=false;
             }
-        }
+		}
+        private void SoloCancelados_Checked(object sender, RoutedEventArgs e)
+		{
+            if(IncluirCanCB.IsChecked==true)
+            {
+                SoloIncluirCanCB.IsEnabled=true;
+                SoloIncluirCB.IsChecked = IncluirCB.IsChecked=false;
+                SoloIncluirCB.IsEnabled=false;
+            }
+            else
+            {
+                SoloIncluirCanCB.IsEnabled=false;
+                SoloIncluirCanCB.IsChecked=false;
+            }
+		}
         private void Restarurar_Click(object sender, RoutedEventArgs e)
         {
             RestaurarContrato((Contratos)TablaDatos.SelectedItem);

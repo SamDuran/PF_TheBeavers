@@ -40,7 +40,7 @@
             <!--ID-->
             <StackPanel Orientation="Horizontal" Margin="20,20,20,10">
                 <Label Content="Plan ID" Width="140" FontSize="14" Padding="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="IdPlanTB" Text="{Binding PlanId}"  KeyDown="IdTextBox_KeyDown" Margin="50,0,0,0" GotFocus="IdTextBox_GotFocus" LostFocus="IdTextBox_GotUnfocused" TextWrapping="Wrap" Width="450" Height="26" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" AutomationProperties.HelpText="ID del Plan" Background="#7FFFFFFF" />
+                <TextBox x:Name="IdPlanTB" Text="{Binding PlanId}" Margin="50,0,0,0" IsEnabled="false" TextWrapping="Wrap" Width="450" Height="26" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" AutomationProperties.HelpText="ID del Plan" Background="#7FFFFFFF" />
 
                 <Button HorizontalAlignment="Left"  Margin="20,0,0,0" VerticalAlignment="Top"  Width="88" Height="26" Click="BuscarBTN_Click" BorderBrush="#FF4C5FBD" Grid.Column="5" Background="#437FA6" Foreground="White" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">

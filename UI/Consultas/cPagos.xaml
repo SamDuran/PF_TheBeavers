@@ -24,34 +24,34 @@
                     <!--Fecha desde-->
                     <StackPanel Orientation= "Horizontal"  Margin="20,0,20,0">
                         <Label Content="Desde" />
-                        <DatePicker x:Name="DesdePicker"  Width="100" />
+                        <DatePicker x:Name="DesdePicker"  Width="90" Background="White" BorderBrush="#89000000" />
                     </StackPanel>
                     <!--Fecha hasta-->
                     <StackPanel Orientation= "Horizontal" Margin="20,0,20,0">
                         <Label Content="Hasta " />
-                        <DatePicker x:Name="HastaPicker"  Width="100" />
+                        <DatePicker x:Name="HastaPicker"  Width="90" />
                     </StackPanel>
                 </StackPanel>
                 <!--Nombre y apellido Cliente-->
                 <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation= "Horizontal"  Margin="20,0,20,0">
+                    <StackPanel Orientation= "Horizontal"  >
                         <Label Content="Nombre cliente" />
-                        <TextBox x:Name="NombreTB"  Width="100" />
+                        <TextBox x:Name="NombreTB"  Width="140" />
                     </StackPanel>
-                    <StackPanel Orientation= "Horizontal" Margin="20,0,20,0">
+                    <StackPanel Orientation= "Horizontal" >
                         <Label Content="Apellido Cliente" />
-                        <TextBox x:Name="ApellidoTB"  Width="100" />
+                        <TextBox x:Name="ApellidoTB"  Width="140" />
                     </StackPanel>
                 </StackPanel>
                 <!-- Tipo Pago y asunto -->
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation= "Horizontal"  Margin="20,0,20,0">
+                <StackPanel Orientation="Vertical" Margin="20,0,0,0">
+                    <StackPanel Orientation= "Horizontal"  >
                         <Label Content="Tipo  pago" />
-                        <TextBox x:Name="TipoPagoTB"  Width="100" />
+                        <TextBox x:Name="TipoPagoTB"  Width="120" />
                     </StackPanel>
-                    <StackPanel Orientation= "Horizontal" HorizontalAlignment="Right" Margin="20,0,20,0">
+                    <StackPanel Orientation= "Horizontal" HorizontalAlignment="Right" >
                         <Label Content="Asunto" />
-                        <TextBox x:Name="AsuntoTB"  Width="100" />
+                        <TextBox x:Name="AsuntoTB"  Width="140" />
                     </StackPanel>
                 </StackPanel>
                 <!-- Filtro y Busqueda -->
@@ -74,7 +74,7 @@
                     </StackPanel>
                 </Border>
 
-                <StackPanel Orientation="Vertical" DockPanel.Dock="Right">
+                <StackPanel Orientation="Vertical" DockPanel.Dock="Left" Margin="20,0,0,0" >
 
                     <Button Background="#00FF9800" BorderBrush="#00FF9800" HorizontalAlignment="Left" Margin="20,0,0,0" Height="40" Width="67" Click="Refrescar" RenderTransformOrigin="0.5,0.5">
                         <Image Source="/Resources/Refrescar.png" VerticalAlignment="Top" ToolTip="Refrecar (f5)" Stretch="Fill" Height="25" Width="25" Tag="Refrecar (f5)"/>

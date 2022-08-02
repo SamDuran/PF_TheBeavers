@@ -82,7 +82,7 @@ namespace UI
         }
         private void OcultarLabels()
         {
-            IdPlanTB.IsEnabled = false;
+            
             EstadoCB.IsChecked = false;
             FechaMLabel.Visibility = Visibility.Hidden;
             fModifLabel.Visibility = Visibility.Hidden;
@@ -91,7 +91,7 @@ namespace UI
         }
         private void MostrarLabels()
         {
-            IdPlanTB.IsEnabled = true;
+            
             FechaMLabel.Visibility = Visibility.Visible;
             fModifLabel.Visibility = Visibility.Visible;
             FechaCLabel.Visibility = Visibility.Visible;
@@ -124,44 +124,7 @@ namespace UI
 
         private void BuscarBTN_Click(object sender, RoutedEventArgs e)
         {
-            if (this.plan.PlanId == null)
-            {
-                IdPlanTB.IsEnabled = true;
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(IdPlanTB.Text) || string.IsNullOrWhiteSpace(IdPlanTB.Text) || IdPlanTB.Text == "0")
-                {
-                    MessageBox.Show("Debe de ingresar un ID");
-                }
-                else
-                {
-                    var planAux = PlanesBLL.Buscar(Utilities.Utilities.ToInt(IdPlanTB.Text));
-                    if (planAux != null)
-                    {
-                        if (!planAux.Existente)
-                        {
-                            if (MessageBox.Show("El plan fue eliminado, ¿Desea restaurarlo?", "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                            {
-                                //Abrir papelera de planes para restarurar el plan
-                                plan = planAux;
-                                Cargar();
-                            }
-                            else
-                                return;
-                        }
-                        else
-                        {
-                            plan = planAux;
-                            Cargar();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se encontro el plan");
-                    }
-                }
-            }
+            new cPlanes(this).ShowDialog();
         }
         private void NuevoBTN_Click(object sender, RoutedEventArgs e)
         {

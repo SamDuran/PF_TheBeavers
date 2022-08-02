@@ -20,12 +20,12 @@
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
                     <StackPanel Orientation="Vertical">
                         <CheckBox  x:Name="IncluirCanCB" Content="Incluir Cancelados" Checked="Cancelados_Checked"  Unchecked="Cancelados_Checked"/>
-                        <CheckBox  x:Name="SoloIncluirCanCB"  FontSize="11" Content="Solo Cancelados" IsEnabled="False"/>
+                        <CheckBox  x:Name="SoloIncluirCanCB"  Checked="SoloCancelados_Checked" FontSize="11" Content="Solo Cancelados" IsEnabled="False"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" Margin="20,0,0,0">
                         <CheckBox  x:Name="IncluirCB" Content="Incluir Suspendidos" Checked="Incluir_Checked" Unchecked="Incluir_Checked"/>
-                        <CheckBox  x:Name="SoloIncluirCB"  FontSize="11" Content="Solo Suspendidos" IsEnabled="False"/>
+                        <CheckBox  x:Name="SoloIncluirCB"  FontSize="11" Checked="SoloIncluir_Checked" Content="Solo Suspendidos" IsEnabled="False"/>
                     </StackPanel>
                 </StackPanel>
             </Border>

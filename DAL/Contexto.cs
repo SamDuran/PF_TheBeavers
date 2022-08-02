@@ -184,6 +184,7 @@ namespace DAL
                     FechaModificacion = DateTime.Now,
                     Descripcion = "3 Mbps/1 Mbps + 150 canales",
                     TipoPlanId = 1,
+                    TipoPlan = "Plan Básico",
                     Estado = true,
                     Existente = false
                 });
@@ -196,6 +197,7 @@ namespace DAL
                     FechaModificacion = DateTime.Now,
                     Descripcion = "10 Mbps/3 Mbps + 175 canales",
                     TipoPlanId = 2,
+                    TipoPlan = "Plan Medio",
                     Estado = true,
                     Existente = false
                 });
@@ -208,6 +210,7 @@ namespace DAL
                     FechaModificacion = DateTime.Now,
                     Descripcion = "50 Mbps/10 Mbps + 275 canales",
                     TipoPlanId = 3,
+                    TipoPlan = "Plan Premium",
                     Estado = true,
                     Existente = false
                 });
@@ -220,6 +223,7 @@ namespace DAL
                     FechaModificacion = DateTime.Now,
                     Descripcion = "25 Mbps/5 Mbps + 225 canales",
                     TipoPlanId = 3,
+                    TipoPlan = "Plan Premium",
                     Estado = true,
                     Existente = false
                 });

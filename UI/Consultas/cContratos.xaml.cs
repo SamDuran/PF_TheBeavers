@@ -48,6 +48,9 @@ namespace UI
         }
         private void Buscar()
         {
+            if(HastaPicker.SelectedDate!=null)
+                HastaPicker.SelectedDate = HastaPicker.SelectedDate.Value.AddHours(23).AddMinutes(59).AddSeconds(59);
+
             TablaDatos.ItemsSource = null;
             CadenaRespaldo = BusquedaTB.Text;
             if(BusquedaTB.Text.ToLower().Trim().Length>0)
@@ -235,9 +238,6 @@ namespace UI
                 MessageBox.Show("No se encontraron registros");
                 return;
             }
-                
-
-            
             TablaDatos.ItemsSource = lista;
         }
         private void BuscarBTN_Click(object sender, RoutedEventArgs e)
@@ -297,7 +297,6 @@ namespace UI
             if (e.Key == Key.Enter)
                 Buscar();
 		}
-
 		private void WindowGotFocus(object sender, RoutedEventArgs e)
 		{
             if(ModificoAlgo)
@@ -306,13 +305,12 @@ namespace UI
                 ModificoAlgo = false;
 			}                
 		}
-
 		private void Incluir_Checked(object sender, RoutedEventArgs e)
 		{
             if(IncluirCB.IsChecked==true)
             {
                 SoloIncluirCB.IsEnabled=true;
-                SoloIncluirCanCB.IsChecked = IncluirCanCB.IsChecked=false;
+                SoloIncluirCanCB.IsChecked =false;
                 SoloIncluirCanCB.IsEnabled=false;
             }
             else
@@ -321,8 +319,35 @@ namespace UI
                 SoloIncluirCB.IsChecked=false;
             }
 		}
-
+		private void SoloIncluir_Checked(object sender, RoutedEventArgs e)
+		{
+            if(IncluirCB.IsChecked==true)
+            {
+                SoloIncluirCB.IsEnabled=true;
+                SoloIncluirCanCB.IsChecked = IncluirCanCB.IsChecked = false;
+                SoloIncluirCanCB.IsEnabled=false;
+            }
+            else
+            {
+                SoloIncluirCB.IsEnabled=false;
+                SoloIncluirCB.IsChecked=false;
+            }
+		}
 		private void Cancelados_Checked(object sender, RoutedEventArgs e)
+		{
+            if(IncluirCanCB.IsChecked==true)
+            {
+                SoloIncluirCanCB.IsEnabled=true;
+                SoloIncluirCB.IsChecked=false;
+                SoloIncluirCB.IsEnabled=false;
+            }
+            else
+            {
+                SoloIncluirCanCB.IsEnabled=false;
+                SoloIncluirCanCB.IsChecked=false;
+            }
+		}
+        private void SoloCancelados_Checked(object sender, RoutedEventArgs e)
 		{
             if(IncluirCanCB.IsChecked==true)
             {
@@ -336,12 +361,10 @@ namespace UI
                 SoloIncluirCanCB.IsChecked=false;
             }
 		}
-
 		private void CargarBTNClick(object sender, RoutedEventArgs e)
 		{
             CargarContrato1();
         }
-
 		private void Row_RightClick(object sender, MouseButtonEventArgs e)
 		{
             CargarContrato2();
