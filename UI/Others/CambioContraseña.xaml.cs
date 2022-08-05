@@ -28,6 +28,7 @@ namespace UI
 				{
 					usuario.Password = NewPassTB.Password;
 					UsuariosBLL.Guardar(usuario);
+					MessageBox.Show("La contraseña fue cambiada", "Operación Exitosa");
 					Close();
 				}
 			}

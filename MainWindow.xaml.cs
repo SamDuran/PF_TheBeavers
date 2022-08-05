@@ -15,6 +15,18 @@ namespace PF_THEBEAVERS
     public partial class MainWindow : Window
     {
         public Usuarios UsuarioLogeado { get; set; } = new Usuarios();
+        CambioClave? cambioClave;
+        rUsuarios? rUsuario;
+        rContratos? rContrato;
+        rPlanes? rPlan;
+        rPagos? rPago;
+        rAverias? rAveria;
+        rAveriasSC ? rAsignAveria;
+        cContratos? cContrato;
+        cPlanes? cPlan;
+        cPagos? cPago;
+        pContratos? pContrato;
+
         public MainWindow(Usuarios? _usuario)
         {
             if (_usuario != null)
@@ -117,11 +129,28 @@ namespace PF_THEBEAVERS
         }
         private void CambiarClave_Click(object sander, RoutedEventArgs e)
         {
-            new CambioClave(UsuarioLogeado).ShowDialog();
+            if(cambioClave == null )
+            {
+                cambioClave = new CambioClave(UsuarioLogeado);
+                cambioClave.Closed += (sender, args) => cambioClave = null;
+                cambioClave.Show();
+                
+            }else
+            {
+                cambioClave.Activate();
+            }
         }
         private void rUsuarios_Click(object sander, RoutedEventArgs e)
         {
-            new rUsuarios().Show();
+            if(rUsuario == null)
+            {
+                rUsuario = new rUsuarios();
+                rUsuario.Closed += (sender, args) => rUsuario = null;
+                rUsuario.Show();
+            }else
+            {
+                rUsuario.Activate();
+            }
         }
         private void cUsuarios_Click(object sander, RoutedEventArgs e)
         {
@@ -137,43 +166,113 @@ namespace PF_THEBEAVERS
         }
         private void rContratos_Click(object sender, RoutedEventArgs e)
         {
-            rContratos ContratosView = new rContratos();
-            if (ContratosView.HayPlanes)
-                ContratosView.Show();
+            if(rContrato == null)
+            {
+                rContrato = new rContratos();
+                rContrato.Closed += (sender, args) => rContrato = null;
+                if (rContrato.HayPlanes)
+                    rContrato.Show();
+            }else
+            {
+                rContrato.Activate();
+            }
+            
         }
         private void rPlanes_Click(object sender, RoutedEventArgs e)
         {
-            new rPlanes().Show();
-
+            if(rPlan == null)
+            {
+                rPlan = new rPlanes();
+                rPlan.Closed += (sender, args) => rPlan = null;
+                rPlan.Show();
+            }else
+            {
+                rPlan.Activate();
+            }
         }
         private void rPagos_Click(object sender, RoutedEventArgs e)
         {
-            new rPagos().Show();
+            if(rPago == null)
+            {
+                rPago = new rPagos();
+                rPago.Closed += (sender, args) => rPago = null;
+                rPago.Show();
+            }else
+            {
+                rPago.Activate();
+            }
         }
         private void rAverias_Click(object sender, RoutedEventArgs e)
         {
-            new rAverias().Show();
+            if(rAveria == null)
+            {
+                rAveria = new rAverias();
+                rAveria.Closed += (sender, args) => rAveria = null;
+                rAveria.Show();
+            }else
+            {
+                rAveria.Activate();
+            }
         }
         private void rAsignAverias_Click(object sender, RoutedEventArgs e)
         {
-            new rAveriasSC().Show();
+            if(rAsignAveria == null)
+            {
+                rAsignAveria = new rAveriasSC();
+                rAsignAveria.Closed += (sender, args) => rAsignAveria = null;
+                rAsignAveria.Show();
+            }else
+            {
+                rAsignAveria.Activate();
+            }
         }
         private void cContratos_Click(object sender, RoutedEventArgs e)
         {
-            new cContratos().Show();
+            if(cContrato == null)
+            {
+                cContrato = new cContratos();
+                cContrato.Closed += (sender, args) => cContrato = null;
+                cContrato.Show();
+            }else
+            {
+                cContrato.Activate();
+            }
         }
         private void cPagos_Click(object sender, RoutedEventArgs e)
         {
-            new cPagos().Show();
+            if(cPago == null)
+            {
+                cPago = new cPagos();
+                cPago.Closed += (sender, args) => cPago = null;
+                cPago.Show();
+            }else
+            {
+                cPago.Activate();
+            }
         }
         private void cPlanes_Click(object sender, RoutedEventArgs e)
         {
-            new cPlanes().Show();
+            if(cPlan == null)
+            {
+                cPlan = new cPlanes();
+                cPlan.Closed += (sender, args) => cPlan = null;
+                cPlan.Show();
+            }else
+            {
+                cPlan.Activate();
+            }
         }
         private void pContratos_Click(object sender, RoutedEventArgs e)
         {
-            pContratos ContratosView = new pContratos();
-            ContratosView.Show();
+            if(pContrato == null)
+            {
+                pContrato = new pContratos();
+                pContrato.Closed += (sender, args) => pContrato = null;
+                pContrato.Show();
+            }else
+            {
+                pContrato.Activate();
+            }
         }
         private void repContratos_Click(object sender, RoutedEventArgs e)
         {
@@ -202,5 +301,9 @@ namespace PF_THEBEAVERS
                 Close();
             }
         }
-    }
+		private void Cerrar(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+            System.Windows.Application.Current.Shutdown();
+        }
+	}
 }

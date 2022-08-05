@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PF_THEBEAVERS", "PF_THEBEAVERS.csproj", "{DCB98826-407D-45BA-82F8-81D4F753C853}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "..\Setup\Setup.vdproj", "{C08A431C-748A-48DA-BE7A-9A23D7B2ED9B}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TelecableTheBeavers Setup", "Setup\TelecableTheBeavers Setup\TelecableTheBeavers Setup.vdproj", "{FCF478ED-B63D-4F1F-A130-3274A31F4233}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,8 +17,8 @@ Global
 		{DCB98826-407D-45BA-82F8-81D4F753C853}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCB98826-407D-45BA-82F8-81D4F753C853}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCB98826-407D-45BA-82F8-81D4F753C853}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C08A431C-748A-48DA-BE7A-9A23D7B2ED9B}.Debug|Any CPU.ActiveCfg = Debug
-		{C08A431C-748A-48DA-BE7A-9A23D7B2ED9B}.Release|Any CPU.ActiveCfg = Release
+		{FCF478ED-B63D-4F1F-A130-3274A31F4233}.Debug|Any CPU.ActiveCfg = Debug
+		{FCF478ED-B63D-4F1F-A130-3274A31F4233}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

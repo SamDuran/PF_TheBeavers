@@ -10,7 +10,7 @@
         Height="600" 
         Width="1000" 
         x:Name="Main"
-        Icon="./Resources/Icono.png" Background="#FF8E7352">
+        Icon="./Resources/Icono.png" Background="#FF8E7352" Closing="Cerrar">
     <Grid Height="529" VerticalAlignment="Top">
 
         <Menu x:Name="MainMenu" VerticalAlignment="Top" Background="#FF715431">
