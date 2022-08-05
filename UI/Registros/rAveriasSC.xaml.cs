@@ -27,9 +27,9 @@ namespace UI
         {
             InitializeComponent();
             this.DataContext = Averia;
-            AveriasCombo.ItemsSource = TipoAveriasBLL.GetList();
-            AveriasCombo.SelectedValuePath = "TipoAveriaId";
-            AveriasCombo.DisplayMemberPath = "NombreAveria";
+            AveriasCombo.ItemsSource = AveriasBLL.GetListExistentes(e=> true);
+            AveriasCombo.SelectedValuePath = "AveriaId";
+            AveriasCombo.DisplayMemberPath = "Nombre";
 
             ClientesCombo.ItemsSource = ClientesBLL.GetList(c => true);
             ClientesCombo.SelectedValuePath = "Id";
@@ -107,15 +107,8 @@ namespace UI
         }
         private void GuardarBTN_Click(object sender, RoutedEventArgs e)
         {
-            Averia.TipoAveriaId = (int)AveriasCombo.SelectedValue;
-            var ave = AveriasBLL.Buscar(Averia.AveriaId);
-            if (ave != null)
-            {
-                Averia = ave;
                 Averia.ClienteId = (int)ClientesCombo.SelectedValue;
                 Averia.TecnicoId = (int)TecnicoCombo.SelectedValue;
-
-
                 if (AveriasBLL.Guardar(Averia))
                 {
                     MessageBox.Show("Guardado", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -125,11 +118,6 @@ namespace UI
                 {
                     MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-            }
-            else
-            {
-				MessageBox.Show("Averia no existente", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
         private void EliminarBTN_Click(object sender, RoutedEventArgs e)
         {

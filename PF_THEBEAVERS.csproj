@@ -5,6 +5,8 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>Resources\Icono.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,7 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="boldreports.wpf" Version="4.1.84" />
+    <Content Include="Resources\Icono.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="itext7" Version="7.2.3" />
     <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
     <PackageReference Include="microsoft.entityframeworkcore.sqlite" Version="6.0.7" />
     <PackageReference Include="microsoft.entityframeworkcore.tools" Version="6.0.7">
@@ -52,9 +58,19 @@
     <Resource Include=".\Resources\HidePassword.png" />
     <Resource Include=".\Resources\Averias.png" />
     <Resource Include=".\Resources\AsignAverias.png" />
+    <Resource Include=".\Resources\Users.png" />
+    <Resource Include=".\Resources\profile.png" />
+    <Resource Include=".\Resources\tecnico.png" />
   </ItemGroup>
+  
   <ItemGroup>
     <SplashScreen Include="Resources\Splashscreen.png" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="DATA\TelecableBeavers.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

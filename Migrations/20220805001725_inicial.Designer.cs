@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace PF_THEBEAVERS.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220731223024_inicial")]
+    [Migration("20220805001725_inicial")]
     partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -249,8 +249,8 @@ namespace PF_THEBEAVERS.Migrations
                             PlanId = 1,
                             Descripcion = "3 Mbps/1 Mbps + 150 canales",
                             Estado = true,
-                            FechaCreacion = new DateTime(2022, 7, 31, 18, 30, 22, 415, DateTimeKind.Local).AddTicks(6252),
-                            FechaModificacion = new DateTime(2022, 7, 31, 18, 30, 22, 415, DateTimeKind.Local).AddTicks(6254),
+                            FechaCreacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(3052),
+                            FechaModificacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(3054),
                             Nombre = "Combo Básico",
                             Precio = 1000f,
                             TipoPlan = "Plan Básico",
@@ -261,8 +261,8 @@ namespace PF_THEBEAVERS.Migrations
                             PlanId = 2,
                             Descripcion = "10 Mbps/3 Mbps + 175 canales",
                             Estado = true,
-                            FechaCreacion = new DateTime(2022, 7, 31, 18, 30, 22, 415, DateTimeKind.Local).AddTicks(6339),
-                            FechaModificacion = new DateTime(2022, 7, 31, 18, 30, 22, 415, DateTimeKind.Local).AddTicks(6342),
+                            FechaCreacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(3126),
+                            FechaModificacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(3128),
                             Nombre = "Combo Medio",
                             Precio = 1700f,
                             TipoPlan = "Plan Medio",
@@ -273,8 +273,8 @@ namespace PF_THEBEAVERS.Migrations
                             PlanId = 3,
                             Descripcion = "50 Mbps/10 Mbps + 275 canales",
                             Estado = true,
-                            FechaCreacion = new DateTime(2022, 7, 31, 18, 30, 22, 415, DateTimeKind.Local).AddTicks(6415),
-                            FechaModificacion = new DateTime(2022, 7, 31, 18, 30, 22, 415, DateTimeKind.Local).AddTicks(6418),
+                            FechaCreacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(3185),
+                            FechaModificacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(3187),
                             Nombre = "Combo Premium",
                             Precio = 2850f,
                             TipoPlan = "Plan Premium",
@@ -285,8 +285,8 @@ namespace PF_THEBEAVERS.Migrations
                             PlanId = 4,
                             Descripcion = "25 Mbps/5 Mbps + 225 canales",
                             Estado = true,
-                            FechaCreacion = new DateTime(2022, 7, 31, 18, 30, 22, 415, DateTimeKind.Local).AddTicks(6486),
-                            FechaModificacion = new DateTime(2022, 7, 31, 18, 30, 22, 415, DateTimeKind.Local).AddTicks(6489),
+                            FechaCreacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(3244),
+                            FechaModificacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(3246),
                             Nombre = "Combo Deluxe",
                             Precio = 2500f,
                             TipoPlan = "Plan Premium",
@@ -300,8 +300,10 @@ namespace PF_THEBEAVERS.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Apellido")
-                        .IsRequired()
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("FechaModificacion")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NoCarnet")
@@ -312,6 +314,24 @@ namespace PF_THEBEAVERS.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TipoTecnico")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("TipoTecnicoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Zona")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ZonaId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.ToTable("Tecnicos");
@@ -320,37 +340,67 @@ namespace PF_THEBEAVERS.Migrations
                         new
                         {
                             Id = 1,
-                            Apellido = "Baltodano",
+                            FechaCreacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2424),
+                            FechaModificacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2427),
                             NoCarnet = "1234567891",
-                            Nombre = "Luis Rafael Baltodano P"
+                            Nombre = "Tecnico1",
+                            Telefono = "",
+                            TipoTecnico = "",
+                            TipoTecnicoId = 0,
+                            Zona = "",
+                            ZonaId = 0
                         },
                         new
                         {
                             Id = 2,
-                            Apellido = "Reyes",
+                            FechaCreacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2492),
+                            FechaModificacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2494),
                             NoCarnet = "1234567892",
-                            Nombre = "Jeison Reyes"
+                            Nombre = "Tecnico2",
+                            Telefono = "",
+                            TipoTecnico = "",
+                            TipoTecnicoId = 0,
+                            Zona = "",
+                            ZonaId = 0
                         },
                         new
                         {
                             Id = 3,
-                            Apellido = "Duran",
+                            FechaCreacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2543),
+                            FechaModificacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2546),
                             NoCarnet = "1234567893",
-                            Nombre = "Samuel Duran"
+                            Nombre = "Tecnico3",
+                            Telefono = "",
+                            TipoTecnico = "",
+                            TipoTecnicoId = 0,
+                            Zona = "",
+                            ZonaId = 0
                         },
                         new
                         {
                             Id = 4,
-                            Apellido = "Rosario",
+                            FechaCreacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2597),
+                            FechaModificacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2599),
                             NoCarnet = "1234567894",
-                            Nombre = "Elianny Rosario"
+                            Nombre = "Tecnico4",
+                            Telefono = "",
+                            TipoTecnico = "",
+                            TipoTecnicoId = 0,
+                            Zona = "",
+                            ZonaId = 0
                         },
                         new
                         {
                             Id = 5,
-                            Apellido = "Justo",
+                            FechaCreacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2647),
+                            FechaModificacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2650),
                             NoCarnet = "1234567895",
-                            Nombre = "Yunilda Justo"
+                            Nombre = "Tecnico5",
+                            Telefono = "",
+                            TipoTecnico = "",
+                            TipoTecnicoId = 0,
+                            Zona = "",
+                            ZonaId = 0
                         });
                 });
 
@@ -488,6 +538,15 @@ namespace PF_THEBEAVERS.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("Existente")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("FechaModificacion")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Nombres")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -510,49 +569,89 @@ namespace PF_THEBEAVERS.Migrations
                         new
                         {
                             UsuarioId = 1,
+                            Existente = true,
+                            FechaCreacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1599),
+                            FechaModificacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1622),
                             Nombres = "Luis Rafael Baltodano",
                             Password = "20200070",
-                            TipoUsuarioId = 0,
+                            TipoUsuarioId = 1,
                             UserName = "RafaelB"
                         },
                         new
                         {
                             UsuarioId = 2,
+                            Existente = true,
+                            FechaCreacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1703),
+                            FechaModificacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1706),
                             Nombres = "Jeison Reyes",
                             Password = "20190564",
-                            TipoUsuarioId = 0,
+                            TipoUsuarioId = 1,
                             UserName = "JeisonR"
                         },
                         new
                         {
                             UsuarioId = 3,
+                            Existente = true,
+                            FechaCreacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1765),
+                            FechaModificacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1767),
                             Nombres = "Samuel Duran",
                             Password = "20190793",
-                            TipoUsuarioId = 0,
+                            TipoUsuarioId = 1,
                             UserName = "SamuelD"
                         },
                         new
                         {
                             UsuarioId = 4,
+                            Existente = true,
+                            FechaCreacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1822),
+                            FechaModificacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1825),
                             Nombres = "Elianny Rosario",
                             Password = "20190255",
-                            TipoUsuarioId = 0,
+                            TipoUsuarioId = 1,
                             UserName = "EliannyR"
                         },
                         new
                         {
                             UsuarioId = 5,
+                            Existente = true,
+                            FechaCreacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1878),
+                            FechaModificacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1880),
                             Nombres = "Yunilda Justo",
                             Password = "20190274",
-                            TipoUsuarioId = 0,
+                            TipoUsuarioId = 1,
                             UserName = "YunildaJ"
                         },
                         new
                         {
                             UsuarioId = 6,
+                            Existente = true,
+                            FechaCreacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2074),
+                            FechaModificacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2077),
                             Nombres = "Usuario Admin",
-                            TipoUsuarioId = 0,
+                            TipoUsuarioId = 1,
                             UserName = "admin"
+                        },
+                        new
+                        {
+                            UsuarioId = 7,
+                            Existente = true,
+                            FechaCreacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2134),
+                            FechaModificacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2138),
+                            Nombres = "Usuario comun",
+                            Password = "comun",
+                            TipoUsuarioId = 2,
+                            UserName = "comun"
+                        },
+                        new
+                        {
+                            UsuarioId = 8,
+                            Existente = true,
+                            FechaCreacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2188),
+                            FechaModificacion = new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2190),
+                            Nombres = "CallCenter",
+                            Password = "call",
+                            TipoUsuarioId = 3,
+                            UserName = "call"
                         });
                 });
 #pragma warning restore 612, 618

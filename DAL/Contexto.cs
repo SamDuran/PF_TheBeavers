@@ -38,7 +38,8 @@ namespace DAL
                     UsuarioId = 1,
                     Nombres = "Luis Rafael Baltodano",
                     UserName = "RafaelB",
-                    Password = "20200070"
+                    Password = "20200070",
+                    TipoUsuarioId = 1
                 });
 
                 builder.Entity<Usuarios>().HasData(new Usuarios
@@ -46,7 +47,8 @@ namespace DAL
                     UsuarioId = 2,
                     Nombres = "Jeison Reyes",
                     UserName = "JeisonR",
-                    Password = "20190564"
+                    Password = "20190564",
+                    TipoUsuarioId = 1
                 });
 
                 builder.Entity<Usuarios>().HasData(new Usuarios
@@ -54,7 +56,8 @@ namespace DAL
                     UsuarioId = 3,
                     Nombres = "Samuel Duran",
                     UserName = "SamuelD",
-                    Password = "20190793"
+                    Password = "20190793",
+                    TipoUsuarioId = 1
                 });
 
                 builder.Entity<Usuarios>().HasData(new Usuarios
@@ -62,7 +65,8 @@ namespace DAL
                     UsuarioId = 4,
                     Nombres = "Elianny Rosario",
                     UserName = "EliannyR",
-                    Password = "20190255"
+                    Password = "20190255",
+                    TipoUsuarioId = 1
                 });
 
                 builder.Entity<Usuarios>().HasData(new Usuarios
@@ -70,14 +74,34 @@ namespace DAL
                     UsuarioId = 5,
                     Nombres = "Yunilda Justo",
                     UserName = "YunildaJ",
-                    Password = "20190274"
+                    Password = "20190274",
+                    TipoUsuarioId = 1
                 });
                 builder.Entity<Usuarios>().HasData(new Usuarios
                 {
                     UsuarioId = 6,
                     Nombres = "Usuario Admin",
                     UserName = "admin",
-                    Password = null
+                    Password = null,
+                    TipoUsuarioId = 1
+                });
+                
+                builder.Entity<Usuarios>().HasData(new Usuarios
+                {
+                    UsuarioId = 7,
+                    Nombres = "Usuario comun",
+                    UserName = "comun",
+                    Password = "comun",
+                    TipoUsuarioId = 2
+                });
+                
+                builder.Entity<Usuarios>().HasData(new Usuarios
+                {
+                    UsuarioId = 8,
+                    Nombres = "CallCenter",
+                    UserName = "call",
+                    Password = "call",
+                    TipoUsuarioId = 3
                 });
             }
             // Tipo Planes
@@ -103,36 +127,31 @@ namespace DAL
                 builder.Entity<Tecnicos>().HasData(new Tecnicos
                 {
                     Id = 1,
-                    Nombre = "Luis Rafael Baltodano P",
-                    Apellido = "Baltodano",
+                    Nombre = "Tecnico1",
                     NoCarnet = "1234567891"
                 });
                 builder.Entity<Tecnicos>().HasData(new Tecnicos
                 {
                     Id = 2,
-                    Nombre = "Jeison Reyes",
-                    Apellido = "Reyes",
+                    Nombre = "Tecnico2",
                     NoCarnet = "1234567892"
                 });
                 builder.Entity<Tecnicos>().HasData(new Tecnicos
                 {
                     Id = 3,
-                    Nombre = "Samuel Duran",
-                    Apellido = "Duran",
+                    Nombre = "Tecnico3",
                     NoCarnet = "1234567893"
                 });
                 builder.Entity<Tecnicos>().HasData(new Tecnicos
                 {
                     Id = 4,
-                    Nombre = "Elianny Rosario",
-                    Apellido = "Rosario",
+                    Nombre = "Tecnico4",
                     NoCarnet = "1234567894"
                 });
                 builder.Entity<Tecnicos>().HasData(new Tecnicos
                 {
                     Id = 5,
-                    Nombre = "Yunilda Justo",
-                    Apellido = "Justo",
+                    Nombre = "Tecnico5",
                     NoCarnet = "1234567895"
                 });
 

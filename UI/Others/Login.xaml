@@ -38,7 +38,7 @@
                 <TextBox x:Name="txtUsername" Width="300" FontSize="18" materialDesign:HintAssist.Hint="Ingrese Usuario" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="64" KeyDown="Username_KeyDown"  />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Grid Margin=" 40 20 0 0">
-                        <PasswordBox  x:Name="txtPassword" Width="300" FontSize="18" materialDesign:HintAssist.Hint="Ingrese Contraseña" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesingDivider}" Style="{StaticResource MaterialDesignOutlinedPasswordBox}" KeyDown="Password_KeySign" KeyUp="Password_KeyUp" />
+                        <PasswordBox  x:Name="txtPassword" Width="300" FontSize="18" materialDesign:HintAssist.Hint="Ingrese Contraseña" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesingDivider}" Style="{StaticResource MaterialDesignOutlinedPasswordBox}" KeyUp="Password_KeyUp" />
                         <TextBox x:Name="visibleTxtPassword" Visibility="Hidden" Width="300" FontSize="18"  BorderThickness="2" materialDesign:HintAssist.Hint="Ingrese Contraseña" BorderBrush="{DynamicResource MaterialDesingDivider}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                     </Grid>
                     <Grid Margin="20,30,0,0" >

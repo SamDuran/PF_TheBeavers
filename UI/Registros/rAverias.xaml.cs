@@ -12,7 +12,6 @@ namespace UI
     {
         private Averias averias = new Averias();
         private Contratos contrato = new Contratos();
-
         public rAverias()
         {
             InitializeComponent();
@@ -22,12 +21,12 @@ namespace UI
             TipoAveriaCombo.DisplayMemberPath = "NombreAveria";
             Limpiar();
         }
-
         private void Limpiar()
         {
             averias = new Averias();
             this.DataContext = averias;
-            TipoAveriaCombo.SelectedValue = 0;
+            TipoAveriaCombo.SelectedIndex = 0;
+            NombreTB.Text = null;
             OcultarLabels();
         }
         private void Cargar()
@@ -36,9 +35,7 @@ namespace UI
             this.DataContext = averias;
             TipoAveriaCombo.SelectedValue = averias.TipoAveriaId;
             MostrarLabels();
-
         }
-
         private void OcultarLabels()
         {
             AveriaLabel1.Visibility = Visibility.Hidden;
@@ -57,11 +54,10 @@ namespace UI
             FechaCLabel.Visibility = Visibility.Visible;
             fCreacionLabel.Visibility = Visibility.Visible;
         }
-
         public void CargarContrato(Contratos c)
         {
             this.contrato = c;
-            Cargar();
+            NombreTB.Text = contrato.NombreCliente + " " + contrato.ApellidoCliente;
         }
         public void CerrarConsulta(cContratos c)
         {
@@ -71,8 +67,7 @@ namespace UI
         //------------------------------------------------------BOTONES------------------------------------------------------------
         private void BuscarBTN_Click(object sender, RoutedEventArgs e)
         {
-            new cContratos().Show();
-
+            new cContratos(this).Show();
         }
         private void NuevoBTN_Click(object sender, RoutedEventArgs e)
         {
@@ -80,20 +75,16 @@ namespace UI
         }
         private void GuardarBTN_Click(object sender, RoutedEventArgs e)
         {
-
+            averias.Nombre= $"Cliente: {NombreTB.Text} | Avería: {TipoAveriaCombo.Text} | Fecha de reporte: ({DateTime.Now.ToString("dd-MM-yyyy")})";
             if (AveriasBLL.Guardar(averias))
             {
-
                 MessageBox.Show("Se guardó correctamente", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-
                 Limpiar();
             }
             else
             {
-
                 MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
         private void EliminarBTN_Click(object sender, RoutedEventArgs e)
         {

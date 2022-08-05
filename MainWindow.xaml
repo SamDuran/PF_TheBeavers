@@ -9,6 +9,7 @@
         WindowStartupLocation="CenterScreen" 
         Height="600" 
         Width="1000" 
+        x:Name="Main"
         Icon="./Resources/Icono.png" Background="#FF8E7352">
     <Grid Height="529" VerticalAlignment="Top">
 
@@ -18,7 +19,7 @@
                     <DockPanel HorizontalAlignment="Stretch"></DockPanel>
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
-
+            <!-- Registros -->
             <MenuItem x:Name="Registros" Background="#FF714E24" Header="Registros" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF714E24">
 
                 <MenuItem x:Name="mPlanes"  Header="Planes" Click="rPlanes_Click" >
@@ -48,7 +49,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-
+            <!-- Consultas -->
             <MenuItem x:Name="Consultas" Background="#FF714E24" Header="Consultas" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF714E24">
                 <MenuItem x:Name="cPlanes" Header="Planes" Click="cPlanes_Click">
                     <MenuItem.Icon>
@@ -66,9 +67,14 @@
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Background="#FF714E24" Header="Reportes" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF714E24">
-
+            <MenuItem x:Name="Reportes" Background="#FF714E24" Header="Reportes" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF714E24">
+                <MenuItem x:Name="repContratos" Header="Reporte de contratos al dia" Click="repContratos_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/Contratos.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
+            <!-- Papelera -->
             <MenuItem Background="#FF714E24" Header="Papelera" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="4,0,0,0" BorderBrush="#FF714E24">
                 <MenuItem x:Name="pContratos" Header="Contratos" Click="pContratos_Click">
                     <MenuItem.Icon>
@@ -76,7 +82,14 @@
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-            <MenuItem x:Name="CerrarSeccionMenuItem" Header="Cerrar Sesión" Click="CerrarSesionMenuItem_Click" VerticalAlignment="Stretch" HorizontalAlignment="Right" Background="#FF714E24" FlowDirection="RightToLeft" HorizontalContentAlignment="Right" />
+            <!-- Perfil -->
+            <MenuItem x:Name="ProfileMenuItem" HorizontalAlignment="Right" Background="#FF714E24" FlowDirection="RightToLeft" HorizontalContentAlignment="Right" FontWeight="Bold" Height="60">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/profile.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Width="40" Margin="-10" Height="40" VerticalAlignment="Center"/>
+                </MenuItem.Icon>
+                <MenuItem x:Name="CambiarClaveItem" Header="Cambiar Contraseña" Click="CambiarClave_Click"/>
+                <MenuItem x:Name="CerrarSeccionMenuItem" Header="Cerrar Sesión" Click="CerrarSesionMenuItem_Click"/>
+            </MenuItem>
         </Menu>
         <Grid>
             <Grid.RowDefinitions>

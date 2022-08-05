@@ -20,15 +20,13 @@ namespace UI
 {
     public partial class Login : Window
     {
-
-        MainWindow MenuPrincipal = new MainWindow();
         public Login()
         {
             InitializeComponent(); 
+            txtUsername.Focus();
         }
         public bool IsDarkTheme { get; set; }
         private readonly PaletteHelper paletteHelper = new PaletteHelper();
-
         private void IngresarButton_Click(object sender, RoutedEventArgs e)
         {
             Ingresar();
@@ -40,15 +38,13 @@ namespace UI
         private void Ingresar()
         {
             var bll = new LoginBLL();
-            bool paso = bll.Validar(txtUsername.Text, txtPassword.Password);
+            Usuarios? usuario = bll.Logear(txtUsername.Text, txtPassword.Password);
 
-
-            if (paso)
+            if (usuario!=null)
             {
-                int id = bll.getUsuario();
+                var menuPrincipal = new MainWindow(usuario);
+                menuPrincipal.Show();
                 this.Close();
-                MenuPrincipal.UsuarioLogeadoId = id;
-                MenuPrincipal.Show();
             }
             else
             {
@@ -57,7 +53,6 @@ namespace UI
                 txtPassword.Clear();
             }
         }
-
         private void toggleTheme(object sender, RoutedEventArgs e)
         {
             ITheme theme = paletteHelper.GetTheme();
@@ -74,36 +69,25 @@ namespace UI
             }
             paletteHelper.SetTheme(theme);
         }
-
         private void MasInfoButton_Click(object sender, RoutedEventArgs e)
         {
             new Process { StartInfo = new ProcessStartInfo("https://ucneedu-my.sharepoint.com/:w:/g/personal/samuel_duran_ucne_edu_do/EeNulvxKBsVLs1QEAN73CQoB1dtsE5vs-pZ7RXyFqN_EFQ?rtime=gMntQjJ02kg") { UseShellExecute = true } }.Start();
-
         }
         private void IngresarKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
                 Ingresar();
         }
-
         private void Username_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
                 txtPassword.Focus();
         }
-
-        private void Password_KeySign(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-                IngresarButton_Click(sender, e);
-        }
-
         private void Password_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Up)
                 txtUsername.Focus();
         }
-
         private void Username_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Up)
