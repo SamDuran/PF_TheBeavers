@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using UI;
 
 namespace PF_THEBEAVERS
 {
@@ -15,7 +16,7 @@ namespace PF_THEBEAVERS
     {
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            MessageBox.Show("Ha Ocurrido una excepción\n" + e.Exception.Message, "Excepción", MessageBoxButton.OK, MessageBoxImage.Error);
+            new MessageBoxCustom().ShowDialog(e.Exception.Message, MessageType.Error, MessageButtons.Ok);
 
             e.Handled = true;
         }

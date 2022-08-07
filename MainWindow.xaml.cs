@@ -26,16 +26,15 @@ namespace PF_THEBEAVERS
         cPlanes? cPlan;
         cPagos? cPago;
         pContratos? pContrato;
-
+        Login? login;
         public MainWindow(Usuarios? _usuario)
         {
             if (_usuario != null)
                 UsuarioLogeado = _usuario;
 
             InitializeComponent();
-            MainMenu.Items.Remove(Reportes);
             DataContext = UsuarioLogeado;
-            ProfileMenuItem.Header = "Bienvenid@: " + UsuarioLogeado.Nombres;
+            ProfileMenuItem.Header = "Bienvenid@: " + UsuarioLogeado.Nombre +" " + UsuarioLogeado.Apellido;
 
             if (UsuarioLogeado.TipoUsuarioId == 1)//si es admin
                 AddAdminOptions();
@@ -125,7 +124,7 @@ namespace PF_THEBEAVERS
                 TipoUsuario = "Empleado común";
             else
                 TipoUsuario = "Call Center";
-            Main.Title = $"{Main.Title} - {UsuarioLogeado.Nombres} : {TipoUsuario}";
+            Main.Title = $"{Main.Title} - {UsuarioLogeado.Nombre} {UsuarioLogeado.Apellido} : {TipoUsuario}";
         }
         private void CambiarClave_Click(object sander, RoutedEventArgs e)
         {
@@ -291,19 +290,24 @@ namespace PF_THEBEAVERS
             var document = new Document(pdf);
             document.Add(new Paragraph("Reporte de Contratos"));
             document.Close();
-            System.Windows.MessageBox.Show("Reporte generado correctamente", "Reporte", MessageBoxButton.OK, MessageBoxImage.Information);
+            new MessageBoxCustom().ShowDialog("Reporte guardado en: " + ruta, MessageType.Success, MessageButtons.Ok);
         }
         private void CerrarSesionMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            if (System.Windows.MessageBox.Show("Está seguro que desea cerrar sesión?", "Volver al Login", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            var confirmacion = new MessageBoxCustom("Está seguro que desea cerrar sesión?",MessageType.Confirmation,MessageButtons.YesNo);
+            confirmacion.ShowDialog();
+            if (confirmacion.DialogResult==true)
             {
-                new Login().Show();
+                login = new Login();
+                login.Show();
+                login.Closed += (sender, args) => login = null;
                 Close();
             }
         }
 		private void Cerrar(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-            System.Windows.Application.Current.Shutdown();
+            if(login==null)
+                System.Windows.Application.Current.Shutdown();
         }
 	}
 }

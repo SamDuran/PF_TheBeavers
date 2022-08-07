@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using System.Windows;
+using UI;
 
 namespace Models.Validations
 {
@@ -94,7 +95,7 @@ namespace Models.Validations
                 paso = false;
             }
             if (!paso)
-                MessageBox.Show(ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                new MessageBoxCustom().ShowDialog(ErrorMessage, MessageType.Error, MessageButtons.Ok);
 
             return paso;
         }
@@ -125,7 +126,7 @@ namespace Models.Validations
                 paso = false;
             }
             if (!paso)
-                MessageBox.Show(ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                new MessageBoxCustom().ShowDialog(ErrorMessage, MessageType.Error, MessageButtons.Ok);
 
             return paso;
         }
@@ -150,7 +151,47 @@ namespace Models.Validations
             }
 
             if (!paso)
-                MessageBox.Show(ErrorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                new MessageBoxCustom().ShowDialog(ErrorMessage, MessageType.Error, MessageButtons.Ok);
+
+            return paso;
+        }
+        public static bool ValidarUsuario(Usuarios usuario)
+        {
+            bool paso = true;
+            string ErrorMessage = "";
+            if (string.IsNullOrEmpty(usuario.Nombre) || string.IsNullOrWhiteSpace(usuario.Nombre))
+            {
+                ErrorMessage += ("\nEl campo Nombre no puede estar vacio");
+                paso = false;
+            }
+            if (string.IsNullOrEmpty(usuario.Apellido) || string.IsNullOrWhiteSpace(usuario.Apellido))
+            {
+                ErrorMessage += ("\nEl campo Apellido no puede estar vacio");
+                paso = false;
+            }
+            if (string.IsNullOrEmpty(usuario.Cedula) || string.IsNullOrWhiteSpace(usuario.Cedula))
+            {
+                ErrorMessage += ("\nEl campo Cedula no puede estar vacio");
+                paso = false;
+            }
+            if (string.IsNullOrEmpty(usuario.UserName) || string.IsNullOrWhiteSpace(usuario.UserName))
+            {
+                ErrorMessage += ("\nEl campo UserName no puede estar vacio");
+                paso = false;
+            }
+            if (string.IsNullOrEmpty(usuario.Password) || string.IsNullOrWhiteSpace(usuario.Password))
+            {
+                ErrorMessage += ("\nEl campo Password no puede estar vacio");
+                paso = false;
+            }
+            if (usuario.TipoUsuarioId == 0)
+            {
+                ErrorMessage += ("\nSe debe seleccionar un tipo de usuario");
+                paso = false;
+            }
+
+            if (!paso)
+                new MessageBoxCustom().ShowDialog(ErrorMessage, MessageType.Error, MessageButtons.Ok);
 
             return paso;
         }

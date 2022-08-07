@@ -20,7 +20,7 @@ namespace DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@"Data Source= ./DATA/TelecableBeavers.db");
+            optionsBuilder.UseSqlite(@"Data Source= DATA\TelecableBeavers.db");
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -36,7 +36,9 @@ namespace DAL
                 builder.Entity<Usuarios>().HasData(new Usuarios
                 {
                     UsuarioId = 1,
-                    Nombres = "Luis Rafael Baltodano",
+                    Nombre = "Luis Rafael",
+                    Apellido = "Baltodano P",
+                    Cedula = "402-3236649-1",
                     UserName = "RafaelB",
                     Password = "20200070",
                     TipoUsuarioId = 1
@@ -45,63 +47,89 @@ namespace DAL
                 builder.Entity<Usuarios>().HasData(new Usuarios
                 {
                     UsuarioId = 2,
-                    Nombres = "Jeison Reyes",
+                    Nombre = "Jeison",
+                    Apellido = "Reyes",
+                    Cedula = "402-3236649-2",
                     UserName = "JeisonR",
                     Password = "20190564",
-                    TipoUsuarioId = 1
+                    TipoUsuarioId = 1,
+                    TipoUsuario = "Administrador"
                 });
 
                 builder.Entity<Usuarios>().HasData(new Usuarios
                 {
                     UsuarioId = 3,
-                    Nombres = "Samuel Duran",
+                    Nombre = "Samuel",
+                    Apellido = "Duran T",
+                    Cedula = "402-3236649-3",
                     UserName = "SamuelD",
                     Password = "20190793",
-                    TipoUsuarioId = 1
+                    TipoUsuarioId = 1,
+                    TipoUsuario = "Administrador"
                 });
 
                 builder.Entity<Usuarios>().HasData(new Usuarios
                 {
                     UsuarioId = 4,
-                    Nombres = "Elianny Rosario",
+                    Nombre = "Elianny",
+                    Apellido ="Rosario",
+                    Cedula = "402-3236649-4",
                     UserName = "EliannyR",
                     Password = "20190255",
-                    TipoUsuarioId = 1
+                    TipoUsuarioId = 1,
+                    TipoUsuario = "Administrador"
                 });
 
                 builder.Entity<Usuarios>().HasData(new Usuarios
                 {
                     UsuarioId = 5,
-                    Nombres = "Yunilda Justo",
+                    Nombre = "Yunilda",
+                    Apellido ="Justo",
+                    Cedula = "402-3236649-5",
                     UserName = "YunildaJ",
                     Password = "20190274",
-                    TipoUsuarioId = 1
+                    TipoUsuarioId = 1,
+                    TipoUsuario = "Administrador"
                 });
                 builder.Entity<Usuarios>().HasData(new Usuarios
                 {
                     UsuarioId = 6,
-                    Nombres = "Usuario Admin",
+                    Nombre = "Usuario Admin",
                     UserName = "admin",
                     Password = null,
-                    TipoUsuarioId = 1
+                    TipoUsuarioId = 1,
+                    TipoUsuario = "Administrador"
                 });
                 
                 builder.Entity<Usuarios>().HasData(new Usuarios
                 {
                     UsuarioId = 7,
-                    Nombres = "Usuario comun",
+                    Nombre = "Usuario comun",
                     UserName = "comun",
                     Password = "comun",
-                    TipoUsuarioId = 2
+                    TipoUsuarioId = 2,
+                    TipoUsuario = "Usuario comun"
                 });
                 
                 builder.Entity<Usuarios>().HasData(new Usuarios
                 {
                     UsuarioId = 8,
-                    Nombres = "CallCenter",
+                    Nombre = "CallCenter",
                     UserName = "call",
                     Password = "call",
-                    TipoUsuarioId = 3
+                    TipoUsuarioId = 3,
+                    TipoUsuario = "Call center"
+                });
+                
+                builder.Entity<Usuarios>().HasData(new Usuarios
+                {
+                    UsuarioId = 9,
+                    Nombre = "Freddy Belliard",
+                    UserName = "FreddyB",
+                    Cedula = "402-3236649-9",
+                    Password = "freddy1",
+                    TipoUsuarioId = 1,
+                    TipoUsuario = "Administrador"
                 });
             }
             // Tipo Planes

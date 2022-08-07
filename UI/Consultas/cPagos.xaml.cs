@@ -171,7 +171,7 @@ namespace UI
 
             if (lista ==null || lista.Count == 0)
             {
-                MessageBox.Show("No se encontraron registros");
+                new MessageBoxCustom().ShowDialog("No se encontraron Registros", MessageType.Info, MessageButtons.Ok);
                 return;
             }
 

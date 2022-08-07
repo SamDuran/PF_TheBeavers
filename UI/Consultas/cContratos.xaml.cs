@@ -243,7 +243,7 @@ namespace UI
 
             if (lista == null || lista.Count == 0)
             {
-                MessageBox.Show("No se encontraron registros");
+                new MessageBoxCustom().ShowDialog("No se encontraron resultados", MessageType.Info, MessageButtons.Ok);
                 return;
             }
             TablaDatos.ItemsSource = lista;
@@ -289,7 +289,7 @@ namespace UI
                 ModificoAlgo = true;
                 return;
             }
-            MessageBox.Show("Debe selecionar un contrato.", "Consejo");
+            new MessageBoxCustom().ShowDialog("Seleccione un registro", MessageType.Warning,MessageButtons.Ok);
         }
         private void CargarContrato2()
         {

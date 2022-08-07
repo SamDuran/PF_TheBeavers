@@ -8,7 +8,7 @@
         Icon="/Resources/Icono.png"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
-        Title="Registro de Usuarios" Height="470" Width="800">
+        Title="Registro de Usuarios" Height="490" Width="800">
     <Grid Margin="15,20,15,20">
         <StackPanel Orientation="Vertical">
             <!--Titulo-->
@@ -29,8 +29,8 @@
             <!-- ID -->
             <StackPanel Orientation="Horizontal" Margin="0,20,0,10">
                 <Label Width="140"  Content=" Usuario ID" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="IDTb" Text="{Binding UsuarioId}" Width="500" Background="#FFF9F9F9"/>
-                <Button HorizontalAlignment="Left" x:Name="BuscarBTN" Click="BuscarBTN_Click" Margin="20,0,0,0" VerticalAlignment="Top"  Width="88" Height="26"  BorderBrush="#FF4C5FBD" Grid.Column="5" Background="#437FA6" Foreground="White" Cursor="Hand">
+                <TextBox x:Name="IDTb" IsEnabled="False" Text="{Binding UsuarioId}" Width="500" Background="#FFF9F9F9"/>
+                <Button HorizontalAlignment="Left" x:Name="BuscarBTN" IsEnabled="False" Click="BuscarBTN_Click" Margin="20,0,0,0" VerticalAlignment="Top"  Width="88" Height="26"  BorderBrush="#FF4C5FBD" Grid.Column="5" Background="#437FA6" Foreground="White" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Resources/Lupa.png"/>
                         <Label HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontStyle="Normal" Foreground="#FF383838" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontSize="11" FontFamily="Bahnschrift SemiBold" Content="Buscar"/>
@@ -45,17 +45,17 @@
             <!--UserName-->
             <StackPanel Orientation="Horizontal" Margin="0,10,20,10">
                 <Label Content="Username" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="UserTB"  Text="{Binding Precio}" TextWrapping="Wrap" VerticalAlignment="Center" Width="640" Height="26" VerticalContentAlignment="Center" Background="#FFF9F9F9" Cursor="IBeam"/>
+                <TextBox x:Name="UserTB"  Text="{Binding UserName}" TextWrapping="Wrap" VerticalAlignment="Center" Width="640" Height="26" VerticalContentAlignment="Center" Background="#FFF9F9F9" Cursor="IBeam"/>
             </StackPanel>
             <!--Password-->
             <StackPanel Orientation="Horizontal" Margin="0,10,20,10">
                 <Label Content="Password" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="PasswordTB" Text="{Binding Precio}" TextWrapping="Wrap" VerticalAlignment="Center" Width="640" Height="26" VerticalContentAlignment="Center" Background="#FFF9F9F9"/>
+                <TextBox x:Name="PasswordTB" Text="{Binding Password}" TextWrapping="Wrap" VerticalAlignment="Center" Width="640" Height="26" VerticalContentAlignment="Center" Background="#FFF9F9F9"/>
             </StackPanel>
             <!-- Tipo usuario  -->
             <StackPanel Orientation="Horizontal" Margin="0,10,20,10">
                 <Label Content="Tipo de usuario" Padding="5,5,5,5" Height="26" Width="140" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                <ComboBox x:Name="TipoCombo"  HorizontalAlignment="Center" Width="610" BorderBrush="#FFA0A0A0" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="#FFF9F9F9">
+                <ComboBox x:Name="TipoCombo"  HorizontalAlignment="Center" Width="610" BorderBrush="#FFF9F9F9" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="#FFF9F9F9">
                 </ComboBox>
             </StackPanel>
             <!-- Botones -->

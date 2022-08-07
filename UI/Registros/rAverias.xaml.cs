@@ -78,24 +78,28 @@ namespace UI
             averias.Nombre= $"Cliente: {NombreTB.Text} | Avería: {TipoAveriaCombo.Text} | Fecha de reporte: ({DateTime.Now.ToString("dd-MM-yyyy")})";
             if (AveriasBLL.Guardar(averias))
             {
-                MessageBox.Show("Se guardó correctamente", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                new MessageBoxCustom().ShowDialog("Se guardó exitosamente", MessageType.Success, MessageButtons.Ok);
                 Limpiar();
             }
             else
             {
-                MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                new MessageBoxCustom().ShowDialog("No se pudo eliminar", MessageType.Error, MessageButtons.Ok);
             }
         }
         private void EliminarBTN_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("¿Está seguro que desea eliminar esta Averia?", "Confirmacion", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            var confirmacion = new MessageBoxCustom("¿Está seguro de eliminar?", MessageType.Confirmation, MessageButtons.YesNo);
+            confirmacion.ShowDialog();
+            if (confirmacion.DialogResult == true)
+            {
                 if (AveriasBLL.Eliminar(this.averias.AveriaId))
                 {
                     Limpiar();
-                    MessageBox.Show("Operación exitosa");
+                    new MessageBoxCustom().ShowDialog("Operacion exitosa", MessageType.Success, MessageButtons.Ok);
                 }
                 else
-                    MessageBox.Show("No se pudo completar la operación");
+                    new MessageBoxCustom().ShowDialog("No se pudo realizar la operación", MessageType.Error, MessageButtons.Ok);
+            }
         }
     }
 }

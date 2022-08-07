@@ -42,7 +42,9 @@ namespace UI
             PlanCombo.ItemsSource = TipoPlanesBLL.GetList();
             PlanCombo.SelectedValuePath = "TipoPlanId";
             PlanCombo.DisplayMemberPath = "NombrePlan";
-            if (MessageBox.Show("¿Desea cerrar la ventana de consultas de Pagos?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            var confirmacion = new MessageBoxCustom("¿Desea cerrar la ventana de consultas de pagos?", MessageType.Confirmation, MessageButtons.YesNo);
+            confirmacion.ShowDialog();
+            if (confirmacion.DialogResult == true)
                 consulta.Close();
             Cargar();
         }
@@ -55,7 +57,9 @@ namespace UI
             PlanCombo.ItemsSource = TipoPlanesBLL.GetList();
             PlanCombo.SelectedValuePath = "TipoPagoId";
             PlanCombo.DisplayMemberPath = "NombrePago";
-            if (MessageBox.Show("¿Desea cerrar la ventana de consultas?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            var confirmacion = new MessageBoxCustom("¿Desea cerrar la ventana de consultas?", MessageType.Confirmation, MessageButtons.YesNo);
+            confirmacion.ShowDialog();
+            if (confirmacion.DialogResult == true)
                 consulta.Close();
             ColocarDatos();
 
@@ -142,12 +146,12 @@ namespace UI
                 {
                     if (PlanesBLL.Guardar(plan))
                     {
-                        MessageBox.Show("Guardado", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                        new MessageBoxCustom().ShowDialog("Se guardó exitosamente", MessageType.Success, MessageButtons.Ok);
                         Limpiar();
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                        new MessageBoxCustom().ShowDialog("No se pudo guardar", MessageType.Error, MessageButtons.Ok);
                     }
                 }
             }
@@ -156,12 +160,12 @@ namespace UI
         {
             if (PlanesBLL.Eliminar(Utilities.Utilities.ToInt(IdPlanTB.Text)))
             {
-                MessageBox.Show("Eliminado", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                new MessageBoxCustom().ShowDialog("Se eliminó exitosamente", MessageType.Success, MessageButtons.Ok);
                 Limpiar();
             }
             else
             {
-                MessageBox.Show("No se pudo eliminar", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                new MessageBoxCustom().ShowDialog("No se pudo eliminar", MessageType.Error, MessageButtons.Ok);
             }
         }
         //------------------------------------------------------Keydowns-----------------------------------------------------------

@@ -27,7 +27,7 @@ namespace UI
         {
             InitializeComponent();
             this.DataContext = Averia;
-            AveriasCombo.ItemsSource = AveriasBLL.GetListExistentes(e=> true);
+            AveriasCombo.ItemsSource = AveriasBLL.GetListExistentes(e => true);
             AveriasCombo.SelectedValuePath = "AveriaId";
             AveriasCombo.DisplayMemberPath = "Nombre";
 
@@ -77,29 +77,7 @@ namespace UI
         //------------------------------------------------------BOTONES------------------------------------------------------------
         private void BuscarBTN_Click(object sender, RoutedEventArgs e)
         {
-            if (this.Averia.AveriaId == 0)
-            {
-                IdAveriasTB.IsEnabled = true;
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(IdAveriasTB.Text) || string.IsNullOrWhiteSpace(IdAveriasTB.Text) || IdAveriasTB.Text == "0")
-                {
-                    MessageBox.Show("Debe de ingresar un ID");
-                }
-                else
-                {
-                    var AveriaAux = AveriasBLL.Buscar(Utilities.Utilities.ToInt(IdAveriasTB.Text));
-                    if (AveriaAux != null)
-                    {
-                        Averia = AveriaAux;
-                        Cargar();
-                    }
-                    else
-                        MessageBox.Show("No se encontro el Averia");
-                    
-                }
-            }
+            //Abrir ventana de busqueda
         }
         private void NuevoBTN_Click(object sender, RoutedEventArgs e)
         {
@@ -107,28 +85,28 @@ namespace UI
         }
         private void GuardarBTN_Click(object sender, RoutedEventArgs e)
         {
-                Averia.ClienteId = (int)ClientesCombo.SelectedValue;
-                Averia.TecnicoId = (int)TecnicoCombo.SelectedValue;
-                if (AveriasBLL.Guardar(Averia))
-                {
-                    MessageBox.Show("Guardado", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Limpiar();
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+            Averia.ClienteId = (int)ClientesCombo.SelectedValue;
+            Averia.TecnicoId = (int)TecnicoCombo.SelectedValue;
+            if (AveriasBLL.Guardar(Averia))
+            {
+                new MessageBoxCustom().ShowDialog("Se guardó exitosamente", MessageType.Success, MessageButtons.Ok);
+                Limpiar();
+            }
+            else
+            {
+                new MessageBoxCustom().ShowDialog("No se pudo guardar", MessageType.Error, MessageButtons.Ok);
+            }
         }
         private void EliminarBTN_Click(object sender, RoutedEventArgs e)
         {
             if (AveriasBLL.Eliminar(Utilities.Utilities.ToInt(IdAveriasTB.Text)))
             {
-                MessageBox.Show("Eliminado", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                new MessageBoxCustom().ShowDialog("Se elimino exitosamente", MessageType.Success, MessageButtons.Ok);
                 Limpiar();
             }
             else
             {
-                MessageBox.Show("No se pudo eliminar", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                new MessageBoxCustom().ShowDialog("No se pudo eliminar", MessageType.Error, MessageButtons.Ok);
             }
         }
         //------------------------------------------------------Keydowns-----------------------------------------------------------

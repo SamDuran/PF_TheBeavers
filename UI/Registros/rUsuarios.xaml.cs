@@ -11,12 +11,18 @@ namespace UI
         {
             InitializeComponent();
             Limpiar();
+            TipoCombo.ItemsSource = TipoUsuariosBLL.GetList();
+            TipoCombo.SelectedIndex = 0;
+            TipoCombo.SelectedValuePath = "Id";
+            TipoCombo.DisplayMemberPath = "Tipo";
         }
 		//----------------------------------------- UTILS -----------------------------------------//
         private void Limpiar()
         {
+            DataContext = null;
             usuario = new Usuarios();
             DataContext = usuario;
+            TipoCombo.SelectedIndex = 0;
 			OcultarLabels();
         }
 		private void Cargar()
@@ -50,29 +56,58 @@ namespace UI
         }
         private void GuardarBTN_Click(object sender, RoutedEventArgs e)
         {
+            var tipoUsuario = TipoUsuariosBLL.Buscar((int)TipoCombo.SelectedValue);
+            if(tipoUsuario != null)
+            {
+                usuario.TipoUsuarioId = tipoUsuario.Id;
+                usuario.TipoUsuario = tipoUsuario.Tipo;
+            }
+            else
+            {
+                new MessageBoxCustom().ShowDialog("No se encuentra el tipo de usuario", MessageType.Warning, MessageButtons.Ok);
+                return;
+            }
             if(usuario.UsuarioId!=0)
 			{
-                if(MessageBox.Show($"¿Está seguro que desea modificar el usuario {usuario.Nombres} ?", "Confirmacion", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                var confirmacion = new MessageBoxCustom($"¿Está seguro de modificar el usuario {usuario.Nombre} ?", MessageType.Confirmation, MessageButtons.YesNo);
+                confirmacion.ShowDialog();
+                if(confirmacion.DialogResult==true)
 				{
                     if(UsuariosBLL.Guardar(usuario))
-                        MessageBox.Show("Se modificó con exito", "Operación exitosa");
+                    {
+                        new MessageBoxCustom().ShowDialog("Se modificó exitosamente", MessageType.Success, MessageButtons.Ok);
+                        Limpiar();  
+                    }
 					
                     else
-                        MessageBox.Show("No se pudo modificar", "Operación fallida");
+                        new MessageBoxCustom().ShowDialog("No se pudo modificar", MessageType.Error, MessageButtons.Ok);
                 }
                 return;
 			}else
 			{
                 if (UsuariosBLL.Guardar(usuario))
-                    MessageBox.Show("Se guardó con exito", "Operación exitosa");
+                {
+                    new MessageBoxCustom().ShowDialog("Se guardó exitosamente", MessageType.Success, MessageButtons.Ok);
+                    Limpiar();
+                }
 
                 else
-                    MessageBox.Show("No se pudo guardar", "Operación fallida");
+                    new MessageBoxCustom().ShowDialog("No se pudo guardar", MessageType.Success, MessageButtons.Ok);
             }
         }
         private void EliminarBTN_Click(object sender, RoutedEventArgs e)
         {
-
+            var confirmacion = new MessageBoxCustom($"¿Está seguro de eliminar el usuario {usuario.Nombre} ?", MessageType.Confirmation, MessageButtons.YesNo);
+            confirmacion.ShowDialog();
+            if(confirmacion.DialogResult==true)
+				{
+                    
+                    if(UsuariosBLL.Eliminar(usuario.UsuarioId))
+                        new MessageBoxCustom().ShowDialog("Se eliminó exitosamente", MessageType.Success, MessageButtons.Ok);
+					
+                    else
+                        new MessageBoxCustom().ShowDialog("No se pudo eliminar", MessageType.Error, MessageButtons.Ok);
+                }
         }
         //-----------------------------------------EVENTOS---------------------------------------//
         

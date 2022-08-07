@@ -45,7 +45,7 @@ namespace UI
             
             if(ContratosBLL.GetListNoExistentes(c => true).Count==0)
             {
-                MessageBox.Show("No hay contratos en la papelera", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                new MessageBoxCustom().ShowDialog("No hay contratos en la papelera", MessageType.Info, MessageButtons.Ok);
                 return;
             }
             CadenaRespaldo = BusquedaTB.Text;
@@ -232,7 +232,7 @@ namespace UI
 
             if (lista == null || lista.Count == 0)
             {
-                MessageBox.Show("No se encontraron registros");
+                new MessageBoxCustom().ShowDialog("No se encontraron registros", MessageType.Error, MessageButtons.Ok);
                 return;
             }
 
@@ -242,33 +242,37 @@ namespace UI
         {
 
             this.contrato = contrat;
-            if (MessageBox.Show("¿Seguro que desea restaurar el contrato?", "Restaurar contrato", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            var result = new MessageBoxCustom("¿Está seguro de restaurar el contrato?", MessageType.Confirmation, MessageButtons.YesNo);
+            result.ShowDialog();
+            if (result.DialogResult == true)
             {
                 contrato.Existente = true;
                 if (ContratosBLL.Guardar(contrato))
                 {
-                    MessageBox.Show("Se ha restaurado el contrato");
+                    new MessageBoxCustom().ShowDialog("Contrato restaurado", MessageType.Success, MessageButtons.Ok);
                     Refrescar();
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo restaurar el contrato");
+                    new MessageBoxCustom().ShowDialog("No se pudo restaurar el contrato", MessageType.Error, MessageButtons.Ok);
                 }
             }
         }
         private void EliminarContrato(Contratos c)
         {
             this.contrato = c;
-            if (MessageBox.Show("¿Seguro que desea eliminar el contrato?", "Eliminar contrato", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            var result = new MessageBoxCustom("¿Está seguro de eliminar el contrato?", MessageType.Confirmation, MessageButtons.YesNo);
+            result.ShowDialog();
+            if (result.DialogResult == true)
             {
                 if (ContratosBLL.EliminarPermanente(contrato.ContratoId))
                 {
-                    MessageBox.Show("Se ha eliminado el contrato");
+                    new MessageBoxCustom().ShowDialog("Contrato Eliminado", MessageType.Success, MessageButtons.Ok);
                     Refrescar();
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo eliminar el contrato");
+                    new MessageBoxCustom().ShowDialog("El contrato no se pudo eliminar", MessageType.Error, MessageButtons.Ok);
                 }
             }
         }

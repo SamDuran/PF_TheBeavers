@@ -194,10 +194,13 @@ namespace PF_THEBEAVERS.Migrations
                 {
                     UsuarioId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Nombres = table.Column<string>(type: "TEXT", nullable: false),
+                    Nombre = table.Column<string>(type: "TEXT", nullable: false),
+                    Apellido = table.Column<string>(type: "TEXT", nullable: false),
                     UserName = table.Column<string>(type: "TEXT", nullable: false),
                     Password = table.Column<string>(type: "TEXT", nullable: true),
                     TipoUsuarioId = table.Column<int>(type: "INTEGER", nullable: false),
+                    TipoUsuario = table.Column<string>(type: "TEXT", nullable: false),
+                    Cedula = table.Column<string>(type: "TEXT", nullable: false),
                     Existente = table.Column<bool>(type: "INTEGER", nullable: false),
                     FechaCreacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     FechaModificacion = table.Column<DateTime>(type: "TEXT", nullable: false)
@@ -215,47 +218,47 @@ namespace PF_THEBEAVERS.Migrations
             migrationBuilder.InsertData(
                 table: "Planes",
                 columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlan", "TipoPlanId" },
-                values: new object[] { 1, "3 Mbps/1 Mbps + 150 canales", true, new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(3052), new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(3054), "Combo Básico", 1000f, "Plan Básico", 1 });
+                values: new object[] { 1, "3 Mbps/1 Mbps + 150 canales", true, new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(5020), new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(5023), "Combo Básico", 1000f, "Plan Básico", 1 });
 
             migrationBuilder.InsertData(
                 table: "Planes",
                 columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlan", "TipoPlanId" },
-                values: new object[] { 2, "10 Mbps/3 Mbps + 175 canales", true, new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(3126), new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(3128), "Combo Medio", 1700f, "Plan Medio", 2 });
+                values: new object[] { 2, "10 Mbps/3 Mbps + 175 canales", true, new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(5240), new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(5242), "Combo Medio", 1700f, "Plan Medio", 2 });
 
             migrationBuilder.InsertData(
                 table: "Planes",
                 columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlan", "TipoPlanId" },
-                values: new object[] { 3, "50 Mbps/10 Mbps + 275 canales", true, new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(3185), new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(3187), "Combo Premium", 2850f, "Plan Premium", 3 });
+                values: new object[] { 3, "50 Mbps/10 Mbps + 275 canales", true, new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(5334), new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(5336), "Combo Premium", 2850f, "Plan Premium", 3 });
 
             migrationBuilder.InsertData(
                 table: "Planes",
                 columns: new[] { "PlanId", "Descripcion", "Estado", "FechaCreacion", "FechaModificacion", "Nombre", "Precio", "TipoPlan", "TipoPlanId" },
-                values: new object[] { 4, "25 Mbps/5 Mbps + 225 canales", true, new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(3244), new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(3246), "Combo Deluxe", 2500f, "Plan Premium", 3 });
+                values: new object[] { 4, "25 Mbps/5 Mbps + 225 canales", true, new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(5439), new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(5441), "Combo Deluxe", 2500f, "Plan Premium", 3 });
 
             migrationBuilder.InsertData(
                 table: "Tecnicos",
                 columns: new[] { "Id", "FechaCreacion", "FechaModificacion", "NoCarnet", "Nombre", "Telefono", "TipoTecnico", "TipoTecnicoId", "Zona", "ZonaId" },
-                values: new object[] { 1, new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2424), new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2427), "1234567891", "Tecnico1", "", "", 0, "", 0 });
+                values: new object[] { 1, new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(3108), new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(3112), "1234567891", "Tecnico1", "", "", 0, "", 0 });
 
             migrationBuilder.InsertData(
                 table: "Tecnicos",
                 columns: new[] { "Id", "FechaCreacion", "FechaModificacion", "NoCarnet", "Nombre", "Telefono", "TipoTecnico", "TipoTecnicoId", "Zona", "ZonaId" },
-                values: new object[] { 2, new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2492), new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2494), "1234567892", "Tecnico2", "", "", 0, "", 0 });
+                values: new object[] { 2, new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(3230), new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(3234), "1234567892", "Tecnico2", "", "", 0, "", 0 });
 
             migrationBuilder.InsertData(
                 table: "Tecnicos",
                 columns: new[] { "Id", "FechaCreacion", "FechaModificacion", "NoCarnet", "Nombre", "Telefono", "TipoTecnico", "TipoTecnicoId", "Zona", "ZonaId" },
-                values: new object[] { 3, new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2543), new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2546), "1234567893", "Tecnico3", "", "", 0, "", 0 });
+                values: new object[] { 3, new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(3319), new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(3323), "1234567893", "Tecnico3", "", "", 0, "", 0 });
 
             migrationBuilder.InsertData(
                 table: "Tecnicos",
                 columns: new[] { "Id", "FechaCreacion", "FechaModificacion", "NoCarnet", "Nombre", "Telefono", "TipoTecnico", "TipoTecnicoId", "Zona", "ZonaId" },
-                values: new object[] { 4, new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2597), new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2599), "1234567894", "Tecnico4", "", "", 0, "", 0 });
+                values: new object[] { 4, new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(3401), new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(3404), "1234567894", "Tecnico4", "", "", 0, "", 0 });
 
             migrationBuilder.InsertData(
                 table: "Tecnicos",
                 columns: new[] { "Id", "FechaCreacion", "FechaModificacion", "NoCarnet", "Nombre", "Telefono", "TipoTecnico", "TipoTecnicoId", "Zona", "ZonaId" },
-                values: new object[] { 5, new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2647), new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2650), "1234567895", "Tecnico5", "", "", 0, "", 0 });
+                values: new object[] { 5, new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(3494), new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(3499), "1234567895", "Tecnico5", "", "", 0, "", 0 });
 
             migrationBuilder.InsertData(
                 table: "TipoAverias",
@@ -319,43 +322,48 @@ namespace PF_THEBEAVERS.Migrations
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "UsuarioId", "Existente", "FechaCreacion", "FechaModificacion", "Nombres", "Password", "TipoUsuarioId", "UserName" },
-                values: new object[] { 1, true, new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1599), new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1622), "Luis Rafael Baltodano", "20200070", 1, "RafaelB" });
+                columns: new[] { "UsuarioId", "Apellido", "Cedula", "Existente", "FechaCreacion", "FechaModificacion", "Nombre", "Password", "TipoUsuario", "TipoUsuarioId", "UserName" },
+                values: new object[] { 1, "Baltodano P", "402-3236649-1", true, new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(1717), new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(1753), "Luis Rafael", "20200070", "", 1, "RafaelB" });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "UsuarioId", "Existente", "FechaCreacion", "FechaModificacion", "Nombres", "Password", "TipoUsuarioId", "UserName" },
-                values: new object[] { 2, true, new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1703), new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1706), "Jeison Reyes", "20190564", 1, "JeisonR" });
+                columns: new[] { "UsuarioId", "Apellido", "Cedula", "Existente", "FechaCreacion", "FechaModificacion", "Nombre", "Password", "TipoUsuario", "TipoUsuarioId", "UserName" },
+                values: new object[] { 2, "Reyes", "402-3236649-2", true, new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(1861), new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(1864), "Jeison", "20190564", "Administrador", 1, "JeisonR" });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "UsuarioId", "Existente", "FechaCreacion", "FechaModificacion", "Nombres", "Password", "TipoUsuarioId", "UserName" },
-                values: new object[] { 3, true, new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1765), new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1767), "Samuel Duran", "20190793", 1, "SamuelD" });
+                columns: new[] { "UsuarioId", "Apellido", "Cedula", "Existente", "FechaCreacion", "FechaModificacion", "Nombre", "Password", "TipoUsuario", "TipoUsuarioId", "UserName" },
+                values: new object[] { 3, "Duran T", "402-3236649-3", true, new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(1942), new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(1945), "Samuel", "20190793", "Administrador", 1, "SamuelD" });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "UsuarioId", "Existente", "FechaCreacion", "FechaModificacion", "Nombres", "Password", "TipoUsuarioId", "UserName" },
-                values: new object[] { 4, true, new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1822), new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1825), "Elianny Rosario", "20190255", 1, "EliannyR" });
+                columns: new[] { "UsuarioId", "Apellido", "Cedula", "Existente", "FechaCreacion", "FechaModificacion", "Nombre", "Password", "TipoUsuario", "TipoUsuarioId", "UserName" },
+                values: new object[] { 4, "Rosario", "402-3236649-4", true, new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(2015), new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(2019), "Elianny", "20190255", "Administrador", 1, "EliannyR" });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "UsuarioId", "Existente", "FechaCreacion", "FechaModificacion", "Nombres", "Password", "TipoUsuarioId", "UserName" },
-                values: new object[] { 5, true, new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1878), new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(1880), "Yunilda Justo", "20190274", 1, "YunildaJ" });
+                columns: new[] { "UsuarioId", "Apellido", "Cedula", "Existente", "FechaCreacion", "FechaModificacion", "Nombre", "Password", "TipoUsuario", "TipoUsuarioId", "UserName" },
+                values: new object[] { 5, "Justo", "402-3236649-5", true, new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(2090), new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(2093), "Yunilda", "20190274", "Administrador", 1, "YunildaJ" });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "UsuarioId", "Existente", "FechaCreacion", "FechaModificacion", "Nombres", "Password", "TipoUsuarioId", "UserName" },
-                values: new object[] { 6, true, new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2074), new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2077), "Usuario Admin", null, 1, "admin" });
+                columns: new[] { "UsuarioId", "Apellido", "Cedula", "Existente", "FechaCreacion", "FechaModificacion", "Nombre", "Password", "TipoUsuario", "TipoUsuarioId", "UserName" },
+                values: new object[] { 6, "", "", true, new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(2178), new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(2181), "Usuario Admin", null, "Administrador", 1, "admin" });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "UsuarioId", "Existente", "FechaCreacion", "FechaModificacion", "Nombres", "Password", "TipoUsuarioId", "UserName" },
-                values: new object[] { 7, true, new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2134), new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2138), "Usuario comun", "comun", 2, "comun" });
+                columns: new[] { "UsuarioId", "Apellido", "Cedula", "Existente", "FechaCreacion", "FechaModificacion", "Nombre", "Password", "TipoUsuario", "TipoUsuarioId", "UserName" },
+                values: new object[] { 7, "", "", true, new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(2620), new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(2625), "Usuario comun", "comun", "Usuario comun", 2, "comun" });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "UsuarioId", "Existente", "FechaCreacion", "FechaModificacion", "Nombres", "Password", "TipoUsuarioId", "UserName" },
-                values: new object[] { 8, true, new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2188), new DateTime(2022, 8, 4, 20, 17, 24, 728, DateTimeKind.Local).AddTicks(2190), "CallCenter", "call", 3, "call" });
+                columns: new[] { "UsuarioId", "Apellido", "Cedula", "Existente", "FechaCreacion", "FechaModificacion", "Nombre", "Password", "TipoUsuario", "TipoUsuarioId", "UserName" },
+                values: new object[] { 8, "", "", true, new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(2700), new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(2703), "CallCenter", "call", "Call center", 3, "call" });
+
+            migrationBuilder.InsertData(
+                table: "Usuarios",
+                columns: new[] { "UsuarioId", "Apellido", "Cedula", "Existente", "FechaCreacion", "FechaModificacion", "Nombre", "Password", "TipoUsuario", "TipoUsuarioId", "UserName" },
+                values: new object[] { 9, "", "402-3236649-9", true, new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(2771), new DateTime(2022, 8, 6, 17, 49, 58, 924, DateTimeKind.Local).AddTicks(2774), "Freddy Belliard", "freddy1", "Administrador", 1, "FreddyB" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

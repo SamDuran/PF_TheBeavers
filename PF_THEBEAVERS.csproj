@@ -7,14 +7,9 @@
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>Resources\Icono.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="DB\**" />
-    <EmbeddedResource Remove="DB\**" />
-    <None Remove="DB\**" />
-    <Page Remove="DB\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <None Remove="Icono.png" />
@@ -69,7 +64,7 @@
   
   <ItemGroup>
     <None Update="DATA\TelecableBeavers.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

@@ -34,7 +34,9 @@ namespace UI
             TipoPagoCombo.ItemsSource = TipoPagosBLL.GetList();
             TipoPagoCombo.SelectedValuePath = "TipoPagoId";
             TipoPagoCombo.DisplayMemberPath = "NombrePago";
-            if (MessageBox.Show("¿Desea cerrar la ventana de consultas de Pagos?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            var confirmacion = new MessageBoxCustom("¿Desea cerrar la ventan de consultas de pagos?", MessageType.Confirmation, MessageButtons.YesNo);
+            confirmacion.ShowDialog();
+            if (confirmacion.DialogResult == true)
                 consulta.Close();
             Cargar();
             PantallaCargo = true;
@@ -47,7 +49,9 @@ namespace UI
             TipoPagoCombo.ItemsSource = TipoPagosBLL.GetList();
             TipoPagoCombo.SelectedValuePath = "TipoPagoId";
             TipoPagoCombo.DisplayMemberPath = "NombrePago";
-            if (MessageBox.Show("¿Desea cerrar la ventana de consultas?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            var confirmacion = new MessageBoxCustom("¿Desea cerrar la ventan de consultas de consultas?", MessageType.Confirmation, MessageButtons.YesNo);
+            confirmacion.ShowDialog();
+            if (confirmacion.DialogResult == true)
                 consulta.Close();
             ColocarDatos();
             PantallaCargo = true;
@@ -165,28 +169,28 @@ namespace UI
                     if (PagosBLL.Guardar(this.pago))
                     {
                         Limpiar();
-                        MessageBox.Show("Guardado!", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                        new MessageBoxCustom().ShowDialog("Se guardó exitosamente", MessageType.Success, MessageButtons.Ok);
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo guardar!", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                        new MessageBoxCustom().ShowDialog("No se pudo guardar", MessageType.Error, MessageButtons.Ok);
                     }
                 }
             }else
             {
-                MessageBox.Show("El monto no es valido!", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                new MessageBoxCustom().ShowDialog("El monto no es válido", MessageType.Warning, MessageButtons.Ok);
             }
         }
         private void EliminarBTN_Click(object sander, RoutedEventArgs e)
         {
             if (PagosBLL.Eliminar(pago.PagoId))
             {
-                MessageBox.Show("Eliminado correctamente");
+                new MessageBoxCustom().ShowDialog("Se eliminó exitosamente", MessageType.Success, MessageButtons.Ok);
                 Limpiar();
             }
             else
             {
-                MessageBox.Show("No se pudo eliminar");
+                new MessageBoxCustom().ShowDialog("No se pudo eliminar", MessageType.Error, MessageButtons.Ok);
             }
         }
         //------------------------------------------------------Keydowns-----------------------------------------------------------

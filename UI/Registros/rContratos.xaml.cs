@@ -16,7 +16,7 @@ namespace UI
         {
             if(PlanesBLL.GetListExistentes(e => true).Count==0)
             {
-                MessageBox.Show("No hay planes registrados.\nPor favor intente registrar al menos un plan antes de registrar contratos","Error",MessageBoxButton.OK);
+                new MessageBoxCustom().ShowDialog("No hay planes registrados", MessageType.Warning, MessageButtons.Ok);
                 this.Close();
                 return;
             }
@@ -31,10 +31,12 @@ namespace UI
         {
             this.contrato = _contrato;
             InitializeComponent();
-            TipoPlanCombo.ItemsSource = PlanesBLL.GetListExistentes(e => true);
+            TipoPlanCombo.DataContext = TipoPlanCombo.ItemsSource = PlanesBLL.GetListExistentes(e => true);
             TipoPlanCombo.SelectedValuePath = "PlanId";
             TipoPlanCombo.DisplayMemberPath = "Nombre";
-            if (MessageBox.Show("¿Desea cerrar la ventana de consultas de contratos?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            var confirmacion = new MessageBoxCustom("¿Desea cerrar la ventana de consultas de contratos?", MessageType.Confirmation, MessageButtons.YesNo);
+            confirmacion.ShowDialog();
+            if (confirmacion.DialogResult == true)
                 ConsultaAnterior.Close();
             Cargar();
         }
@@ -109,7 +111,9 @@ namespace UI
         }
         private void CancelarBTN_Click(object sender, RoutedEventArgs e)
         {
-            if(MessageBox.Show("¿Está seguro que desea cancelar este contrato?","Confirmacion",MessageBoxButton.YesNo, MessageBoxImage.Warning) ==MessageBoxResult.Yes)
+            var confirmacion = new MessageBoxCustom("¿Está seguro que desea cancelar este contrato?", MessageType.Confirmation, MessageButtons.YesNo);
+            confirmacion.ShowDialog();
+            if(confirmacion.DialogResult==true)
                 this.contrato.Estado = 4;
         }
         private void GuardarBTN_Click(object sender, RoutedEventArgs e)
@@ -131,29 +135,28 @@ namespace UI
 
                 if(ContratosBLL.Guardar(this.contrato))
                 {
-
-                    if(MessageBox.Show(resultado+"\n¿Desea copiar el No.Contrato?", "Exito", MessageBoxButton.YesNo , MessageBoxImage.Information)==MessageBoxResult.Yes)
-                        Clipboard.SetText(contrato.NoContrato);
-                    
+                    new MessageBoxCustom().ShowDialog(resultado, MessageType.Success, MessageButtons.Ok);
                     Limpiar();
                 }
                 else
                 {
                     resultado = "No se pudo guardar!";
-                    MessageBox.Show(resultado, "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    new MessageBoxCustom().ShowDialog(resultado, MessageType.Error, MessageButtons.Ok);
                 }
             }
         }
         private void EliminarBTN_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("¿Está seguro que desea eliminar este contrato?", "Confirmacion", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            var confirmacion = new MessageBoxCustom("¿Está seguro que desea eliminar este contrato?", MessageType.Confirmation, MessageButtons.YesNo);
+            confirmacion.ShowDialog();
+            if (confirmacion.DialogResult == true)
                 if (ContratosBLL.Eliminar(this.contrato.ContratoId))
                 {
                     Limpiar();
-                    MessageBox.Show("Operación exitosa");
+                    new MessageBoxCustom().ShowDialog("Operación exitosa", MessageType.Success, MessageButtons.Ok);
                 }
                 else
-                    MessageBox.Show("No se pudo completar la operación");
+                    new MessageBoxCustom().ShowDialog("No se pudo realizar la operación", MessageType.Error, MessageButtons.Ok);
         }
         
         //------------------------------------------------------Keydowns-----------------------------------------------------------
@@ -278,7 +281,6 @@ namespace UI
             TelRefTB.Background = new SolidColorBrush(Colors.White);
             TelRefTB.Background.Opacity = 0.5;
         }
-
 		private void ActualizarEstado(object sender, RoutedEventArgs e)
 		{
             if(SuspendidoCB.IsChecked != true)
